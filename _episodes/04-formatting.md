@@ -1,376 +1,335 @@
----
-title: "Formatting"
-teaching: 10
-exercises: 0
+--
+title: "Navigating Files and Directories"
+teaching: 30
+exercises: 20
 questions:
-- "How are Software and Data Carpentry lessons formatted?"
+- "How can I perform operations on files outside of my working directory?"
+- "What are some navigational shortcuts I can use to make my work more efficient?"
 objectives:
-- "Explain the header of each episode."
-- "Explain the overall structure of each episode."
-- "Explain why blockquotes are used to format parts of episodes."
-- "Explain the use of code blocks in episodes."
+- "Use a single command to navigate multiple steps in your directory structure, including moving backwards (one level up)."
+- "Perform operations on files in directories outside your working directory."
+- "Work with hidden directories and hidden files."
+- "Interconvert between absolute and relative paths."
+- "Employ navigational shortcuts to move around your file system."
 keypoints:
-- "Lesson episodes are stored in _episodes/dd-subject.md."
-- "Each episode's title must include a title, time estimates, motivating questions, lesson objectives, and key points."
-- "Episodes should not use sub-headings or HTML layout."
-- "Code blocks can have the source, regular output, or error class."
-- "Special sections are formatted as blockquotes that open with a level-2 header and close with a class identifier."
-- "Special sections may be callouts or challenges; other styles are used by the template itself."
+- "The `/`, `~`, and `..` characters represent important navigational shortcuts."
+- "Hidden files and directories start with `.` and can be viewed using `ls -a`."
+- "Relative paths specify a location starting from the current location, while absolute paths specify a location from the root of the file system."
 ---
 
-A lesson consists of one or more episodes,
-each of which has:
+## Moving around the file system
 
-*   a [YAML][yaml] header containing required values
-*   some teachable content
-*   some exercises
+We've learned how to use `pwd` to find our current location within our file system. 
+We've also learned how to use `cd` to change locations and `ls` to list the contents
+of a directory. Now we're going to learn some additional commands for moving around 
+within our file system.
 
-The diagram below shows the internal structure of a single episode file
-(click on the image to see a larger version):
-
-<a href="{{ page.root }}/fig/episode-format.png">
-  <img src="{{ page.root }}/fig/episode-format-small.png" alt="Formatting Rules" />
-</a>
-
-## Maximum Line Length
-
-Limit all lines to a maximum of 100 characters.
-`bin/lesson_check.py` will report lines longer than 100 characters
-and this can block your contributions of being accepted.
-
-The two reasons behind the decision to enforce a maximum line lenght are
-(1) make diff and merge easier in the command line and other user interfaces
-and
-(2) make update of translation of the lessons easier.
-
-## Locations and Names
-
-Episode files are stored in `_episodes`
-or, for the case of R Markdown files, `_episodes_rmd`
-so that [Jekyll][jekyll] will create a [collection][jekyll-collection] for them.
-Episodes are named `dd-subject.md`,
-where `dd` is a two-digit sequence number (with a leading 0)
-and `subject` is a one- or two-word identifier.
-For example,
-the first three episodes of this example lesson are
-`_episodes/01-design.md`,
-`_episodes/02-tooling.md`
-and `_episodes/03-formatting.md`.
-These become `/01-design/index.html`, `/02-tooling/index.html`, and `/03-formatting/index.html`
-in the published site.
-When referring to other episodes, use:
-
-{% raw %}
-    [link text]({{ page.root }}{% link _episodes/dd-subject.md %})
-{% endraw %}
-
-i.e., use [Jekyll's tag link](https://jekyllrb.com/docs/templates/#links) and the name of the file.
-
-## Episode Header
-
-Each episode's [YAML][yaml] header must contain:
-
-*   the episode's title
-*   time estimates for teaching and exercises
-*   motivating questions
-*   lesson objectives
-*   a summary of key points
-
-These values are stored in the header so that [Jekyll][jekyll] will read them
-and make them accessible in other pages as `site.episodes.the_episode.key`,
-where `the_episode` is the particular episode
-and `key` is the key in the [YAML][yaml] header.
-This lets us do things like
-list each episode's key questions in the syllabus on the lesson home page.
-
-## Episode Structure
-
-The episode layout template in `_layouts/episode.html` automatically creates
-an introductory block that summarizes the lesson's teaching time,
-exercise time,
-key questions,
-and objectives.
-It also automatically creates a closing block that lists its key points.
-In between,
-authors should use only:
-
-*   paragraphs
-*   images
-*   tables
-*   ordered and unordered lists
-*   code samples (described below).
-*   special blockquotes (described below)
-
-Authors should *not* use:
-
-*   sub-headings
-*   HTML layout (e.g., `div` elements).
-
-
-> ## Linking section IDs 
->
-> In the HTML output each header of a section, code sample, exercise will be associated with an unique ID (the rules of 
-> the ID generation are given in kramdown [documentation](https://kramdown.gettalong.org/converter/html.html#auto-ids),
-> but it is easier to look for them directly in the page sources). 
-> These IDs can be used to easily link to the section by attaching the hash (`#`) followed by the ID to the page's URL 
-> (like [this](#linking-section-ids)). For example, the instructor might copy the link to 
-> the etherpad, so that the lesson opens in learners' web browser directly at the right spot. 
-{: .callout}
-
-## Formatting Code
-
-Inline code fragments are formatted using back-quotes.
-Longer code blocks are formatted by opening and closing the block with `~~~` (three tildes),
-with a class specifier after the block:
-
-{% raw %}
-    ~~~
-    for thing in collection:
-        do_something
-    ~~~
-    {: .source}
-{% endraw %}
-
-which is rendered as:
+Use the commands we've learned so far to navigate to the `dc_sample_data/untrimmed_fastq` directory, if
+you're not already there. 
 
 ~~~
-for thing in collection:
-    do_something
+$ cd
+$ cd dc_sample_data
+$ cd untrimmed_fastq
 ~~~
-{: .language-python}
+{: .bash}
 
-The class specified at the bottom using an opening curly brace and colon,
-the class identifier with a leading dot,
-and a closing curly brace.
-The [template]({{ site.template_repo }}) provides three styles for code blocks:
-
-~~~
-.source: program source.
-~~~
-{: .source}
+What if we want to move back up and out of this directory and to our top level 
+directory? Can we type `cd dc_sample_data`? Try it and see what happens.
 
 ~~~
-.output: program output.
+$ cd dc_sample_data
+~~~
+{: .bash}
+
+~~~
+-bash: cd: dc_sample_data: No such file or directory
+~~~
+{: .output}
+
+Your computer looked for a directory or file called `dc_sample_data` within the 
+directory you were already in. It didn't know you wanted to look at a directory level
+above the one you were located in. 
+
+We have a special command to tell the computer to move us back or up one directory level. 
+
+~~~
+$ cd ..
+~~~
+{: .bash}
+
+
+Now we can use `pwd` to make sure that we are in the directory we intended to navigate
+to, and `ls` to check that the contents of the directory are correct.
+
+~~~
+$ pwd
+~~~
+{: .bash}
+
+~~~
+/home/dcuser/dc_sample_data
 ~~~
 {: .output}
 
 ~~~
-.error: error messages.
+$ ls
 ~~~
-{: .error}
-
-### Syntax Highlighting
-
-The following styles like `.source`, but include syntax highlighting for the
-specified language.
-Please use them where possible to indicate the type of source being displayed,
-and to make code easier to read.
-
-`.language-bash`: Bash shell commands:
+{: .bash}
 
 ~~~
-echo "Hello World"
+sra_metadata  untrimmed_fastq
 ~~~
-{: .language-bash}
+{: .output}
 
-`.html`: HTML source:
+From this output, we can see that `..` did indeed take us back one level in our file system. 
 
-~~~
-<html>
-<body>
-<em>Hello World</em>
-</body>
-</html>
-~~~
-{: .html}
-
-`.language-make`: Makefiles:
+You can chain these together like so:
 
 ~~~
-all:
-    g++ main.cpp hello.cpp -o hello
+$ ls ../../
 ~~~
-{: .language-make}
+{: .bash}
 
-`.language-matlab`: MATLAB source:
+prints the contents of `/home`, which is one level up from your root directory. 
 
-~~~
-disp('Hello, world!')
-~~~
-{: .language-matlab}
-
-`.language-python`: Python source:
-
-~~~
-print("Hello World")
-~~~
-{: .language-python}
-
-`.language-r`: R source:
-
-~~~
-cat("Hello World")
-~~~
-{: .language-r}
-
-`.language-sql`: SQL source:
-
-~~~
-CREATE PROCEDURE HelloWorld AS
-PRINT 'Hello, world!'
-RETURN (0)
-~~~
-{: .language-sql}
-
-
-
-## Special Blockquotes
-
-We use blockquotes to group headings and text
-rather than wrapping them in `div` elements.
-in order to avoid confusing [Jekyll][jekyll]'s parser
-(which sometimes has trouble with Markdown inside HTML).
-Each special blockquote must started with a level-2 header,
-but may contain anything after that.
-For example,
-a callout is formatted like this:
-
-~~~
-> ## Callout Title
+> ## Finding hidden directories
 >
-> text
-> text
-> text
->
-> ~~~
-> code
-> ~~~
-> {: .source}
-{: .callout}
-~~~
-{: .source}
-
-(Note the empty lines within the blockquote after the title and before the code block.)
-This is rendered as:
-
-> ## Callout Title
->
-> text
-> text
-> text
->
-> ~~~
-> code
-> ~~~
-> {: .source}
-{: .callout}
-
-The [lesson template]({{ site.template_repo }}) defines styles
-for the following special blockquotes:
-
-<div class="row">
-  <div class="col-md-6" markdown="1">
-
-> ## .callout
->
-> An aside or other comment.
-{: .callout}
-
-> ## `.challenge`
->
-> An exercise.
-{: .challenge}
-
-> ## `.checklist`
->
-> Checklists.
-{: .checklist}
-
-> ## `.discussion`
->
-> Discussion questions.
-{: .discussion}
-
-> ## `.keypoints`
->
-> Key points of an episode.
-{: .keypoints}
-
-  </div>
-  <div class="col-md-6" markdown="1">
-
-> ## `.objectives`
->
-> Episode objectives.
-{: .objectives}
-
-> ## `.prereq`
->
-> Prerequisites.
-{: .prereq}
-
-> ## `.solution`
->
-> Exercise solution.
-{: .solution}
-
-> ## `.testimonial`
->
-> A laudatory quote from a user.
-{: .testimonial}
-
-  </div>
-</div>
-
-Note that `.challenge` and `.discussion` have the same color but different icons.
-Note also that one other class, `.quotation`,
-is used to mark actual quotations
-(the original purpose of the blockquote element).
-This does not add any styling,
-but is used to prevent the checking tools from complaining about a missing class.
-
-Most authors will only use `.callout`, `.challenge`, and `.prereq`,
-as the others are automatically generated by the template.
-Note that `.prereq` is meant for describing things
-that learners should know before starting this lesson;
-setup instructions do not have a particular style,
-but are instead put on the `setup.md` page.
-
-Note also that solutions are nested inside exercises as shown below:
-
-~~~
-> ## Challenge Title
->
-> This is the body of the challenge.
->
-> ~~~
-> it may include some code
-> ~~~
-> {: .source}
+> First navigate to the `dc_sample_data` directory. There is a hidden directory within this directory. Explore the options for `ls` to 
+> find out how to see hidden directories. List the contents of the directory and 
+> identify the name of the text file in that directory.
+> 
+> Hint: hidden files and folders in Unix start with `.`, for example .my_hidden_directory
 >
 > > ## Solution
-> >
-> > This is the body of the solution.
-> >
+> > 
+> > First use the `man` command to look at the options for `ls`. 
 > > ~~~
-> > it may also include some code
+> > $ man ls
+> > ~~~
+> > {: .bash}
+> > 
+> > The `-a` option is short for `all` and says that it causes `ls` to "not ignore
+> > entries starting with ." This is the option we want. 
+> > 
+> > ~~~
+> > $ ls -a
+> > ~~~
+> > {: .bash}
+> > 
+> > ~~~
+> > .  ..  .hidden	sra_metadata  untrimmed_fastq
 > > ~~~
 > > {: .output}
+> > 
+> > The name of the hidden directory is `.hidden`. We can navigate to that directory
+> > using `cd`. 
+> > 
+> > ~~~
+> > $ cd .hidden
+> > ~~~
+> > {: .bash}
+> > 
+> > And then list the contents of the directory using `ls`. 
+> > 
+> > ~~~
+> > $ ls
+> > ~~~
+> > {: .bash}
+> > 
+> > ~~~
+> > youfoundit.txt
+> > ~~~
+> > {: .output}
+> > 
+> > The name of the text file is `youfoundit.txt`.
 > {: .solution}
 {: .challenge}
+
+## Examining the contents of other directories
+
+By default, the `ls` commands lists the contents of the working
+directory (i.e. the directory you are in). You can always find the
+directory you are in using the `pwd` command. However, you can also
+give `ls` the names of other directories to view. Navigate to your
+home directory if you are not already there.
+
 ~~~
-{: .source}
+$ cd
+~~~
+{: .bash}
 
-The double indentation is annoying to edit,
-but the alternatives we considered and discarded are worse:
+Then enter the command:
 
-1.  Use HTML `<div>` elements for the challenges.
-    Most people dislike mixing HTML and Markdown,
-    and experience shows that it's all too easy to confuse Jekyll's Markdown parser.
+~~~
+$ ls dc_sample_data
+~~~
+{: .bash}
 
-2.  Put solutions immediately after challenges rather than inside them.
-    This is simpler to edit,
-    but clutters up the page
-    and makes it harder for tools to tell which solutions belong to which exercises.
+~~~
+sra_metadata  untrimmed_fastq
+~~~
+{: .output}
+
+This will list the contents of the `dc_sample_data` directory without
+you needing to navigate there.
+
+The `cd` command works in a similar way.
+
+Try entering:
+
+~~~
+$ cd
+$ cd dc_sample_data/untrimmed_fastq
+~~~
+{: .bash}
+
+This will take you to the `untrimmed_fastq` directory without having to go through
+the intermediate directory.
+
+> ## Navigating practice
+> 
+> Navigate to your home directory. From there, list the contents of the `untrimmed_fastq` 
+> directory. 
+> 
+> > ## Solution
+> >
+> > ~~~
+> > $ cd
+> > $ ls dc_sample_data/untrimmed_fastq/
+> > ~~~
+> > {: .bash}
+> > 
+> > ~~~
+> > SRR097977.fastq  SRR098026.fastq 
+> > ~~~
+> > {: .output}
+> > 
+> {: .solution}
+{: .challenge}
+
+## Full vs. Relative Paths
+
+The `cd` command takes an argument which is a directory
+name. Directories can be specified using either a *relative* path or a
+full *absolute* path. The directories on the computer are arranged into a
+hierarchy. The full path tells you where a directory is in that
+hierarchy. Navigate to the home directory, then enter the `pwd`
+command.
+
+~~~
+$ cd  
+$ pwd  
+~~~
+{: .bash}
+
+You will see: 
+
+~~~
+/home/dcuser
+~~~
+{: .output}
+
+This is the full name of your home directory. This tells you that you
+are in a directory called `dcuser`, which sits inside a directory called
+`home` which sits inside the very top directory in the hierarchy. The
+very top of the hierarchy is a directory called `/` which is usually
+referred to as the *root directory*. So, to summarize: `dcuser` is a
+directory in `home` which is a directory in `/`.
+
+Now enter the following command:
+
+~~~
+$ cd /home/dcuser/dc_sample_data/.hidden
+~~~
+{: .bash}
+
+This jumps forward multiple levels to the `.hidden` directory. 
+Now go back to the home directory. 
+
+~~~
+$ cd
+~~~
+{: .bash}
+
+You can also navigate to the `.hidden` directory using:
+
+~~~
+$ cd dc_sample_data/.hidden
+~~~
+{: .bash}
+
+
+These two commands have the same effect, they both take us to the `.hidden` directory.
+The first uses the absolute path, giving the full address from the home directory. The
+second uses a relative path, giving only the address from the working directory. A full
+path always starts with a `/`. A relative path does not.
+
+A relative path is like getting directions from someone on the street. They tell you to
+"go right at the stop sign, and then turn left on Main Street". That works great if
+you're standing there together, but not so well if you're trying to tell someone how to
+get there from another country. A full path is like GPS coordinates. It tells you exactly
+where something is no matter where you are right now.
+
+You can usually use either a full path or a relative path
+depending on what is most convenient. If we are in the home directory,
+it is more convenient to enter the relative path since it
+involves less typing.
+
+Over time, it will become easier for you to keep a mental note of the
+structure of the directories that you are using and how to quickly
+navigate amongst them.
+
+> ## Relative path resolution
+> 
+> Using the filesystem diagram below, if `pwd` displays `/Users/thing`,
+> what will `ls ../backup` display?
+> 
+> 1.  `../backup: No such file or directory`
+> 2.  `2012-12-01 2013-01-08 2013-01-27`
+> 3.  `2012-12-01/ 2013-01-08/ 2013-01-27/`
+> 4.  `original pnas_final pnas_sub`
+> 
+> ![File System for Challenge Questions](../fig/filesystem-challenge.svg)
+> 
+> > ## Solution
+> >  1. No: there *is* a directory `backup` in `/Users`.
+> >  2. No: this is the content of `Users/thing/backup`,
+> >   but with `..` we asked for one level further up.
+> >  3. No: see previous explanation.
+> >    Also, we did not specify `-F` to display `/` at the end of the directory names.
+> >  4. Yes: `../backup` refers to `/Users/backup`.
+> {: .solution}
+{: .challenge} 
+
+### Navigational Shortcuts
+
+There are some shortcuts which you should know about. Dealing with the
+home directory is very common. The tilde character,
+`~`, is a shortcut for your home directory. Navigate to the `dc_sample_data`
+directory:
+
+~~~
+$ cd
+$ cd dc_sample_data
+~~~
+{: .bash}
+
+Then enter the command:
+
+~~~
+$ ls ~
+~~~
+{: .bash}
+
+~~~
+dc_sample_data	FastQC	Trimmomatic-0.32
+~~~
+{: .output}
+
+This prints the contents of your home directory, without you needing to 
+type the full path. 
+
+The commands `cd`, and `cd ~` are very useful for quickly navigating back to your home directory. We will be using the `~` character in later lessons to specify our home directory.
 
 {% include links.md %}
