@@ -4,13 +4,10 @@ root: .
 permalink: index.html  # Is the only page that don't follow the partner /:path/index.html
 ---
 
-This lesson shows how to use the
+This lesson uses the
 [Software Carpentry]({{ site.swc_site }}) and
-[Data Carpentry]({{ site.dc_site }}) lesson template.
-For guidelines on how to help improve our lessons and this template,
-please see [the contribution guidelines][contributing];
-for guidelines on how to set up your machine to preview changes locally,
-please see [the setup instructions]({{ page.root }}{% link setup.md %}).
+[Data Carpentry]({{ site.dc_site }}) lesson template and is inspired
+and partially based on the [Data Carpentry Genomics lesson]({{ site.dc_site }}).
 
 > ## Prerequisites
 >
