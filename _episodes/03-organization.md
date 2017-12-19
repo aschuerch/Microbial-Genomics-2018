@@ -328,7 +328,7 @@ $ ls SRR09<tab><tab>
 {: .bash}
 
 ~~~
-SRR097977.fastq  SRR098026.fastq
+SRR07.fastq  SRR098026.fastq
 ~~~
 {: .output}
 
