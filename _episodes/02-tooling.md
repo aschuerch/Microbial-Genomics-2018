@@ -1,169 +1,87 @@
 ---
-title: "GitHub, Markdown, and Jekyll"
-teaching: 10
-exercises: 0
+title: "Logging onto Cloud"
+teaching: 5
+exercises: 5
 questions:
-- "How are pages published?"
+- How do I connect to an AWS instance?
 objectives:
-- "Explain how GitHub Pages produce web sites from Git repositories."
-- "Explain Jekyll's formatting rules."
+- Log onto to a running instance
+- Log off from a running instance
 keypoints:
-- "Lessons are stored in Git repositories on GitHub."
-- "Lessons are written in Markdown."
-- "Jekyll translates the files in the gh-pages branch into HTML for viewing."
-- "The site's configuration is stored in _config.yml."
-- "Each page's configuration is stored at the top of that page."
-- "Groups of files are stored in collection directories whose names begin with an underscore."
+- You can use one set of log-in credentials for many instances
+- Logging off an instance is not the same as turning off an instance
 ---
 
-This episode describes the tools we use to build and manage lessons.
-These simplify many tasks, but make other things more complicated.
+<script language="javascript" type="text/javascript">
+function set_page_view_defaults() {
+    document.getElementById('div_aws_win').style.display = 'block';
+    document.getElementById('div_aws_unix').style.display = 'none';
+};
 
-## Repositories on GitHub
+function change_content_by_platform(form_control){
+    if (!form_control || document.getElementById(form_control).value == 'aws_win') {
+        set_page_view_defaults();
+    } else if (document.getElementById(form_control).value == 'aws_unix') {
+        document.getElementById('div_aws_win').style.display = 'none';
+        document.getElementById('div_aws_unix').style.display = 'block';
+        document.getElementById('div_hpc').style.display = 'none';
+        document.getElementById('div_cyverse').style.display = 'none';
+    } else {
+        alert("Error: Missing platform value for 'change_content_by_platform()' script!");
+    }
+}
 
-Our lessons are stored in Git repositories (or "repos") on GitHub.
-We use the term *fork* to mean
-"a copy of a GitHub-hosted repo that is also hosted on GitHub"
-and the term *clone* to mean
-"a copy of a GitHub-hosted repo that's located on someone else's machine".
-In both cases,
-the duplicate has a reference that points to the original repo.
+window.onload = set_page_view_defaults;
+</script>
 
-In an ideal world,
-we would put all of the common files used by our lessons
-(such as the CSS style files and the image files with project logos)
-in a template repo.
-The master copy of each lesson would be a fork of that repo,
-and each author's working copy would be a fork of that master:
+## Important Note
 
-![Forking Repositories]({{ page.root }}/fig/forking.svg)
+This lesson covers how to log into, and out of, an *already running* Amazon instance.
 
-However, GitHub only allows a user to have one fork of any particular repo.
-This creates a problem for us because an author may be involved in writing several lessons,
-each with its own repo.
-We therefore use [GitHub Importer][github-importer] to create new lessons.
-After the lesson has been created,
-we manually add the [template repository]({{ site.template_repo }}) as a remote called `template`
-to update the lesson when the template changes.
+If you're returning post-workshop and want to launch your own instance, use [launching cloud instances on your own](../LaunchingInstances/)
 
-![Repository Links]({{ page.root }}/fig/repository-links.svg)
+## Background to AWS
 
-## GitHub Pages
+Setting up a new AWS instance requires a credit card, an AWS account, and up to
+a day of verification time, but you've already spent most of this workshop working in the cloud!
+To save time, your instructor launched a remote computer (instance) for you prior
+to the workshop, and connected it to our lesson data. You've already logged into it at
+least once, but now that you're more comfortable with the command line, lets go back and talk about how it all works.
 
-If a repository has a branch called `gh-pages` (short for "GitHub Pages"),
-GitHub publishes its content to create a website for the repository.
-If the repository's URL is `https://github.com/USERNAME/REPOSITORY`,
-the website is `https://USERNAME.github.io/REPOSITORY`.
 
-GitHub Pages sites can include static HTML pages,
-which are published as-is,
-or they can use [Jekyll][jekyll] as described below
-to compile HTML and/or Markdown pages with embedded directives
-to create the pages for display.
+We have a pre-configured copy of the data needed for this workshop that is always available
+to attach to a new instance on Amazon, as long as you have an account, and the log-in credentials to open it.
 
-> ## Why Doesn't My Site Appear?
->
-> If the root directory of a repository contains a file called `.nojekyll`,
-> GitHub will *not* generate a website for that repository's `gh-pages` branch.
-{: .callout}
+To access the pre-configured workshop data, you'll need to use our log-in credentials (user name and password):
 
-We write lessons in Markdown because it's simple to learn
-and isn't tied to any specific language.
-(The ReStructured Text format popular in the Python world,
-for example,
-is a complete unknown to R programmers.)
-If authors want to write lessons in something else,
-such as [R Markdown][r-markdown],
-they must generate HTML or Markdown that [Jekyll][jekyll] can process
-and commit that to the repository.
-A [later episode]({{ page.root }}/04-formatting/) describes the Markdown we use.
+**Log-in Credentials (case-sensitive!)**
 
-> ## Teaching Tools
->
-> We do *not* prescribe what tools instructors should use when actually teaching:
-> the [Jupyter Notebook][jupyter],
-> [RStudio][rstudio],
-> and the good ol' command line are equally welcome up on stage.
-> All we specify is the format of the lesson notes.
-{: .callout}
+- Username: dcuser
+- Password: data4Carp
 
-## Jekyll
+But first, you need a place to log *into*! To find the instance that's attached to that data,
+you'll need something called an IP address. Your instructor should have given this to you
+at the beginning of the workshop.
 
-GitHub uses [Jekyll][jekyll] to turn Markdown into HTML.
-It looks for text files that begin with a header formatted like this:
+An IP address is essentially the numerical version of a web address like www.amazon.com
 
-~~~
----
-variable: value
-other_variable: other_value
----
-...stuff in the page...
-~~~
-{: .source}
+Recall that cloud computing is about choice. You can rent just a single processor on a large computer
+for a small project, or you can rent hundreds of processors spread across multiple computers for
+a large project. In either case, once you rent the collection of processors, Amazon will
+present your rental to you as if it was a single computer. So, the physical computers that host your
+instances don't really move, *but* every time you launch a new instance, it will have a new IP address.
 
-and inserts the values of those variables into the page when formatting it.
-The three dashes that start the header *must* be the first three characters in the file:
-even a single space before them will make [Jekyll][jekyll] ignore the file.
+So, each time you launch a new instance, the *IP address* changes, but your *Log-in Credentials* don't have to.
 
-The header's content must be formatted as [YAML][yaml],
-and may contain Booleans, numbers, character strings, lists, and dictionaries of name/value pairs.
-Values from the header are referred to in the page as `page.variable`.
-For example,
-this page:
+## Connection Protocols
 
-~~~
----
-name: Science
----
-{% raw %}Today we are going to study {{page.name}}.{% endraw %}
-~~~
-{: .source}
+We will use a protocol called Secure Shell (SSH) that, as the name implies, provides you
+with a secure way to use a [shell](http://swcarpentry.github.io/shell-novice). In our case,
+the shell will be running on a remote machine. This protocol is available for every
+operating system, but sometimes requires additional software.
 
-is translated into:
+## Logging onto a cloud instance
 
-~~~
-<html>
-<body>
-<p>Today we are going to study Science.</p>
-</body>
-</html>
-~~~
-{: .html}
-
-> ## Back in the Day...
->
-> The previous version of our template did not rely on Jekyll,
-> but instead required authors to build HTML on their desktops
-> and commit that to the lesson repository's `gh-pages` branch.
-> This allowed us to use whatever mix of tools we wanted for creating HTML (e.g., [Pandoc][pandoc]),
-> but complicated the common case for the sake of uncommon cases,
-> and didn't model the workflow we want learners to use.
-{: .callout}
-
-## Configuration
-
-[Jekyll][jekyll] also reads values from a configuration file called `_config.yml`,
-which are referred to in pages as `site.variable`.
-The [lesson template]({{ site.template_repo }}) does *not* include `_config.yml`,
-since each lesson will change some of its value,
-which would result in merge collisions each time the lesson was updated from the template.
-Instead,
-the [template]({{ site.template_repo }}) contains a script called `bin/lesson_initialize.py`
-which should be run *once* to create an initial `_config.yml` file
-(and a few other files as well).
-The author should then edit the values in the top half of the file.
-
-## Collections
-
-If several Markdown files are stored in a directory whose name begins with an underscore,
-[Jekyll][jekyll] creates a [collection][jekyll-collection] for them.
-We rely on this for both lesson episodes (stored in `_episodes`)
-and extra files (stored in `_extras`).
-For example,
-putting the extra files in `_extras` allows us to populate the "Extras" menu pulldown automatically.
-To clarify what will appear where,
-we store files that appear directly in the navigation bar
-in the root directory of the lesson.
-[The next episode]({{ page.root }}/03-organization/) describes these files.
+**Please select the platform you wish to use for the exercises: <select id="id_platform" name="platformlist" onchange="change_content_by_platform('id_platform');return false;"><option value="aws_unix" id="id_aws_unix" selected> AWS_UNIX </option><option value="aws_win" id="id_aws_win" selected> AWS_Windows </option></select>**
 
 {% include links.md %}
