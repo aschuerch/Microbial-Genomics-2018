@@ -5,7 +5,7 @@ exercises: 30
 questions:
 - "How can a phylogenetic tree be produced?"
 objectives:
-- "Establish a phylogenetic tree from the SNP data
+- "Establish a phylogenetic tree from the SNP data"
 keypoints:
 - "Single nucleotide polymorphisms can be identified by mapping reads to a reference genome"
 - "Parameters for the analysis have to be selected based on expected outcomes for this organism"
