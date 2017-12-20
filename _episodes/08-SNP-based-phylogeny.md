@@ -24,30 +24,16 @@ grep pattern [filename] selects lines in files that match patt
 
 ## Selection of a reference genome
 
-A reference genome is a genome that was previously sequenced and is closely related
+A reference genome is a genome that was previously sequenced and is closely related to the sequenced genome. The selection of a closely related reference genome is not trivial and can warrant an analysis in itself. However, here we will work with the *M. tuberculosis* reference genome H37Rv.
 
 ### Download reference genomes from NCBI
 
-Download the M.tuberculosis reference genome with:
+Download the M.tuberculosis reference genome from the NCBI ftp site.
+
+With curl we use the -O flag, which simultaneously tells curl to download the page instead of showing it to us and specifies that it should save the file using the same name it had on the server:
 
 ~~~
-ftp ftp.ncbi.nlm.nih.gov
-~~~
-{: .source}
-
-
-After the prompt for user (`anonymous`) and password (your email address), type
-
-~~~
-cd /genomes/refseq/bacteria/Mycobacterium_tuberculosis/reference/GCF_000195955.2_ASM19595v2
-get GCF_000195955.2_ASM19595v2_genomic.fna.gz
-~~~
-{: .source}
-
-
-To close the program, type
-~~~
-bye
+curl -O ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/195/955/GCF_000195955.2_ASM19595v2/GCF_000195955.2_ASM19595v2_genomic.fna.gz
 ~~~
 {: .source}
 
@@ -77,13 +63,16 @@ gunzip GCF_000195955.2_ASM19595v2_genomic.fna.gz
 > >
 > > 
 > > ~~~
-> > [1] "grep -v '>' GCF_000195955.2_ASM19595v2_genomic.fna| wc -m"
+> > [1] grep -v '>' GCF_000195955.2_ASM19595v2_genomic.fna| wc -m
+> > 4466677
 > > ~~~
 > > {: .output}
 > {: .solution}
 {: .challenge}
 
 
+
+##
 
 
 {% include links.md %}
