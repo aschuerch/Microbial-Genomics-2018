@@ -1,11 +1,14 @@
 ---
-layout: break
-title: "Coffee Break"
-break: 15
+title: "Sequence assembly"
+teaching: 45
+exercises: 30
+questions:
+- "How can the information in the sequencing reads be reduced?"
+- "What are the different methods for assembly?"
+objectives:
+- "Understand differences between assembly methods"
+- "Assemble the short reads"
+- "Interpret an assembly QC plot"
 ---
-
-Use the `break` layout for placeholder episodes representing coffee breaks and lunches.
-These episodes do *not* have exercises, questions, objectives, or keypoints in their metadata,
-but *must* have a "break" field to show how long the break is (in minutes).
 
 {% include links.md %}
