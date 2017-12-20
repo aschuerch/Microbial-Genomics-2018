@@ -1,16 +1,17 @@
 ---
-title: "Maintenance"
-teaching: 5
-exercises: 0
+title: "SNP based phylogenies"
+teaching: 10
+exercises: 30
 questions:
-- "What do lesson maintainers do?"
+- "How can a phylogenetic tree be produced?"
 objectives:
-- "Explain the rights and responsibilities of lesson maintainers."
+- "Establish a phylogenetic tree from the SNP data
 keypoints:
-- "Each lesson has one or two maintainers who act as editors."
-- "Maintainers are responsible for ensuring that issues and change requests are addressed."
-- "Maintainers have final say over lesson content."
-- "We use a standard set of labels to classify issues and pull requests."
+- "Single nucleotide polymorphisms can be identified by mapping reads to a reference genome"
+- "Parameters for the analysis have to be selected based on expected outcomes for this organism"
+- "Concatenation of SNPs helps to reduce analysis volume"    
+- "Phylogenetic trees can be annotated with a bracket syntax in Newick format"
+
 ---
 
 This episode describes the processes used to maintain our lessons.
