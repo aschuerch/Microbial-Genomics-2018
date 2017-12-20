@@ -81,7 +81,10 @@ gunzip GCF_000195955.2_ASM19595v2_genomic.fna.gz
 To make room for our sequencing data we remove the remaining sample data from the machine.
 
 ~~~
-rm data
+rm -r data/
+rm -r sra_metadata/
+rm -r untrimmed_fastq/
+rm -r .hidden
 ~~~
 {: .source}
 
@@ -105,5 +108,16 @@ wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR026/ERR026482/*fastq.gz
 {: .source}
 
 This will take a moment. 
+
+Now, extract the reads with this loop
+
+~~~
+for reads in *fastq.gz
+  do
+    gunzip $reads
+  done
+~~~
+{: .source}
+    
 
 {% include links.md %}
