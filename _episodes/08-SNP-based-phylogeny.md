@@ -11,7 +11,6 @@ keypoints:
 - "Parameters for the analysis have to be selected based on expected outcomes for this organism"
 - "Concatenation of SNPs helps to reduce analysis volume"    
 - "Phylogenetic trees can be annotated with a bracket syntax in Newick format"
-
 ---
 
 This episode describes the processes used to maintain our lessons.
