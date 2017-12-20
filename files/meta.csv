@@ -1,0 +1,10 @@
+id,latitude,longitude,year,id__colour,RFLPcluster,remark
+ERR029207,52.071511,5.141037,2007,red,16,homeless
+ERR029206,52.358153,4.887771,2007,red,16,frequent user of homeless shelters
+ERR026478,52.380615,4.884082,2005,red,16,knows patient A1
+
+ERR026481,52.345105,5.978180,1999,blue,45b,
+ERR026482,52.345105,5.978180,2010,blue,45b,
+
+ERR026474,52.352046,4.865755,2001,yellow,23,
+ERR026473,52.352152,4.866136,2006,yellow,23,
