@@ -118,6 +118,6 @@ for reads in *fastq.gz
   done
 ~~~
 {: .source}
-    
+
 
 {% include links.md %}
