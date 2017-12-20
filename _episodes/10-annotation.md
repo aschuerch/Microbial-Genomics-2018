@@ -1,7 +1,7 @@
 ---
 title: "Annotation"
 teaching: 20
-exercises: 45
+exercises: 90
 questions:
 - "How are proteins predicted from a DNA sequence?"
 objectives:
