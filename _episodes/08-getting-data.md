@@ -1,5 +1,5 @@
 ---
-title: "SNP based phylogenies"
+title: "Downloading data"
 teaching: 10
 exercises: 90
 questions:
