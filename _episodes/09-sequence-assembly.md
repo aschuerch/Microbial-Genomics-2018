@@ -48,6 +48,7 @@ Now we can start the loop with the assemblies
 for sample in samples
   do
   spades.py -1 "$sample"_1.fastq -2 "$sample"_2.fastq -o ../output/"$sample"
+  done
 ~~~
 {: .source}
 
