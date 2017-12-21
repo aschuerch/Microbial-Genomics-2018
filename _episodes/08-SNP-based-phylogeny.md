@@ -17,6 +17,17 @@ keypoints:
 
 This episode describes how to get all necessary data and the processes to create a phylogenetic tree from raw reads by comparing these against a reference genome.
 
+
+To make room for our sequencing data we remove the remaining sample data from the machine.
+
+~~~
+cd 
+rm -r dc_sample_data/
+rm .dc_sampledata_lite/
+~~~
+{: .source}
+
+
 Reference sequences (including many pathogen genomes) are available at [NCBI's refseq database](https://www.ncbi.nlm.nih.gov/refseq/)
 
 ## Selection of a reference genome
@@ -33,6 +44,7 @@ First, we switch to the data folder to store all our data
 cd dc_workshop/data 
 ~~~
 {: .source}
+
 
 With curl we use the -O flag, which simultaneously tells curl to download the page instead of showing it to us and specifies that it should save the file using the same name it had on the server:
 
@@ -78,17 +90,6 @@ gunzip GCF_000195955.2_ASM19595v2_genomic.fna.gz
 
 ## Download the sequenced genomes from the European Nucleotide Archive (ENA)
 
-To make room for our sequencing data we remove the remaining sample data from the machine.
-
-~~~
-rm -r data/
-rm -r sra_metadata/
-rm -r untrimmed_fastq/
-rm -r .hidden
-~~~
-{: .source}
-
-
 `wget` is short for “world wide web get”, and it’s basic function is to download web pages or data at a web address.
 There are many repositories for public data. Some model organisms or fields have specific databases, and there are ones for particular types of data. Two of the most comprehensive are the National Center for Biotechnology Information (NCBI) and European Nucleotide Archive (EMBL-EBI). In this lesson we’re working with the ENA, but the general process is the same for any database.
 
@@ -121,3 +122,7 @@ for reads in *fastq.gz
 
 
 {% include links.md %}
+
+
+
+
