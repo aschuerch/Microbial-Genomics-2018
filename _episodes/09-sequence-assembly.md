@@ -45,7 +45,7 @@ As you work, this session will stay active until you close this session. Even if
 Now we can start the loop with the assemblies
 
 ~~~
-for sample in samples
+for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
   do
   spades.py -1 "$sample"_R1_sub.fastq -2 "$sample"_R2_sub.fastq -o ../output/"$sample"
   done
