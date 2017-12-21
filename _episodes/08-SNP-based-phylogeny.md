@@ -17,6 +17,7 @@ keypoints:
 
 This episode describes how to get all necessary data and the processes to create a phylogenetic tree from raw reads by comparing these against a reference genome.
 
+## Preparation
 
 To make room for our sequencing data we remove the remaining sample data from the machine.
 
@@ -27,10 +28,9 @@ rm .dc_sampledata_lite/
 ~~~
 {: .source}
 
+## Selection of a reference genome
 
 Reference sequences (including many pathogen genomes) are available at [NCBI's refseq database](https://www.ncbi.nlm.nih.gov/refseq/)
-
-## Selection of a reference genome
 
 A reference genome is a genome that was previously sequenced and is closely related to the sequenced genome. The selection of a closely related reference genome is not trivial and can warrant an analysis in itself. However, for simplicity, here we will work with the *M. tuberculosis* reference genome H37Rv.
 
