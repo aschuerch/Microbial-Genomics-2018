@@ -104,15 +104,13 @@ wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR026/ERR026482/*fastq.gz
 ~~~
 {: .source}
 
-This will take a moment. 
-
-Now, extract the reads with this loop
+This will take a moment. Because of this we will instead download a smaller version of the dataset with 
 
 ~~~
-for reads in *fastq.gz
-  do
-    gunzip $reads
-  done
+cd /home/dcuser/dc_workshop/data
+git clone https://github.com/aschuerch/MolEpiCourse.git
+mv MolEpiCourse/*fastq .
+rm -rf MolEpiCourse
 ~~~
 {: .source}
 
