@@ -1,14 +1,21 @@
 ---
 title: "Data Visualization"
-teaching: 30
-exercises: 20
+teaching: 10
+exercises: 30
 questions:
-- "How can I describe the quality of my data?"
+- "How can I visualize several layers of data?"
 objectives:
-- "Explain how a FASTQ file encodes per-base quality scores."
-- "Interpret a FastQC plot summarizing per-base quality across all reads."
-- "Use `for` loops to automate operations on multiple files."
+- "Explore the resulting trees in conjunction with the meta data."
+- "Make an estimation on the likelihood of transmission events"
 keypoints:
-- "Quality encodings vary across sequencing platforms."
-- "`for` loops let you perform the same set of operations on multiple files with a single command."
+- "Genetic information can confirm or contradict the meta data"
 ---
+
+
+Visualization is frequently used to aid the interpretation of complex datasets. Within microbial genomics, visualizing the relationships between multiple genomes as a tree provides a framework onto which associated data (geographical, temporal, phenotypic and epidemiological) are added to generate hypotheses and to explore the dynamics of the system under investigation.
+
+Upload the newick tree produced by SNP typing and the meta data [file](files/meta.csv) to `https://microreact.org/.`
+
+Explore the location, time and further meta data.
+
+Repeat this with the second tree based on the presence/absence of genes.
