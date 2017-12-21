@@ -1,18 +1,14 @@
 ---
 title: "Downloading data"
 teaching: 10
-exercises: 90
+exercises: 50
 questions:
-- "How can a phylogenetic tree be produced?"
+- "How and where can data be downloaded?"
 objectives:
-- "Map reads against a reference genome"
-- "Extract single nucleotide polymorphisms"
-- "Establish a phylogenetic tree from the SNP data"
+- "Prepare for downstream analysis"
 keypoints:
-- "Single nucleotide polymorphisms can be identified by mapping reads to a reference genome"
-- "Parameters for the analysis have to be selected based on expected outcomes for this organism"
-- "Concatenation of SNPs helps to reduce analysis volume"    
-- "Phylogenetic trees can be annotated with a bracket syntax in Newick format"
+- "Wget and Curl are two different ways to get data from the internet"
+- "Sequencing data is large"
 ---
 
 This episode describes how to get all necessary data and the processes to create a phylogenetic tree from raw reads by comparing these against a reference genome.
