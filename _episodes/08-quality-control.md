@@ -451,354 +451,303 @@ tabs in a single window or six separate browser windows.
 > {: .solution}
 {: .challenge}
 
-## Unzipping Compressed Files
 
-Now that we've looked at our HTML reports to get a feel for the data,
-let's look more closely at the other output files. Go back to the tab
-in your terminal program that is connected to your AWS instance
-(the tab lab will start with `dcuser@ip`) and make sure you're in
-our results subdirectory.   
+# Cleaning Reads
+
+It's very common to have some reads within a sample,
+or some positions (near the begining or end of reads) across all
+reads that are low quality and should be discarded. We will use a program called
+[Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) to
+filter poor quality reads and trim poor quality bases from our samples.
+
+## Trimmomatic Options
+
+Trimmomatic is a program written in the Java programming language.
+You don't need to learn Java to use Trimmomatic (FastQC is also
+written in Java), but the fact that it's a Java program helps
+explain the syntax that is used to run Trimmomatic. The basic
+command to run Trimmomatic starts like this:
 
 ~~~
-$ cd ~/dc_workshop/results/fastqc_untrimmed_reads/
+$ java -jar trimmomatic-0.32.jar
+~~~
+{: .bash}
+
+`java` tells our computer that we're running a Java program. `-jar`
+is an option specifying that we're going to specify the location of
+the Java program we want to run. The Java program itself will have
+a `.jar` file extension.
+
+That's just the basic command, however. Trimmomatic has a variety of
+options and parameters. We will need to specify what options we want
+to use for our analysis. Here are some of the options:
+
+
+| option    | meaning |
+| ------- | ---------- |
+| `-threads` | Specify the number of processors you want Trimmomatic to use. |
+|  `SE` or `PE`   | Specify whether your reads are single or paired end. |
+|  `-phred33` or `-phred64` | Specify the encoding system for your quality scores. |
+
+In addition to these options, there are various trimming steps
+available:
+
+| step   | meaning |
+| ------- | ---------- |
+| `SLIDINGWINDOW` | Perform sliding window trimming, cutting once the average quality within the window falls below a threshold. |
+| `LEADING`  | Cut bases off the start of a read, if below a threshold quality.  |
+|  `TRAILING` |  Cut bases off the end of a read, if below a threshold quality. |
+| `CROP`  |  Cut the read to a specified length. |
+|  `HEADCROP` |  Cut the specified number of bases from the start of the read. |
+| `MINLEN`  |  Drop an entire read if it is below a specified length. |
+|  `TOPHRED33` | Convert quality scores to Phred-33.  |
+|  `TOPHRED64` |  Convert quality scores to Phred-64. |
+
+We will use only a few of these options and trimming steps in our
+analysis. It is important to understand the steps you are using to
+clean your data. For more information about the Trimmomatic arguments
+and options, see [the Trimmomatic manual](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf).
+
+We said above that a basic command for Trimmomatic looks like this:
+
+~~~
+$ java -jar trimmomatic-0.32.jar SE
+~~~
+{: .bash}
+
+However, a complete command for Trimmomatic will look something like this:
+
+~~~
+$ java -jar trimmomatic-0.32.jar SE -threads 4 -phred64 SRR_1056.fastq SRR_1056_trimmed.fastq ILLUMINACLIP:SRR_adapters.fa SLIDINGWINDOW:4:20
+~~~
+{: .bash}
+
+In this example, we've told Trimmomatic:
+
+| code   | meaning |
+| ------- | ---------- |
+| `SE` | that it will be taking a single end file as input |
+| `-threads 4` | to use four computing threads to run (this will spead up our run) |
+| `-phred64` | that the input file uses phred-64 encoding for quality scores |
+| `SRR_1056.fastq` | the input file name |
+|  `SRR_1056_trimmed.fastq` | the output file to create |
+| `ILLUMINACLIP:SRR_adapters.fa`| to clip the Illumina adapters from the input file using the adapter sequences listed in `SRR_adapters.fa` |
+|`SLIDINGWINDOW:4:20` | to use a sliding window of size 4 that will remove bases if their phred score is below 20 |
+
+## Running Trimmomatic
+
+Now we will run Trimmomatic on our data. To begin, navigate to your `untrimmed_fastq` data directory:
+
+~~~
+$ cd ~/dc_workshop/data/untrimmed_fastq
+~~~
+{: .bash}
+
+We are going to run Trimmomatic on one of our single-end samples. We
+will use a sliding window of size 4 that will remove bases if their
+phred score is below 20 (like in our example above). We will also
+discard any reads that do not have at least 20 bases remaining after
+this trimming step.
+
+~~~
+$ java -jar ~/Trimmomatic-0.32/trimmomatic-0.32.jar SE SRR098283.fastq SRR098283.fastq_trim.fastq SLIDINGWINDOW:4:20 MINLEN:20
+~~~
+{: .bash}
+
+Notice that we needed to give the absolute path to our copy of the
+Trimmomatic program.
+
+~~~
+TrimmomaticSE: Started with arguments: SRR098283.fastq SRR098283.fastq_trim.fastq SLIDINGWINDOW:4:20 MINLEN:20
+Automatically using 2 threads
+Quality encoding detected as phred33
+Input Reads: 21564058 Surviving: 17030985 (78.98%) Dropped: 4533073 (21.02%)
+TrimmomaticSE: Completed successfully
+~~~
+{: .output}
+
+> ## Exercise
+>
+> Use the output from your Trimmomatic command to answer the
+> following questions.
+>
+> 1) What percent of reads did we discard from our sample?
+> 2) What percent of reads did we keep?
+>
+>> ## Solution
+>> 1) 21.02%
+>> 2) 78.98%
+> {: .solution}
+{: .challenge}
+
+You may have noticed that Trimmomatic automatically detected the
+quality encoding of our sample. It is always a good idea to
+double-check this or to enter the quality encoding manually.
+
+We can confirm that we have our output file:
+
+~~~
+$ ls SRR098283*
+~~~
+{: .bash}
+
+~~~
+SRR098283.fastq  SRR098283.fastq_trim.fastq
+~~~
+{: .output}
+
+The output file is also a FASTQ file. It should be smaller than our
+input file because we've removed reads. We can confirm this:
+
+~~~
+$ ls SRR098283* -l -h
+~~~
+{: .bash}
+
+~~~
+-rw-r--r-- 1 dcuser dcuser 3.9G Jul 30  2015 SRR098283.fastq
+-rw-rw-r-- 1 dcuser dcuser 3.0G Nov  7 23:10 SRR098283.fastq_trim.fastq
+~~~
+{: .output}
+
+
+We've just successfully run Trimmomatic on one of our FASTQ files!
+However, there is some bad news. Trimmomatic can only operate on
+one sample at a time and we have more than one sample. The good news
+is that we can use a `for` loop to iterate through our sample files
+quickly!
+
+~~~
+$ for infile in *.fastq
+> do
+> outfile="${infile}"_trim.fastq
+> java -jar ~/Trimmomatic-0.32/trimmomatic-0.32.jar SE "${infile}" "${outfile}" SLIDINGWINDOW:4:20 MINLEN:20
+> done
+~~~
+{: .bash}
+
+The new part in our `for` loop is the line:
+
+~~~
+> outfile="${infile}"_trim.fastq
+~~~
+{: .bash}
+
+`infile` is the first variable in our loop and takes the value
+of each of the FASTQ files in our directory. `outfile` is the
+second variable in our loop and is defined by adding `_trim.fastq` to
+the end of our input file name. Use `{}` to wrap the variable so that `_trim.fastq` will
+not be interpreted as part of the variable name. In addition, quoting the shell variables is
+a good practice AND necessary if your variables have spaces in them. For more, check [Bash Pitfalls](http://mywiki.wooledge.org/BashPitfalls).
+There are no spaces before or after the `=`.
+
+Go ahead and run the for loop. It should take a few minutes for
+Trimmomatic to run for each of our six input files. Once it's done
+running, take a look at your directory contents.
+
+~~~
 $ ls
 ~~~
 {: .bash}
 
 ~~~
-ERR026473_1_fastqc.html  ERR026478_2_fastqc.html  ERR029206_1_fastqc.html
-ERR026473_1_fastqc.zip   ERR026478_2_fastqc.zip   ERR029206_1_fastqc.zip
-ERR026473_2_fastqc.html  ERR026481_1_fastqc.html  ERR029206_2_fastqc.html
-ERR026473_2_fastqc.zip   ERR026481_1_fastqc.zip   ERR029206_2_fastqc.zip
-ERR026474_1_fastqc.html  ERR026481_2_fastqc.html  ERR029207_1_fastqc.html
-ERR026474_1_fastqc.zip   ERR026481_2_fastqc.zip   ERR029207_1_fastqc.zip
-ERR026474_2_fastqc.html  ERR026482_1_fastqc.html  ERR029207_2_fastqc.html
-ERR026474_2_fastqc.zip   ERR026482_1_fastqc.zip   ERR029207_2_fastqc.zip
-ERR026478_1_fastqc.html  ERR026482_2_fastqc.html
-ERR026478_1_fastqc.zip   ERR026482_2_fastqc.zip
+SRR097977.fastq		    SRR098027.fastq_trim.fastq	SRR098283.fastq
+SRR097977.fastq_trim.fastq  SRR098028.fastq		SRR098283.fastq_trim.fastq
+SRR098026.fastq		    SRR098028.fastq_trim.fastq	SRR098283.fastq_trim.fastq_trim.fastq
+SRR098026.fastq_trim.fastq  SRR098281.fastq
+SRR098027.fastq		    SRR098281.fastq_trim.fastq
 ~~~
 {: .output}
 
-Our `.zip` files are compressed files. They each contain multiple 
-different types of output files for a single input FASTQ file. To
-view the contents of a `.zip` file, we can use the program `unzip` 
-to decompress these files. Let's try doing them all at once using a
-wildcard.
+If you look very closely, you'll see that you have three files for the
+`SRR098283` sample. This is because we already had the `SRR098283.fastq_trim.fastq` file in our directory when we started
+our `for` loop (because we had run Trimmomatic on just that one file already).
+Our `for` loop included this file in our list of `.fastq` files and
+created a new output file named `SRR098283.fastq_trim.fastq_trim.fastq`, which is the result of
+running Trimmomatic on our already trimmed file. `SRR098283.fastq_trim.fastq` and `SRR098283.fastq_trim.fastq_trim.fastq` should be identical. If you look at your Trimmomatic output in the terminal window, you will see:
 
 ~~~
-$ unzip *.zip
-~~~
-{: .bash}
-
-~~~
-Archive:  ERR026473_1_fastqc.zip
-caution: filename not matched:  ERR026473_2_fastqc.zip
-caution: filename not matched:  ERR026474_1_fastqc.zip
-caution: filename not matched:  ERR026474_2_fastqc.zip
-caution: filename not matched:  ERR026478_1_fastqc.zip
-caution: filename not matched:  ERR026478_2_fastqc.zip
-caution: filename not matched:  ERR026481_1_fastqc.zip
-caution: filename not matched:  ERR026481_2_fastqc.zip
-caution: filename not matched:  ERR026482_1_fastqc.zip
-caution: filename not matched:  ERR026482_2_fastqc.zip
-caution: filename not matched:  ERR029206_1_fastqc.zip
-caution: filename not matched:  ERR029206_2_fastqc.zip
-caution: filename not matched:  ERR029207_1_fastqc.zip
-caution: filename not matched:  ERR029207_2_fastqc.zip
+TrimmomaticSE: Started with arguments: SRR098283.fastq_trim.fastq SRR098283.fastq_trim.fastq_trim.fastq SLIDINGWINDOW:4:20 MINLEN:20
+Automatically using 2 threads
+Quality encoding detected as phred33
+Input Reads: 17030985 Surviving: 17030985 (100.00%) Dropped: 0 (0.00%)
+TrimmomaticSE: Completed successfully
 ~~~
 {: .output}
 
-This didn't work. We unzipped the first file and then got a warning
-message for each of the other `.zip` files. This is because `unzip` 
-expects to get only one zip file as input. We could go through and 
-unzip each file one at a time, but this is very time consuming and 
-error-prone. Someday you may have 500 files to unzip!
-
-A more efficient way is to use a `for` loop to iterate through all of
-our `.zip` files. Let's see what that looks like and then we'll 
-discuss what we're doing with each line of our loop.
-
-~~~
-$ for filename in *.zip
-> do
-> unzip $filename
-> done
-~~~
-{: .bash}
-
-When the shell sees the keyword `for`,
-it knows to repeat a command (or group of commands) once for each item in a list.
-Each time the loop runs (called an iteration), an item in the list is assigned in sequence to
-the **variable**, and the commands inside the loop are executed, before moving on to 
-the next item in the list.
-
-Inside the loop,
-we call for the variable's value by putting `$` in front of it.
-The `$` tells the shell interpreter to treat
-the **variable** as a variable name and substitute its value in its place,
-rather than treat it as text or an external command. 
-
-In this example, the list is six filenames (one filename for each of our `.zip` files).
-Each time the loop iterates, it will assign a file name to the variable `filename`
-and run the `unzip` command.
-The first time through the loop,
-`$filename` is `SRR097977_fastqc.zip`. 
-The interpreter runs the command `unzip` on `SRR097977_fastqc.zip`.
-For the second iteration, `$filename` becomes 
-`SRR098026_fastqc.zip`. This time, the shell runs `unzip` on `SRR098026_fastqc.zip`.
-It then repeats this process for the four other `.zip` files in our directory.
-
-> ## Follow the Prompt
->
-> The shell prompt changes from `$` to `>` and back again as we were
-> typing in our loop. The second prompt, `>`, is different to remind
-> us that we haven't finished typing a complete command yet. A semicolon, `;`,
-> can be used to separate two commands written on a single line.
-{: .callout}
-
-> ## Same Symbols, Different Meanings
->
-> Here we see `>` being used a shell prompt, whereas `>` is also
-> used to redirect output.
-> Similarly, `$` is used as a shell prompt, but, as we saw earlier,
-> it is also used to ask the shell to get the value of a variable.
->
-> If the *shell* prints `>` or `$` then it expects you to type something,
-> and the symbol is a prompt.
->
-> If *you* type `>` or `$` yourself, it is an instruction from you that
-> the shell to redirect output or get the value of a variable.
-{: .callout}
-
-We have called the variable in this loop `filename`
-in order to make its purpose clearer to human readers.
-The shell itself doesn't care what the variable is called;
-if we wrote this loop as:
-
-~~~
-$ for x in *.zip
-> do
-> unzip $x
-> done
-~~~
-{: .bash}
-
-or:
-
-~~~
-$ for temperature in *.zip
-> do
-> unzip $temperature
-> done
-~~~
-{: .bash}
-
-it would work exactly the same way.
-*Don't do this.*
-Programs are only useful if people can understand them,
-so meaningless names (like `x`) or misleading names (like `temperature`)
-increase the odds that the program won't do what its readers think it does.
-
-> ## Multipart commands
-> The `for` loop is interpreted as a multipart command.  If you press the up arrow on your keyboard to recall the command, it will be shown like so:
->
-> ~~~   
-> $ for zip in *.zip; do echo File $zip; unzip $zip; done
-> ~~~
-> {: .bash}
-> 
-> When you check your history later, it will help your remember what you did!
->
-{: .callout}
-
-When we run our `for` loop, you will see output that starts like this:
-
-~~~
-Archive:  SRR097977_fastqc.zip
-creating: SRR097977_fastqc/
-creating: SRR097977_fastqc/Icons/
-creating: SRR097977_fastqc/Images/
-inflating: SRR097977_fastqc/Icons/fastqc_icon.png  
-inflating: SRR097977_fastqc/Icons/warning.png  
-inflating: SRR097977_fastqc/Icons/error.png  
-inflating: SRR097977_fastqc/Icons/tick.png  
-inflating: SRR097977_fastqc/summary.txt  
-inflating: SRR097977_fastqc/Images/per_base_quality.png  
-inflating: SRR097977_fastqc/Images/per_tile_quality.png  
-inflating: SRR097977_fastqc/Images/per_sequence_quality.png  
-inflating: SRR097977_fastqc/Images/per_base_sequence_content.png  
-inflating: SRR097977_fastqc/Images/per_sequence_gc_content.png  
-inflating: SRR097977_fastqc/Images/per_base_n_content.png  
-inflating: SRR097977_fastqc/Images/sequence_length_distribution.png  
-inflating: SRR097977_fastqc/Images/duplication_levels.png  
-inflating: SRR097977_fastqc/Images/adapter_content.png  
-inflating: SRR097977_fastqc/Images/kmer_profiles.png  
-inflating: SRR097977_fastqc/fastqc_report.html  
-inflating: SRR097977_fastqc/fastqc_data.txt  
-inflating: SRR097977_fastqc/fastqc.fo  
-~~~
-{: .output}
-
-The `unzip` program is decompressing the `.zip` files and creating
-a new directory (with subdirectories) for each of our samples, to 
-store all of the different output that is produced by FastQC. There
-are a lot of files here. The one we're going to focus on is the 
-`summary.txt` file. 
-
-## Understanding FastQC Output
-
-If you list the files in our directory now you will see: 
-
-~~~
-SRR097977_fastqc       SRR098027_fastqc       SRR098281_fastqc
-SRR097977_fastqc.html  SRR098027_fastqc.html  SRR098281_fastqc.html
-SRR097977_fastqc.zip   SRR098027_fastqc.zip   SRR098281_fastqc.zip
-SRR098026_fastqc       SRR098028_fastqc       SRR098283_fastqc
-SRR098026_fastqc.html  SRR098028_fastqc.html  SRR098283_fastqc.html
-SRR098026_fastqc.zip   SRR098028_fastqc.zip   SRR098283_fastqc.zip
-~~~
-{:. output}
-
-The `.html` files and the uncompressed `.zip` files are still present,
-but now we also have a new directory for each of our samples. We can 
-see for sure that it's a directory if we use the `-F` flag for `ls`. 
-
-~~~
-$ ls -F
-~~~
-{: .bash}
-
-~~~
-SRR097977_fastqc/      SRR098027_fastqc/      SRR098281_fastqc/
-SRR097977_fastqc.html  SRR098027_fastqc.html  SRR098281_fastqc.html
-SRR097977_fastqc.zip   SRR098027_fastqc.zip   SRR098281_fastqc.zip
-SRR098026_fastqc/      SRR098028_fastqc/      SRR098283_fastqc/
-SRR098026_fastqc.html  SRR098028_fastqc.html  SRR098283_fastqc.html
-SRR098026_fastqc.zip   SRR098028_fastqc.zip   SRR098283_fastqc.zip
-~~~
-{: .output}
-
-Let's see what files are present within one of these output directories.
-
-~~~
-$ ls -F SRR097977_fastqc/
-~~~
-{: .bash}
-
-~~~
-fastqc_data.txt  fastqc.fo  fastqc_report.html	Icons/	Images/  summary.txt
-~~~
-{: .output}
-
-Use `less` to preview the `summary.txt` file for this sample. 
-
-~~~
-$ less SRR097977_fastqc/summary.txt
-~~~
-{: .bash}
-
-~~~
-PASS    Basic Statistics        SRR097977.fastq
-WARN    Per base sequence quality       SRR097977.fastq
-FAIL    Per tile sequence quality       SRR097977.fastq
-PASS    Per sequence quality scores     SRR097977.fastq
-PASS    Per base sequence content       SRR097977.fastq
-PASS    Per sequence GC content SRR097977.fastq
-PASS    Per base N content      SRR097977.fastq
-PASS    Sequence Length Distribution    SRR097977.fastq
-PASS    Sequence Duplication Levels     SRR097977.fastq
-PASS    Overrepresented sequences       SRR097977.fastq
-PASS    Adapter Content SRR097977.fastq
-WARN    Kmer Content    SRR097977.fastq
-~~~
-{: .output}
-
-The summary file gives us a list of tests that FastQC ran, and tells
-us whether this sample passed, failed, or is borderline (`WARN`).
-
-## Documenting Our Work
-
-We can make a record of the results we obtained for all our samples
-by concatenating all of our `summary.txt` files into a single file 
-using the `cat` command. We'll call this `full_report.txt` and move
-it to `~/dc_workshop/docs`.
-
-~~~
-$ cat */summary.txt > ~/dc_workshop/docs/fastqc_summaries.txt
-~~~
-{: .bash}
+This shows that when we re-trimmed our trimmed file, no new reads were
+dropped. This is a good thing!
 
 > ## Exercise
-> 
-> Which samples failed at least one of FastQC's quality tests? What
-> test(s) did those samples fail?
+> Earlier we looked at the first read in our `SRR098026.fastq` file and
+> saw that it was very poor quality.
+>
+> ~~~
+> $ head -n4 SRR098026.fastq
+> ~~~
+> {: .bash}
+>
+> ~~~
+> @SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
+> NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
+> +SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
+> !!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
+> ~~~
+> {: .output}
+>
+> After filtering out bad reads, what is the first remaining read for
+> this sample? What does its quality look like?
 >
 >> ## Solution
->> 
->> We can get the list of all failed tests using `grep`. 
->> 
->> ~~~ 
->> $ cd ~/dc_workshop/docs
->> $ grep FAIL fastqc_summaries.txt
 >> ~~~
->> {: .bash}
->> 
->> ~~~
->> FAIL	Per tile sequence quality	SRR097977.fastq
->> FAIL	Per tile sequence quality	SRR098026.fastq
->> FAIL	Overrepresented sequences	SRR098026.fastq
->> FAIL	Kmer Content	SRR098026.fastq
->> FAIL	Per base sequence quality	SRR098027.fastq
->> FAIL	Per tile sequence quality	SRR098027.fastq
->> FAIL	Kmer Content	SRR098027.fastq
->> FAIL	Per tile sequence quality	SRR098028.fastq
->> FAIL	Overrepresented sequences	SRR098028.fastq
->> FAIL	Kmer Content	SRR098028.fastq
->> FAIL	Overrepresented sequences	SRR098281.fastq
->> FAIL	Kmer Content	SRR098281.fastq
->> FAIL	Overrepresented sequences	SRR098283.fastq
->> FAIL	Kmer Content	SRR098283.fastq
->> ~~~
->> {: .output}
->> 
->> If we want to see all the files that failed at least one test, we
->> can use a combination of `grep`, `cut`, `sort` and `uniq`. 
->> 
->> ~~~
->> $ grep FAIL fastqc_summaries.txt | cut -f 3 | sort | uniq
+>> $ head -n4 SRR098026.fastq_trim.fastq
 >> ~~~
 >> {: .bash}
 >>
 >> ~~~
->> SRR097977.fastq
->> SRR098026.fastq
->> SRR098027.fastq
->> SRR098028.fastq
->> SRR098281.fastq
->> SRR098283.fastq
+>> @SRR098026.342 HWUSI-EAS1599_1:2:1:3:655 length=35
+>> GGATNGGCCTTGTATTTATGATTCTCNGAGTCTGT
+>> +SRR098026.342 HWUSI-EAS1599_1:2:1:3:655 length=35
+>> BB@B!B@AACBBABCCCCBBBBBB@@!B?B<ABB@
 >> ~~~
 >> {: .output}
->> 
->> All of our samples failed at least one test. If we want to see a table showing which tests failed, we can 
->> use the same command we used above, but this time extract the 
->> second field with `cut` (instead of the third) and add the `-c` 
->> option to `uniq` to count the number of times each unique value
->> appears.
+>>
+>> Comparing this with our quality scale:
 >>
 >> ~~~
->> $ grep FAIL fastqc_summaries.txt | cut -f 2 | sort | uniq -c
->> ~~~
->> {: .bash}
->> 
->> ~~~
->> 5 Kmer Content
->> 4 Overrepresented sequences
->> 1 Per base sequence quality
->> 4 Per tile sequence quality
+>> Quality encoding: !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHI
+>>                   |         |         |         |         |
+>> Quality score:    0........10........20........30........40
 >> ~~~
 >> {: .output}
+>>
+>> We can see that the scores are mostly in the 30+ range. This is
+>> pretty good.
 > {: .solution}
 {: .challenge}
+
+We've now completed the trimming and filtering steps of our quality
+control process! Before we move on, let's move our trimmed FASTQ files
+to a new subdirectory within our `data/` directory. We can also remove
+our extra, double-trimmed file for the `SRR098283` sample.
+
+~~~
+$ cd ~/dc_workshop/data/untrimmed_fastq
+$ mkdir ../trimmed_fastq
+$ rm SRR098283.fastq_trim.fastq_trim.fastq
+$ mv *_trim* ../trimmed_fastq
+$ cd ../trimmed_fastq
+$ ls
+~~~
+{: .bash}
+
+~~~
+SRR097977.fastq_trim.fastq  SRR098028.fastq_trim.fastq
+SRR098026.fastq_trim.fastq  SRR098281.fastq_trim.fastq
+SRR098027.fastq_trim.fastq  SRR098283.fastq_trim.fastq
+~~~
+{: .output}
+
 
 
 {% include links.md %}
