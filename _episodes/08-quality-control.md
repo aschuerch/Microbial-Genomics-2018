@@ -19,7 +19,7 @@ When working with high-throughput sequencing data, the raw reads you get off of 
 through a number of  different tools in order to generate your final desired output. The execution of this set of
 tools in a specified order is commonly referred to as a *workflow* or a *pipeline*. 
 
-An example of the workflow we will be using for our variant calling analysis is provided below with a brief
+An example of the workflow we will be using is provided below with a brief
 description of each step. 
 
 ![workflow](../img/variant_calling_workflow.png)
@@ -28,8 +28,16 @@ description of each step.
 1. Quality control - Assessing quality using FastQC
 2. Quality control - Trimming and/or filtering reads (if necessary)
 3. Align reads to reference genome 
-4. Perform post-alignment clean-up
-5. Variant calling
+4. Variant calling
+5a. Clustering variants
+
+3a. Assembly
+4a. Annotation
+5a. Pangenome analysis
+6a. Clustering presence and absence of genes
+
+7. Comparison of clustering methods
+8. Data visualization
 
 These workflows in bioinformatics adopt a plug-and-play approach in that the output of one tool can be easily
 used as input to another tool without any extensive configuration. Having standards for data formats is what 
@@ -61,19 +69,19 @@ We can view the first complete read in one of the files our dataset by using `he
 the first four lines.
 
 ~~~
-$ head -n4 SRR098026.fastq
+$ head -n4 ERR026481_1.fastq
 ~~~
 {: .bash}
 
 ~~~
-@SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
-+SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
+@ERR026481.1 IL10_5319:2:1:1934:947#8/1
+NACCGGTCCAGCGCGCCCAGATCGAGCCCGTCGAGTCGGTCAACCGAAGTCACCGAACTTGTTTACCACTCGCGCAATGCCCGGCTTTAGCTCAGGCCGTCTACGTCT
++
+%,,*,*,,,,1-24;;=6;69-1/1+1160566%11166/;/'5-3'132/1;56,/1/431)2245954&2-+83)6-%1)-1%,*++,1)6%'-%1/,45%,%,**
 ~~~
 {: .output}
 
-All but one of the nucleotides in this read are unknown (`N`). This is a pretty bad read!
+One of the nucleotides in this read is unknown (`N`).
 
 Line 4 shows the quality for each nucleotide in the read. Quality is interpreted as the 
 probability of an incorrect base call (e.g. 1 in 10) or, equivalently, the base call 
@@ -83,7 +91,7 @@ represents the numerical quality score for an individual nucleotide. For example
 above, the quality score line is: 
 
 ~~~
-!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
+%,,*,*,,,,1-24;;=6;69-1/1+1160566%11166/;/'5-3'132/1;56,/1/431)2245954&2-+83)6-%1)-1%,*++,1)6%'-%1/,45%,%,**
 ~~~
 {: .output}
 
@@ -109,37 +117,36 @@ much signal was captured for the base incorporation.
 Looking back at our read: 
 
 ~~~
-@SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
-+SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
+@ERR026481.1 IL10_5319:2:1:1934:947#8/1
+NACCGGTCCAGCGCGCCCAGATCGAGCCCGTCGAGTCGGTCAACCGAAGTCACCGAACTTGTTTACCACTCGCGCAATGCCCGGCTTTAGCTCAGGCCGTCTACGTCT
++
+%,,*,*,,,,1-24;;=6;69-1/1+1160566%11166/;/'5-3'132/1;56,/1/431)2245954&2-+83)6-%1)-1%,*++,1)6%'-%1/,45%,%,**
 ~~~
 {: .output}
 
-we can now see that the quality of each of the `N`s is 0 and the quality of the only
-nucleotide call (`C`) is also very poor (`#` = a quality score of 2). This is indeed a very
-bad read. 
+we can now see that the quality of each of the `N`s is 4. 
+
 
 > ## Exercise
 > 
-> What is the last read in the `SRR098026.fastq` file? How confident
+> What is the last read in the `ERR026481_1.fastq` file? How confident
 > are you in this read? 
 > 
 >> ## Solution
 >> ~~~
->> $ tail -n4 SRR098026.fastq
+>> $ tail -n4 ERR026481_1.fastq
 >> ~~~
 >> {: .bash}
 >> 
 >> ~~~
->> @SRR098026.249 HWUSI-EAS1599_1:2:1:2:1057 length=35
->> CNCTNTATGCGTACGGCAGTGANNNNNNNGGAGAT
->> +SRR098026.249 HWUSI-EAS1599_1:2:1:2:1057 length=35
->> A!@B!BBB@ABAB#########!!!!!!!######
+>> @ERR026481.2070321 IL10_5319:2:120:13022:20879#8/1
+>> CGTCACCAGAGTTCAATCGTTGCANCNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+>> +
+>> BCCAABBBBBBBBBBCCACCAAAA%<%%$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 >> ~~~
 >> {: .output}
 >> 
->> The second half of this read is poor quality. Many of the positions are unknown
+>> The second half of this read is of very poor quality. Many of the positions are unknown
 >> (`N`s) and the bases that we do have guesses for are of very poor
 >> quality (`#`). However, the beginning of the read is fairly high 
 >> quality. We will look at variations in position-based quality
@@ -196,19 +203,10 @@ Here, we see positions within the read in which the boxes span a much wider rang
 
 ## Running FastQC  
 
-We will be working with a set of sample data that is located in a hidden directory (`.dc_sampledata_lite`). First, we
-will move some of these hidden files to the `data` directory your created at [the end of our
-last lesson](http://www.datacarpentry.org/shell-genomics/06-organization/).  
-
-~~~
-$ mv ~/.dc_sampledata_lite/untrimmed_fastq/ ~/dc_workshop/data/
-~~~
-{: .bash}
-
 Navigate to your FASTQ dataset: 
 
 ~~~
-$ cd ~/dc_workshop/data/untrimmed_fastq/
+$ cd ~/dc_workshop/data/
 ~~~
 {: .bash}
 
@@ -221,21 +219,29 @@ $ cd ~/dc_workshop/data/untrimmed_fastq/
 >> ## Solution
 >>  
 >> ~~~
->> $ ls -l -h
+>> $ ls -l -h *fastq
 >> ~~~
 >> {: .bash}
 >> 
 >> ~~~
->> -rw-r--r-- 1 dcuser dcuser 840M Jul 30  2015 SRR097977.fastq
->> -rw-r--r-- 1 dcuser dcuser 3.4G Jul 30  2015 SRR098026.fastq
->> -rw-r--r-- 1 dcuser dcuser 875M Jul 30  2015 SRR098027.fastq
->> -rw-r--r-- 1 dcuser dcuser 3.4G Jul 30  2015 SRR098028.fastq
->> -rw-r--r-- 1 dcuser dcuser 4.0G Jul 30  2015 SRR098281.fastq
->> -rw-r--r-- 1 dcuser dcuser 3.9G Jul 30  2015 SRR098283.fastq
+>> -rw-rw-r-- 1 guest guest 548M Mai 29  2017 ERR026473_1.fastq
+>>-rw-rw-r-- 1 guest guest 548M Mai 29  2017 ERR026473_2.fastq
+>>-rw-rw-r-- 1 guest guest 438M Mai 29  2017 ERR026474_1.fastq
+>>-rw-rw-r-- 1 guest guest 438M Mai 29  2017 ERR026474_2.fastq
+>>-rw-rw-r-- 1 guest guest 659M Mai 29  2017 ERR026478_1.fastq
+>>-rw-rw-r-- 1 guest guest 659M Mai 29  2017 ERR026478_2.fastq
+>>-rw-rw-r-- 1 guest guest 531M Mai 29  2017 ERR026481_1.fastq
+>>-rw-rw-r-- 1 guest guest 531M Mai 29  2017 ERR026481_2.fastq
+>>-rw-rw-r-- 1 guest guest 473M Mai 29  2017 ERR026482_1.fastq
+>>-rw-rw-r-- 1 guest guest 473M Mai 29  2017 ERR026482_2.fastq
+>>-rw-rw-r-- 1 guest guest 813M Jun  9  2017 ERR029206_1.fastq
+>>-rw-rw-r-- 1 guest guest 813M Jun  9  2017 ERR029206_2.fastq
+>>-rw-rw-r-- 1 guest guest 751M Jun  9  2017 ERR029207_1.fastq
+>>-rw-rw-r-- 1 guest guest 751M Jun  9  2017 ERR029207_2.fastqstq
 >> ~~~
 >> {: .output}
 >> 
->> There are six FASTQ files ranging from 840M (840MB) to 4.0G (4.0GB)
+>> There are 14 FASTQ files ranging from 548M (548MB) to 751M (751MB)
 >> 
 > {: .solution}
 {: .challenge}
@@ -252,36 +258,42 @@ You will see an automatically updating output message telling you the
 progress of the analysis. It will start like this: 
 
 ~~~
-Started analysis of SRR097977.fastq
-Approx 5% complete for SRR097977.fastq
-Approx 10% complete for SRR097977.fastq
-Approx 15% complete for SRR097977.fastq
-Approx 20% complete for SRR097977.fastq
-Approx 25% complete for SRR097977.fastq
-Approx 30% complete for SRR097977.fastq
-Approx 35% complete for SRR097977.fastq
-Approx 40% complete for SRR097977.fastq
-Approx 45% complete for SRR097977.fastq
-Approx 50% complete for SRR097977.fastq
+Started analysis of ERR026473_1.fastq
+Approx 5% complete for ERR026473_1.fastq
+Approx 10% complete for ERR026473_1.fastq
+Approx 15% complete for ERR026473_1.fastq
+Approx 20% complete for ERR026473_1.fastq
+Approx 25% complete for ERR026473_1.fastq
+Approx 30% complete for ERR026473_1.fastq
+Approx 35% complete for ERR026473_1.fastq
+Approx 40% complete for ERR026473_1.fastq
+Approx 45% complete for ERR026473_1.fastq
+Approx 50% complete for ERR026473_1.fastq
+Approx 55% complete for ERR026473_1.fastq
+Approx 60% complete for ERR026473_1.fastq
+Approx 65% complete for ERR026473_1.fastq
+Approx 70% complete for ERR026473_1.fastq
+Approx 75% complete for ERR026473_1.fastq
 ~~~
 {: .output}
 
-In total, it should take about five minutes for FastQC to run on all
-six of our FASTQ files. When the analysis completes, your prompt
+In total, it should take about five to ten minutes for FastQC to run on all
+fourteen of our FASTQ files. When the analysis completes, your prompt
 will return. So your screen will look something like this:
 
 ~~~
-Approx 80% complete for SRR098283.fastq
-Approx 85% complete for SRR098283.fastq
-Approx 90% complete for SRR098283.fastq
-Approx 95% complete for SRR098283.fastq
-Analysis complete for SRR098283.fastq
-dcuser@ip-172-31-58-54:~/dc_workshop/data/untrimmed_fastq$
+Approx 75% complete for ERR029207_2.fastq
+Approx 80% complete for ERR029207_2.fastq
+Approx 85% complete for ERR029207_2.fastq
+Approx 90% complete for ERR029207_2.fastq
+Approx 95% complete for ERR029207_2.fastq
+Analysis complete for ERR029207_2.fastq
+dcuser@ip-172-31-58-5:~/dc_workshop/data$ 
 ~~~
 {: .output}
 
 The FastQC program has created several new files within our
-`/data/untrimmed_fastq/` directory. 
+`/data/` directory. 
 
 ~~~
 $ ls
@@ -289,12 +301,28 @@ $ ls
 {: .bash}
 
 ~~~
-SRR097977.fastq        SRR098027.fastq	      SRR098281.fastq
-SRR097977_fastqc.html  SRR098027_fastqc.html  SRR098281_fastqc.html
-SRR097977_fastqc.zip   SRR098027_fastqc.zip   SRR098281_fastqc.zip
-SRR098026.fastq        SRR098028.fastq	      SRR098283.fastq
-SRR098026_fastqc.html  SRR098028_fastqc.html  SRR098283_fastqc.html
-SRR098026_fastqc.zip   SRR098028_fastqc.zip   SRR098283_fastqc.zip
+ERR026473_1.fastq        ERR026481_2_fastqc.html
+ERR026473_1_fastqc.html  ERR026481_2_fastqc.zip
+ERR026473_1_fastqc.zip   ERR026482_1.fastq
+ERR026473_2.fastq        ERR026482_1_fastqc.html
+ERR026473_2_fastqc.html  ERR026482_1_fastqc.zip
+ERR026473_2_fastqc.zip   ERR026482_2.fastq
+ERR026474_1.fastq        ERR026482_2_fastqc.html
+ERR026474_1_fastqc.html  ERR026482_2_fastqc.zip
+ERR026474_1_fastqc.zip   ERR029206_1.fastq
+ERR026474_2.fastq        ERR029206_1_fastqc.html
+ERR026474_2_fastqc.html  ERR029206_1_fastqc.zip
+ERR026474_2_fastqc.zip   ERR029206_2.fastq
+ERR026478_1.fastq        ERR029206_2_fastqc.html
+ERR026478_1_fastqc.html  ERR029206_2_fastqc.zip
+ERR026478_1_fastqc.zip   ERR029207_1.fastq
+ERR026478_2.fastq        ERR029207_1_fastqc.html
+ERR026478_2_fastqc.html  ERR029207_1_fastqc.zip
+ERR026478_2_fastqc.zip   ERR029207_2.fastq
+ERR026481_1.fastq        ERR029207_2_fastqc.html
+ERR026481_1_fastqc.html  ERR029207_2_fastqc.zip
+ERR026481_1_fastqc.zip   GCF_000195955.2_ASM19595v2_genomic.fna
+ERR026481_2.fastq
 ~~~
 {: .output}
 
@@ -329,7 +357,7 @@ If we were working on our local computers, we'd be able to display each of these
 HTML files as a webpage: 
  
 ~~~
-$ open SRR097977_fastqc.html
+$ open ERR026473_1_fastqc.html
 ~~~
 {: .bash}
 
@@ -393,12 +421,10 @@ directory we just created `~/Desktop/fastqc_html`.
 You should see a status output like this:
 
 ~~~
-SRR097977_fastqc.html                                    100%  318KB 317.8KB/s   00:01    
-SRR098026_fastqc.html                                    100%  330KB 329.8KB/s   00:00    
-SRR098027_fastqc.html                                    100%  369KB 369.5KB/s   00:00    
-SRR098028_fastqc.html                                    100%  323KB 323.4KB/s   00:01    
-SRR098281_fastqc.html                                    100%  329KB 329.1KB/s   00:00    
-SRR098283_fastqc.html                                    100%  324KB 323.5KB/s   00:00 
+ERR026473_1_fastqc.html                                    100%  318KB 317.8KB/s   00:01    
+ERR026473_2_fastqc.html                                    100%  330KB 329.8KB/s   00:00    
+ERR026474_1_fastqc.html                                    100%  369KB 369.5KB/s   00:00    
+ERR026474_2_fastqc.html                                    100%  323KB 323.4KB/s   00:01    
 ~~~
 {: .output}
 
@@ -421,8 +447,7 @@ tabs in a single window or six separate browser windows.
 > worst?
 > 
 >> ## Solution
->> `SRR097977` and `SRR098027` are the best. The other four 
->> samples are all pretty bad.
+>> All samples are of reasonable quality.
 > {: .solution}
 {: .challenge}
 
@@ -441,10 +466,16 @@ $ ls
 {: .bash}
 
 ~~~
-SRR097977_fastqc.html  SRR098027_fastqc.html  SRR098281_fastqc.html
-SRR097977_fastqc.zip   SRR098027_fastqc.zip   SRR098281_fastqc.zip
-SRR098026_fastqc.html  SRR098028_fastqc.html  SRR098283_fastqc.html
-SRR098026_fastqc.zip   SRR098028_fastqc.zip   SRR098283_fastqc.zip
+ERR026473_1_fastqc.html  ERR026478_2_fastqc.html  ERR029206_1_fastqc.html
+ERR026473_1_fastqc.zip   ERR026478_2_fastqc.zip   ERR029206_1_fastqc.zip
+ERR026473_2_fastqc.html  ERR026481_1_fastqc.html  ERR029206_2_fastqc.html
+ERR026473_2_fastqc.zip   ERR026481_1_fastqc.zip   ERR029206_2_fastqc.zip
+ERR026474_1_fastqc.html  ERR026481_2_fastqc.html  ERR029207_1_fastqc.html
+ERR026474_1_fastqc.zip   ERR026481_2_fastqc.zip   ERR029207_1_fastqc.zip
+ERR026474_2_fastqc.html  ERR026482_1_fastqc.html  ERR029207_2_fastqc.html
+ERR026474_2_fastqc.zip   ERR026482_1_fastqc.zip   ERR029207_2_fastqc.zip
+ERR026478_1_fastqc.html  ERR026482_2_fastqc.html
+ERR026478_1_fastqc.zip   ERR026482_2_fastqc.zip
 ~~~
 {: .output}
 
@@ -460,12 +491,20 @@ $ unzip *.zip
 {: .bash}
 
 ~~~
-Archive:  SRR097977_fastqc.zip
-caution: filename not matched:  SRR098026_fastqc.zip
-caution: filename not matched:  SRR098027_fastqc.zip
-caution: filename not matched:  SRR098028_fastqc.zip
-caution: filename not matched:  SRR098281_fastqc.zip
-caution: filename not matched:  SRR098283_fastqc.zip
+Archive:  ERR026473_1_fastqc.zip
+caution: filename not matched:  ERR026473_2_fastqc.zip
+caution: filename not matched:  ERR026474_1_fastqc.zip
+caution: filename not matched:  ERR026474_2_fastqc.zip
+caution: filename not matched:  ERR026478_1_fastqc.zip
+caution: filename not matched:  ERR026478_2_fastqc.zip
+caution: filename not matched:  ERR026481_1_fastqc.zip
+caution: filename not matched:  ERR026481_2_fastqc.zip
+caution: filename not matched:  ERR026482_1_fastqc.zip
+caution: filename not matched:  ERR026482_2_fastqc.zip
+caution: filename not matched:  ERR029206_1_fastqc.zip
+caution: filename not matched:  ERR029206_2_fastqc.zip
+caution: filename not matched:  ERR029207_1_fastqc.zip
+caution: filename not matched:  ERR029207_2_fastqc.zip
 ~~~
 {: .output}
 
