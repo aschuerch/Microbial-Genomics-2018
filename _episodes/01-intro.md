@@ -27,7 +27,7 @@ The first goal is therefore to learn a number of basic operations in the shell w
 
 ## Background of the data
 
-Epidemiological contact tracing through interviewing of patients can identify potential chains of patients that transmitted the disease to each other. Here we have 7 tuberculosis patients that form 3 separate clusters by the epidemiological investigation. From all patients, a bacterial isolate was grown, DNA isolated, and whole-genome sequenced on an Illumina sequencer: 
+Epidemiological contact tracing through interviewing of patients can identify potential chains of patients that transmitted the disease to each other. Here we have 7 tuberculosis patients that form 3 separate clusters as determined by epidemiological interviews. Patients were asked if they have been in direct contact with each other, or if they visited the same localities. From all patients, a bacterial isolate was grown, DNA isolated, and whole-genome sequenced on an Illumina sequencer: 
 
     - Patient A1 - sample ERR029207
     - Patient A2 - sample ERR029206
@@ -41,7 +41,7 @@ Epidemiological contact tracing through interviewing of patients can identify po
     - Patient C1 - sample ERR026481
     - Patient C2 - sample ERR026482
 
-The second goal of this practicum is to affirm or dispute the inferred transmission by comparing the bacterial genomes with each other. We will do that by identifying SNPs between the genomes and variably present genes, and compare the results of the two methods.
+The second goal of this practicum is to affirm or dispute the inferred transmissions by comparing the bacterial genomes with each other. We will do that by two strategies: by identifying SNPs between the genomes and by identifying variably present genes, and we will compare the results of the two methods.
 
 
 
