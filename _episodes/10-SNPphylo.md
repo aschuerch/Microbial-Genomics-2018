@@ -1,5 +1,6 @@
 ---
 title: "SNP phylogeny"
+start: true
 teaching: 15
 exercises: 90
 questions:
@@ -16,4 +17,4 @@ keypoints:
 ---
 
 
-establishing phylogeny with parsnp
+establishing phylogeny with snippy
