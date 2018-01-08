@@ -32,13 +32,19 @@ Copy the first contig (fasta) by moving over it with the mouse and pressing the 
 
 Go to [ORFfinder](https://www.ncbi.nlm.nih.gov/orffinder/)
 
-Predict ORFs with translation table 11
+Predict ORFs with translation table 11.
 
-Submit the longest ORF to BLAST
+Submit the longest ORF to BLAST.
 
 How would this ORF be annotated? Is it a gene or something else? What does the gene do?
 
-Now we will annotate all genomes with an automated approach. Prokka is a pipeline script which coordinates a series of genome feature predictor tools and sequence similarity tools to annotate the genome sequence or contigs. Again, this will run for a while,
+Now we will annotate all genomes with an automated approach. Prokka is a pipeline script which coordinates a series of genome feature predictor tools and sequence similarity tools to annotate the genome sequence or contigs. 
+
+Now that you have assembled the data into contigs the next natural step to do is annotation of the data, i.e. finding the genes and doing functional annotation of those. A range of programs are available for these tasks but here we will use PROKKA, which is a pipeline comprising several open source bioinformatic tools and databases.
+
+PROKKA automates the process of locating ORFs and RNA regions on contigs, translating ORFs to protein sequences, searching for protein homologs and producing standard output files. For gene finding and translation, PROKKA makes use of the program Prodigal. Homology searching (via BLAST and HMMER) is then performed using the translated protein sequences as queries against a set of public databases (CDD, PFAM, TIGRFAM) as well as custom databases that come with PROKKA.
+
+Again, this will run for a while.
 
 ~~~
 for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
@@ -56,11 +62,10 @@ cat ./anno*/prokka.txt
 {: .source}
 
 
-
 > ## Challenge: How many genes did Prokka find in the contigs??
 >
-> Find out how many genes there are in the *M. tuberculosis* isolates.
-> 
+> Find out how many genes there are in the *M. tuberculosis* isolates. Enter your solution in the
+> [table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing)
 > Hint:
 > ~~~
 > grep -c 
