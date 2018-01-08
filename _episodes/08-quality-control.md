@@ -1,5 +1,5 @@
 ---
-title: "Assessing Read Quality"
+title: "Assessing Read Quality and Trimming"
 teaching: 30
 exercises: 20
 questions:
