@@ -22,19 +22,16 @@ tools in a specified order is commonly referred to as a *workflow* or a *pipelin
 An example of the workflow we will be using is provided below with a brief
 description of each step. 
 
-![workflow](../img/variant_calling_workflow.png)
-
-
 1. Quality control - Assessing quality using FastQC
 2. Quality control - Trimming and/or filtering reads (if necessary)
 3. Align reads to reference genome 
 4. Variant calling
-5a. Clustering variants
+5. Clustering variants
 
-3a. Assembly
-4a. Annotation
-5a. Pangenome analysis
-6a. Clustering presence and absence of genes
+3. Assembly
+4. Annotation
+5. Pangenome analysis
+6. Clustering presence and absence of genes
 
 7. Comparison of clustering methods
 8. Data visualization
@@ -51,7 +48,7 @@ built under the assumption that the data will be provided in a specific format.
 The first step in the variant calling workflow is to take the FASTQ files received from the sequencing facility
 and assess the quality of the sequence reads. 
 
-![workflow_qc](../img/var_calling_workflow_qc.png)
+![workflow_qc](../fig/var_calling_workflow_qc.png)
 ## Details on the FASTQ format
 
 Although it looks complicated (and it is), it's easy to understand the
@@ -540,12 +537,14 @@ Notice that we needed to redirect the output to a file. If we don't do that, the
 >> ## Solution
 >> 1) 
 >> `seqtk fqchk ERR026473_1.fastq | head -n 3`
+>>
 >> min_len: 108; max_len: 108; avg_len: 108.00; 33 distinct quality values
 >> POS	#bases	%A	%C	%G	%T	%N	avgQ	errQ	%low	%high
 >> ALL	229930596	17.9	32.2	32.3	17.4	0.2	29.7	20.6	6.9	93.1
 >>
 >> 2) 
 >> `seqtk fqchk ERR026473_1_trim.fastq | head -n 3`
+>>
 >> min_len: 30; max_len: 108; avg_len: 94.31; 33 distinct quality values
 >> POS	#bases	%A	%C	%G	%T	%N	avgQ	errQ	%low	%high
 >> ALL	200776204	17.9	32.2	32.2	17.6	0.0	31.2	28.5	1.3	98.7
