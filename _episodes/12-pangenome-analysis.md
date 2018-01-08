@@ -18,7 +18,7 @@ keypoints:
 
 The microbial pangenome is the union of genes shared by genomes of interest.
 
-[Pangenome](../fig/pan-genome-figure1-1024x398.png)
+![Pangenome](../fig/pan-genome-figure1-1024x398.png)
 
 ### Extract genes recB, rubA and dnaA from two genomes.
 
