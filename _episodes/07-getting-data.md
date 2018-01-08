@@ -6,12 +6,14 @@ questions:
 - "How and where can data be downloaded?"
 objectives:
 - "Prepare for downstream analysis"
+- "Use 'for' loops to automate operations on multiple files"
 keypoints:
 - "Wget and Curl are two different ways to get data from the internet"
+- "'for' loops let you perform the same set of operations on multiple files with a single command"
 - "Sequencing data is large"
 ---
 
-This episode describes how to retrieve all necessary data from public repositories - the raw sequenced data of our isolates and a reference genome.
+This episode describes how to retrieve all necessary data from public repositories - the raw sequenced data of our isolates and a reference genome. It also introduces for loops which we will use for the rest of our analysis.
 
 ## Preparation
 
