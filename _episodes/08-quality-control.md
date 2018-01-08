@@ -534,7 +534,7 @@ Notice that we needed to redirect the output to a file. If we don't do that, the
 
 
 > ## Exercise
-> Use seqtk fqchk to compare the untrimmed and trimmed reads.
+> Use seqtk fqchk to compare the untrimmed and trimmed reads. 
 >
 >
 >> ## Solution
@@ -633,6 +633,33 @@ ERR026474_2.fastq_trim.fastq  ERR026482_1.fastq_trim.fastq  ERR029207_2.fastq_tr
 ERR026478_1.fastq_trim.fastq  ERR026482_2.fastq_trim.fastq
 ~~~
 {: .output}
+
+
+
+
+> ## Exercise
+> Again, use seqtk fqchk to compare the untrimmed and trimmed reads of all samples. 
+> Note the number of bases '#bases' of the trimmed and untrimmed reads. 
+> Calculate the theoretical coverage of the genomes before and after trimming, 
+> assuming that all our genomes do have the same size as our reference genome (4466677 bases). 
+> Fill into the 
+> [table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing).
+>
+>
+>> ## Hint
+>> 1) 
+>> `seqtk fqchk ERR026473_1.fastq | head -n 3`
+>>
+>> min_len: 108; max_len: 108; avg_len: 108.00; 33 distinct quality values
+>> POS	#bases	%A	%C	%G	%T	%N	avgQ	errQ	%low	%high
+>> ALL	229930596	17.9	32.2	32.3	17.4	0.2	29.7	20.6	6.9	93.1
+>>
+>> Coverage before trimming =  #bases / genome size
+>> 51.48 = 229930596 / 4466677
+> {: .solution}
+{: .challenge}
+
+
 
 
 
