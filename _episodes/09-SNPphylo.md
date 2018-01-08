@@ -1,6 +1,5 @@
 ---
 title: "SNP phylogeny"
-start: true
 teaching: 15
 exercises: 90
 questions:
