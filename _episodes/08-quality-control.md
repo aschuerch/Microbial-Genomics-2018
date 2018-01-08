@@ -22,6 +22,8 @@ tools in a specified order is commonly referred to as a *workflow* or a *pipelin
 An example of the workflow we will be using is provided below with a brief
 description of each step. 
 
+![workflow_qc](../fig/Workflow.png)
+
 1. Quality control - Assessing quality using FastQC
 2. Quality control - Trimming and/or filtering reads (if necessary)
 3. Align reads to reference genome 
