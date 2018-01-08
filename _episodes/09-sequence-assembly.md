@@ -30,20 +30,63 @@ This creates a session with the name ‘session_name’
 As you work, this session will stay active until you close this session. Even if you disconnect from your machine, the jobs you start in this session will run till completion.
 
 
+## Sequence assembly
+
+We will talk about sequence assembly in a separate [lecture](../data/lectureAssembly.pdf)
+
+The assembler we will run is SPAdes. SPAdes generates a final assembly from multiple kmers. A list of kmers is automatically selected by SPAdes using the maximum read length of the input data, and each individual kmer contributes to the final assembly. To run SPAdes we will use the spades.py command with the --careful option to minimize the number of mismatches in the contigs, -o for the output folder, -1 for the path to the forward reads, -2 for the path to the reverse reads, and -s for the path to the singles reads. If desired, a list of kmers can be specified with the -k flag which will override automatic kmer selection.
+
+
 ## Assembly (over night)
 
-Now we can start the loop with the assemblies
+Because assembly of each genome might take a couple of hours, we will run all assemblies in a loop overnight. It is important to run them within the screen session or else the process will be terminated if we disconnect from the machine. 
+
+We can start the loop with the assemblies
 
 ~~~
 for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
   do
-  spades.py -1 "$sample"_R1_sub.fastq -2 "$sample"_R2_sub.fastq -o ../output/"$sample"
+  spades.py -1 --careful "$sample"_R1_sub.fastq -2 "$sample"_R2_sub.fastq -o ../output/"$sample"
   done
 ~~~
 {: .source}
 
+**Detach session (process keeps running in background)**
 
+You can detach from a session by pressing `control + a` followed by `d` (for detach) on your keyboard. 
 
+You can now safely log out from your machine. The assembly will run over night.
+
+If you reconnect the next day to your machine, you will also have to reconnect to your session to see how it went.
+
+**Seeing active sessions**
+
+If you disconnect from your session, or from your ssh into a machine, you will need to reconnect to an existing `screen` session. You can see a list of existing sessions:
+
+~~~
+$ screen -ls
+~~~
+{: .bash}
+
+**Reconnecting to a session**
+
+To reconnect to an existing session:
+
+~~~
+$ screen -r session_name
+~~~
+{: .bash}
+
+The `-r` option = 'resume  a detached screen session'
+
+**Kill a session**
+To end a session, type `exit` after reconnecting to the session:
+
+~~~
+$ screen -r session_name
+$ exit
+~~~
+{: .bash}
 
 
 {% include links.md %}
