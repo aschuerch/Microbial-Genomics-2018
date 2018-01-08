@@ -56,7 +56,7 @@ To access the pre-configured workshop data, you'll need to use our log-in creden
 **Log-in Credentials (case-sensitive!)**
 
 - Username: dcuser
-- Password: data4Carp
+- Password: data4Mgen
 
 But first, you need a place to log *into*! To find the instance that's attached to that data,
 you'll need something called an IP address. Your instructor should have given this to you
