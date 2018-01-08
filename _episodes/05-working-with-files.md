@@ -23,7 +23,7 @@ keypoints:
 ### Our data set: FASTQ files
 
 Now that we know how to navigate around our directory structure, lets
-start working with our sequencing files. We did a sequencing experiment and 
+start working with sequencing files. We did a sequencing experiment and 
 have two results files, which are stored in our `untrimmed_fastq` directory. 
 
 ### Wild cards
@@ -130,61 +130,6 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 {: .challenge}
 
 
-## Command History
-
-If you want to repeat a command that you've run recently, you can access previous
-commands using the up arrow on your keyboard to go back to the most recent
-command. Likewise, the down arrow takes you forward in the command history.
-
-A few more useful shortcuts: 
-
-`^-C` (Control-C) will cancel the command you are writing, and give you a 
-fresh prompt.
-
-`^-R` (Control-R) will do a reverse-search through your command history.  This
-is very useful.
-
-`^-L` (Control-L) or the `clear` command will clear your screen.
-
-You can also review your recent commands with the `history` command, by entering:
-
-~~~
-$ history
-~~~
-{: .bash}
-
-to see a numbered list of recent commands. You can reuse one of these commands
-directly by referring to the number of that command.
-
-For example, if your history looked like this:
-
-~~~
-259  ls *
-260  ls /usr/bin/*.sh
-261  ls *R1*fastq
-~~~
-{: .output}
-
-then you could repeat command #260 by entering:
-
-~~~
-$ !260
-~~~
-{: .bash}
-
-Type `!` (exclamation point) and then the number of the command from your history.
-You will be glad you learned this when you need to re-run very complicated commands.
-
-> ## Exercise
-> Find the line number in your history for the command that listed all the .sh
-> files in `/usr/bin`. Rerun that command.
->
-> > ## Solution
-> > First type `history`. Then use `!` followed by the line number to rerun that command.
-> {: .solution}
-{: .challenge}
-
-
 ## Examining Files
 
 We now know how to switch directories, run programs, and look at the
@@ -211,65 +156,13 @@ This will print out all of the contents of the `SRR098026.fastq` to the screen.
 > the `~/dc_sample_data/untrimmed_fastq` directory.
 > 
 > > ## Solution
-> > 1. The last line of the file is `TATTTTAAAATGGAATACCTAACATGTTAATTAACC`.
+> > 1. The last line of the file is `TC:CCC::CCCCCCCC<8?6A:C28C<608'&&&,'$`.
 > > 2. `cat ~/dc_sample_data/untrimmed_fastq/*`
 > {: .solution}
 {: .challenge}
 
 `cat` is a terrific program, but when the file is really big, it can
-be annoying to use. The program, `less`, is useful for this
-case. `less` opens the file as read only, and lets you navigate through it. The navigation commands
-are identical to the `man` program.
-
-Enter the following command:
-
-~~~
-$ less SRR097977.fastq
-~~~
-{: .bash}
-
-Some navigation commands in `less`
-
-| key     | action |
-| ------- | ---------- |
-| "space" | to go forward |
-|  "b"    | to go backward |
-|  "g"    | to go to the beginning |
-|  "G"    | to go to the end |
-|  "q"    | to quit |
-
-`less` also gives you a way of searching through files. Use the
-"/" key to begin a search. Enter the word you would like
-to search for and press `enter`. The screen will jump to the next location where
-that word is found. 
-
-**Shortcut:** If you hit "/" then "enter", `less` will  repeat
-the previous search. `less` searches from the current location and
-works its way forward. Note, if you are at the end of the file and search
-for the sequence "CAA", `less` will not find it. You either need to go to the
-beginning of the file (by typing `g`) and search again using `/` or you
-can use `?` to search backwards in the same way you used `/` previously.
-
-For instance, let's search forward for the sequence `TTTTT` in our file. 
-You can see that we go right to that sequence, what it looks like,
-and where it is in the file. If you continue to type `/` and hit return, you will move 
-forward to the next instance of this sequence motif. If you instead type `?` and hit 
-return, you will search backwards and move up the file to previous examples of this motif.
-
-> ## Exercise
->
-> What are the next three nucleotides (characters) after the first instance of the sequence quoted above?
-> 
-> > ## Solution
-> > `CAC`
-> {: .solution}
-{: .challenge}
-
-Remember, the `man` program actually uses `less` internally and
-therefore uses the same commands, so you can search documentation
-using "/" as well!
-
-There's another way that we can look at files, and in this case, just
+be annoying to use. There's another way that we can look at files, and in this case, just
 look at part of them. This can be particularly useful if we just want
 to see the beginning or end of the file, or see how it's formatted.
 
@@ -346,30 +239,6 @@ but there will be some cases (like when you're working with a remote computer li
 impossible. You'll also find that you may be working with hundreds of files and want to do similar manipulations to all 
 of those files. In cases like this, it's much faster to do these operations at the command line.
 
-### Copying Files
-
-When working with computational data, it's important to keep a safe copy of that data that can't be accidentally overwritten or deleted. 
-For this lesson, our raw data is our FASTQ files.  We don't want to accidentally change the original files, so we'll make a copy of them
-and change the file permissions so that we can read from, but not write to, the files.
-
-First, let's make a copy of one of our FASTQ files using the `cp` command. 
-
-Navigate to the `dc_sample_data/untrimmed_fastq` directory and enter:
-
-~~~
-$ cp SRR098026.fastq SRR098026-copy.fastq
-$ ls -F
-~~~
-{: .bash}
-
-~~~
-SRR097977.fastq  SRR098026-copy.fastq  SRR098026.fastq
-~~~
-{: .output}
-
-We now have two copies of the SRR098026.fastq file, one of them named SRR098026-copy.fastq. We'll move this file to a new directory
-called `backup` where we'll store our backup data files.
-
 ### Creating Directories
 
 The `mkdir` command is used to make a directory. Enter `mkdir`
@@ -410,47 +279,6 @@ SRR098026-backup.fastq
 ~~~
 {: .output}
 
-### File Permissions
-
-We've now made a backup copy of our file, but just because we have two copies doesn't make us safe. We can still accidentally delete or 
-overwrite both copies. To make sure we can't accidentally mess up this backup file, we're going to change the permissions on the file so
-that we're only allowed to read (i.e. view) the file, not write to it (i.e. make new changes).
-
-View the current permissions on a file using the `-l` (long) flag for the `ls` command. 
-
-~~~
-$ ls -l
-~~~
-{: .bash}
-
-~~~
--rw-r--r-- 1 dcuser dcuser 43332 Nov 15 23:02 SRR098026-backup.fastq
-~~~
-{: .output}
-
-The first part of the output for the `-l` flag gives you information about the file's current permissions. There are ten slots in the
-permissions list. The first character in this list is related to file type, not permissions, so we'll ignore it for now. The next three
-characters relate to the permissions that the file owner has, the next three relate to the permissions for group members, and the final
-three characters specify what other users outside of your group can do with the file. We're going to concentrate on the three positions
-that deal with your permissions (as the file owner). 
-
-Here the three positions that relate to the file owner are `rw-`. The `r` means that you have permission to read the file, the `w` 
-indicates that you have permission to write to (i.e. make changes to) the file, and the third position is a `-`, indicating that you 
-don't have permission to carry out the ability encoded by that space (this is the space where `x` or executable ability is stored, we'll 
-talk more about this in [a later lesson](http://www.datacarpentry.org/shell-genomics/05-writing-scripts/)).
-
-Our goal for now is to change permissions on this file so that you no longer have `w` or write permissions. We can do this using the `chmod` (change mode) command and subtracting (`-`) the write permission `-w`. 
-
-~~~
-$ chmod -w SRR098026-backup.fastq
-$ ls -l 
-~~~
-{: .bash}
-
-~~~
--r--r--r-- 1 dcuser dcuser 43332 Nov 15 23:02 SRR098026-backup.fastq
-~~~
-{: .output}
 
 ### Removing
 
