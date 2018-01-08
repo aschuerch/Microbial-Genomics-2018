@@ -28,7 +28,11 @@ The first goal is therefore to learn a number of basic operations in the shell w
 
 ## Background of the data
 
-Epidemiological contact tracing through interviewing of patients can identify potential chains of patients that transmitted the disease to each other. Here we have 7 tuberculosis patients that form 3 separate clusters as determined by epidemiological interviews. Patients were asked if they have been in direct contact with each other, or if they visited the same localities. From all patients, a bacterial isolate was grown, DNA isolated, and whole-genome sequenced on an Illumina sequencer: 
+Epidemiological contact tracing through interviewing of patients can identify potential chains of patients that transmitted the disease to each other. Contact tracing was performed following the [stone-in-the-pond principle](https://www.ncbi.nlm.nih.gov/pubmed/1643300), which  interviews potential contacts in concentric circles around a potential the source case.
+
+Here we have 7 tuberculosis patients that form three separate clusters of potential transmission as determined by epidemiological interviews. Patients were asked if they have been in direct contact with each other, or if they visited the same localities. From all patients, a bacterial isolate was grown, DNA isolated, and whole-genome sequenced on an Illumina sequencer.
+
+The three clusters consist of:
 
     - Patient A1 - sample ERR029207
     - Patient A2 - sample ERR029206
