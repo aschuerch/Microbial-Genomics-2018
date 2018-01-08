@@ -48,9 +48,11 @@ PROKKA automates the process of locating ORFs and RNA regions on contigs, transl
 Again, this will run for a while.
 
 ~~~
+cd ~/dc_workshop/results
+mkdir annotation
 for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
   do
-  prokka --outdir anno_"$sample" --prefix prokka "$sample".fna
+  prokka --outdir annotation/anno_"$sample" --prefix prokka assembly/"$sample"/contigs.fna
   done
 ~~~
 {: .source}
