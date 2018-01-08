@@ -45,24 +45,117 @@ Now that you have assembled the data into contigs the next natural step to do is
 
 PROKKA automates the process of locating ORFs and RNA regions on contigs, translating ORFs to protein sequences, searching for protein homologs and producing standard output files. For gene finding and translation, PROKKA makes use of the program Prodigal. Homology searching (via BLAST and HMMER) is then performed using the translated protein sequences as queries against a set of public databases (CDD, PFAM, TIGRFAM) as well as custom databases that come with PROKKA.
 
-Again, this will run for a while.
+
+The names of the contigs produced by SPades are quite long. PROKKA needs name which are shorter than 20 characters. We will therefore shorten these names first by making a copy of the contigs file.
+
+~~~
+cd ~/dc_workshop/results/assembly/
+for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
+  do
+  cut -f 1,8 -d "_" "$sample"/contigs.fasta | sed s/NODE/C/g > "$sample".fasta
+  done
+~~~
+
+Let's see what this has done. First let's have a look at the original files.
+
+~~~
+head -n10 ERR026473/contigs.fasta
+~~~
+{: .bash}
+
+~~~
+>NODE_1_length_43202_cov_4.41729_ID_34907
+TAGCTTGTCGAGCGTGCGGGGGCTTATGCGTCTGCTCGCCCTAGAGACTGAGCAAGATCT
+CCCGGGCCAGCGCCGAGGTCGCCGATGGGGTCTTGCCGACCTTCACACCGGCGGCCTCCA
+GGGCCTCTTGCTTGGCCGCCGCTGTGCCAGACGAGCCGGAGACGATGGCGCCGGCGTGGC
+CCATCGTCTTGCCTTCGGGTGCGGTAAATCCGGCGACATAGCCGACGACCGGCTTGGACA
+CGTTGGTCTTGATGAAGTCTGCGGCCCGCTCCTCGGCGTCACCACCGATCTCGCCGATCA
+TCACGATGAGCTTGGTGTCCGGATCCCTCTCGAAGGCCTCGATGGCGTCGATGTGGGTAG
+TGCCAATCACCGGATCACCACCGATGCCGATCGCCGTGGAGAATCCAAGGTCGCGCAGTT
+CGAACATCATCTGGTAGGTCAACGTCCCCGACTTGGACACCAGACCAATTGGACCGGGTC
+CGGTGATGTTGGCCGGCGTGATACCGGCCAGCGACTGACCGGGACTGATAATGCCAGGAC
+~~~
+{: .output}
+
+Now, let's inspect the new file
+
+~~~
+head -n10 ERR026473.fasta
+~~~
+{: .bash}
+
+~~~
+>C_34907
+TAGCTTGTCGAGCGTGCGGGGGCTTATGCGTCTGCTCGCCCTAGAGACTGAGCAAGATCT
+CCCGGGCCAGCGCCGAGGTCGCCGATGGGGTCTTGCCGACCTTCACACCGGCGGCCTCCA
+GGGCCTCTTGCTTGGCCGCCGCTGTGCCAGACGAGCCGGAGACGATGGCGCCGGCGTGGC
+CCATCGTCTTGCCTTCGGGTGCGGTAAATCCGGCGACATAGCCGACGACCGGCTTGGACA
+CGTTGGTCTTGATGAAGTCTGCGGCCCGCTCCTCGGCGTCACCACCGATCTCGCCGATCA
+TCACGATGAGCTTGGTGTCCGGATCCCTCTCGAAGGCCTCGATGGCGTCGATGTGGGTAG
+TGCCAATCACCGGATCACCACCGATGCCGATCGCCGTGGAGAATCCAAGGTCGCGCAGTT
+CGAACATCATCTGGTAGGTCAACGTCCCCGACTTGGACACCAGACCAATTGGACCGGGTC
+CGGTGATGTTGGCCGGCGTGATACCGGCCAGCGACTGACCGGGACTGATAATGCCAGGAC
+~~~
+{: .output}
+
+The header was shortened to less than 20 characters. It is important that each header is still unique. We can check this by inspecting a few headers.
+
+~~~
+grep  ">" ERR026473.fasta
+~~~
+{: .bash}
+
+~~~
+>C_36541
+>C_36543
+>C_36545
+>C_36547
+>C_36549
+>C_36551
+>C_36553
+>C_36555
+>C_36557
+>C_36559
+>C_36561
+>C_36563
+>C_36565
+>C_36567
+>C_36569
+>C_36571
+>C_36573
+>C_36575
+>C_36577
+>C_36579
+>C_36581
+~~~
+{: .output}
+
+are the last few lines of our output. Every line has a unique number.
+
+We still need to make a new folder to contain our annotation results.
 
 ~~~
 cd ~/dc_workshop/results
 mkdir annotation
+~~~
+{: .bash}
+
+Now we are all set to annotate our contigs with PROKKA. Again, this will run for a while.
+
+~~~
 for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
   do
-  prokka --outdir annotation/anno_"$sample" --prefix prokka assembly/"$sample"/contigs.fna
+  prokka --outdir annotation/anno_"$sample" --prefix prokka assembly/"$sample".fasta
   done
 ~~~
-{: .source}
+{: .bash}
 
 Let's check the output:
 
 ~~~
-cat ./anno*/prokka.txt
+cat annotation/anno_*/prokka.txt
 ~~~
-{: .source}
+{: .bash}
 
 
 > ## Challenge: How many genes did Prokka find in the contigs??
