@@ -9,8 +9,10 @@ objectives:
 keypoints:
 - "SNP phylogeny, pangenome analysis and metadata can convey different messages"
 - "Human interpretation is often needed to weigh the different information sources."
+- "The low mutation rate of *M. tuberculosis* does not allow to make confident inferences of transmission but does allow to exclude transmission" 
 ---
 
+The low mutation rate of *M. tuberculosis* means that even at the highest resolution provided by whole genome sequencing it is still difficult to confidently affirm the inferences of transmission made by traditional epidemiological techniques. This means it is very difficult to determine transmission inclusively. However, whole genome sequencing does in some cases allow us to exclude direct transmission, by using the phylogenetic context provided by other strains. Not only does whole genome sequencing provide the inter-cluster differentiation provided by current typing methods, but it also achieves intra-cluster resolution which can be used to inform epidemiological investigation.
 
 
 > ## Discussion
@@ -27,7 +29,6 @@ keypoints:
 > - Patient B1 - sample ERR026474 
 > - Patient B2 - sample ERR026473
 >
-> 
 > 
 > - Patient C1 - sample ERR026481
 > - Patient C2 - sample ERR026482
