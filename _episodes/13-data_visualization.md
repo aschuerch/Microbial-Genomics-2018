@@ -21,7 +21,7 @@ In the first case, we compared our isolates to a reference genome and clustered 
 [workflow](../fig/Workflow.png)
 
 
-Now we will visualize and compare these two trees with each other. For that we will be using [Dendroscope](http://dendroscope.org/) which is a tree viewer that allows to make tanglegrams (showing and comparing two trees). Make sure you have both newick files (accessory_binary_genes.fa.newick and snptree.newick) on your own computer. 
+Now we will visualize and compare these two trees with each other. For that we will be using [Dendroscope](http://dendroscope.org/) which is a tree viewer that allows to make tanglegrams (showing and comparing two trees). Make sure you have both newick files (accessory_binary_genes.fa.newick and core_snps.newick) on your own computer. 
 
 On your own computer, open Dendroscope 3.
 
