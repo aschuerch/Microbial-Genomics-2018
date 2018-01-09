@@ -232,16 +232,15 @@ You can now safely log out from your machine. The assembly will run over night.
 If you reconnect the next day to your machine, you will also have to reconnect to your session to see how it went.
 
 
-> ## Seeing active sessions**
+> ## Additional session commands
+> **Seeing active sessions**
 > If you disconnect from your session, or from your ssh into a machine, you will need to reconnect to an existing 
 > `screen` session. You can see a list of existing sessions:
 > ~~~
 > $ screen -ls
 > ~~~
 > {: .bash}
-{: .callout}
-
->## Reconnecting to a session**
+> **Reconnecting to a session**
 > To reconnect to an existing session:
 > 
 > ~~~
@@ -250,8 +249,7 @@ If you reconnect the next day to your machine, you will also have to reconnect t
 > {: .bash}
 > 
 > The `-r` option = 'resume  a detached screen session'
-{: .callout}
-
+>
 > **Kill a session**
 > To end a session, type `exit` after reconnecting to the session:
 > 
