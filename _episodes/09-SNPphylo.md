@@ -17,3 +17,6 @@ keypoints:
 
 
 establishing phylogeny with snippy
+viewing the snp tree with Dendroscope
+
+
