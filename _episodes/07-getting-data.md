@@ -201,44 +201,6 @@ This creates a session with the name ‘session_name’
 As you work, this session will stay active until you close this session. Even if you disconnect from your machine, the jobs you start in this session will run till completion.
 
 
-**Detach session (process keeps running in background)**
-
-You can detach from a session by pressing `control + a` followed by `d` (for detach) on your keyboard. 
-
-You can now safely log out from your machine. The assembly will run over night.
-
-If you reconnect the next day to your machine, you will also have to reconnect to your session to see how it went.
-
-**Seeing active sessions**
-
-If you disconnect from your session, or from your ssh into a machine, you will need to reconnect to an existing `screen` session. You can see a list of existing sessions:
-
-~~~
-$ screen -ls
-~~~
-{: .bash}
-
-**Reconnecting to a session**
-
-To reconnect to an existing session:
-
-~~~
-$ screen -r session_name
-~~~
-{: .bash}
-
-The `-r` option = 'resume  a detached screen session'
-
-**Kill a session**
-To end a session, type `exit` after reconnecting to the session:
-
-~~~
-$ screen -r session_name
-$ exit
-~~~
-{: .bash}
-
-
 ## Download the sequenced genomes from the European Nucleotide Archive (ENA)
 
 `wget` is short for “world wide web get”, and it’s basic function is to download web pages or data at a web address.
@@ -259,7 +221,48 @@ wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR026/ERR026482/*fastq.gz
 ~~~
 {: .source}
 
-This will take a moment and might run over night. After the download finished, let's have a look at the files
+This will take a moment and might run over night. We will therefore detach the session to work further.
+
+**Detach session (process keeps running in background)**
+
+You can detach from a session by pressing `control + a` followed by `d` (for detach) on your keyboard. 
+
+You can now safely log out from your machine. The assembly will run over night.
+
+If you reconnect the next day to your machine, you will also have to reconnect to your session to see how it went.
+
+
+> ## Seeing active sessions**
+> If you disconnect from your session, or from your ssh into a machine, you will need to reconnect to an existing 
+> `screen` session. You can see a list of existing sessions:
+> ~~~
+> $ screen -ls
+> ~~~
+> {: .bash}
+{: .callout}
+
+>## Reconnecting to a session**
+> To reconnect to an existing session:
+> 
+> ~~~
+> $ screen -r session_name
+> ~~~
+> {: .bash}
+> 
+> The `-r` option = 'resume  a detached screen session'
+{: .callout}
+
+> **Kill a session**
+> To end a session, type `exit` after reconnecting to the session:
+> 
+> ~~~
+> $ screen -r session_name
+> $ exit
+> ~~~
+> {: .bash}
+{: .callout}
+
+After the download finished, let's have a look at the files
 
 ~~~
 ls
