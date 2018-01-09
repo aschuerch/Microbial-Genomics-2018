@@ -5,12 +5,13 @@ teaching: 30
 exercises: 20
 questions:
 - "How can I describe the quality of my data?"
+- "How can I get rid of sequence data that doesn’t meet my quality standards?"
 objectives:
-- "Explain how a FASTQ file encodes per-base quality scores."
 - "Interpret a FastQC plot summarizing per-base quality across all reads."
+- "Clean FastQC reads for further analysis."
 - "Use `for` loops to automate operations on multiple files."
 keypoints:
-- "Quality encodings vary across sequencing platforms."
+- "Data cleaning is an essential step in a genomics pipeline."
 - "`for` loops let you perform the same set of operations on multiple files with a single command."
 ---
 
