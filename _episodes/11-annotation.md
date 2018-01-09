@@ -137,11 +137,13 @@ mkdir annotation
 {: .bash}
 
 Now we are all set to annotate our contigs with PROKKA. Again, this will run for a while.
+The parameter --outdir tells PROKKA which output directory to write to. This needs to be a new file. 
+The parameter --prefix assigns the sample name as a prefix to all files. If we ommit this, all files will have the same names
 
 ~~~
 for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
   do
-  prokka --outdir annotation/anno_"$sample" --prefix prokka assembly/"$sample".fasta
+  prokka --outdir annotation/anno_"$sample" --prefix $sample assembly/"$sample".fasta
   done
 ~~~
 {: .bash}
@@ -149,18 +151,18 @@ for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029
 Let's check the output:
 
 ~~~
-cat annotation/anno_*/prokka.txt
+cat annotation/anno_*/ERR*.txt
 ~~~
 {: .bash}
 
 
-> ## Challenge: How many coding regions (genes) did PROKKA find in the contigs??
+> ## Exercise: How many coding regions did PROKKA find in the contigs??
 >
 > Find out how many coding regions there are in the *M. tuberculosis* isolates. Enter your solution in the
-> [table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing)
+> [table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing) under the head 'Number of CDS'
 > Hint:
 > ~~~
-> grep "CDS"
+> grep "CDS" 
 > ~~~
 > prints a count of matching lines for each input file.
 > 
@@ -168,7 +170,7 @@ cat annotation/anno_*/prokka.txt
 > >
 > > 
 > > ~~~
-> > [1] grep CDS annotation/anno_*/prokka.txt
+> > [1] grep CDS annotation/anno_*/ERR*.txt
 > >  
 > > annotation/anno_ERR026473/prokka.txt:CDS: 4336
 > > annotation/anno_ERR026474/prokka.txt:CDS: 4179
@@ -184,6 +186,6 @@ cat annotation/anno_*/prokka.txt
 > {: .solution}
 {: .challenge}
 
-
+Repeat the same exercise with the key word 'bases' to see how big the genomes are and fill into the [table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing) under the head 'Genome size'
 
 {% include links.md %}
