@@ -230,7 +230,7 @@ A!@B!BBB@ABAB#########!!!!!!!######
 ~~~
 {: .output}
 
-## Creating, moving, copying, and removing
+## Creating, moving, and removing
 
 Now we can move around in the file structure, look at files, search files, and
 redirect output to new files or to other commands. But what if we want to copy files or move
