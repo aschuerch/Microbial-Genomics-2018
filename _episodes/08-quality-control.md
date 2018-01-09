@@ -452,6 +452,11 @@ tabs in a single window or six separate browser windows.
 > {: .solution}
 {: .challenge}
 
+> ## Exercise
+> 
+> What are the read lengths of the different samples? Fill in in the [table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing) under the header 'Read length'
+{: .challenge}
+
 
 # Cleaning Reads
 
