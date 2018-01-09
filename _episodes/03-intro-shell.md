@@ -170,7 +170,7 @@ subdirectories and files.
 Inside that directory are some other directories:
 
 ~~~
-dc_sample_data	FastQC	Trimmomatic-0.32
+FastQC	TrimGalore-0.4.5  Trimmomatic-0.32  dc_sample_data  freebayes  pplacer-Linux-v1.1.alpha17  quast-4.6.1
 ~~~
 {: .output}
 
