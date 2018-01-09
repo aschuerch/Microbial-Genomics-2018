@@ -16,9 +16,12 @@ keypoints:
 
 ## Pangenome analysis
 
-The microbial pangenome is the union of genes shared by genomes of interest.
+The microbial **pangenome** is the union of genes shared by genomes of interest. The **core genome** is the intersection of genes of these genomes, thus **core genes** are genes present in all strains. The **accessory genome** (also: variable, flexible, dispensable genome) refers to genes not present in all strains of a species. These include genes present in two or more strains or even genes unique to a single strain. Acquired antibiotic resistance genes are typically genes of the accessory genome.
 
 ![Pangenome](../fig/pan-genome-figure1-1024x398.png)
+
+
+Find more information of the pangenome [here](http://www.metagenomics.wiki/pdf/definition/pangenome)
 
 ### Extract genes recB, rubA and dnaA from two genomes.
 
@@ -65,7 +68,13 @@ roary *.gff -f dc_workshop/output/pangenome/
 ~~~
 {: .source}
 
-After roary finished, have a look at the summary file. How many core and pangenome genes are there? Has *M. tuberculosis* a closed or an open pangenome?
+
+
+> ## Discussion: Open or closed pangenome?
+> After roary finished, have a look at the summary file. How many core and pangenome genes are there? Visit the
+> definition of an open and closed pangenome [here](http://www.metagenomics.wiki/pdf/definition/pangenome). 
+> Has *M. tuberculosis* a closed or an open pangenome?
+{: .discussion}
 
 
 ## Visualization
