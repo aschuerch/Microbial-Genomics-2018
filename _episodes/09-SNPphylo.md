@@ -121,12 +121,12 @@ In order to compare the identified SNPs with each other we need to know if a cer
 A core site can have the same nucleotide in every sample (monomorphic) or some samples can be different (polymorphic). 
 SNIPPY will concatenate the core sites, i.e. ignoring sites that are identical in all isolates and in the reference.
 
-The '--no-ref' argument tells SNIPPY to exclude the reference from the alignment.  
+The '--noref' argument tells SNIPPY to exclude the reference from the alignment.  
 The '--aformat' argument determines the alignment output format. We need a [newick format](https://en.wikipedia.org/wiki/Newick_format) for our further analysis, but SNIPPY only offers a range of other formats, including nexus. Format conversion is a [very common problem in bioinformatics](https://twitter.com/search?q=bioinformatics%20format%20conversion&src=typd) but luckily nexus to newick is one of the easier challenges.
 
 ~~~
 cd ../results/snps/
-snippy-core --no-ref --aformat=nexus ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
+snippy-core --noref --aformat=nexus ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
 ~~~
 {: .bash}
 
