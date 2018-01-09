@@ -41,12 +41,19 @@ The assembler we will run is SPAdes. SPAdes generates a final assembly from mult
 
 Because assembly of each genome might take a couple of hours, we will run all assemblies in a loop overnight. It is important to run them within the screen session or else the process will be terminated if we disconnect from the machine. 
 
+Preparation
+~~~
+cd ~/dc_workshop/data
+mkdir ../results/assembly
+~~~
+{: .bash}
+
 We can start the loop with the assemblies
 
 ~~~
 for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
   do
-  spades.py -1 --careful "$sample"_R1_sub.fastq -2 "$sample"_R2_sub.fastq -o ../results/assembly/"$sample"
+  spades.py  --careful -1 "$sample"_1.fastq.gz -2 "$sample"_2.fastq.gz -o ../results/assembly/"$sample"
   done
 ~~~
 {: .bash}
