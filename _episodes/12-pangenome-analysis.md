@@ -84,9 +84,9 @@ Some genes are present in all genomes, some are present in some and absent in ot
 
 > ## Challenge: Which isolates are related based on gene presence/absence??
 >
-> Copy accessory_binary_genes.fa.newick and gene_presence_absence.csv to your own computer. Open [phandango]
-> (http://jameshadfield.github.io/phandango/) in Chrome, drop file accessory_binary_genes.fa.newick and then file 
-> gene_absence_presence.csv. Make three groups out of the 7 isolates.
+> Copy accessory_binary_genes.fa.newick and gene_presence_absence.csv to your own computer. 
+> Open [phandango](http://jameshadfield.github.io/phandango/) in Chrome, drop file accessory_binary_genes.fa.newick and
+> then file gene_absence_presence.csv. Make three groups out of the 7 isolates.
 > ~~~
 > filezilla or scp
 > ~~~
