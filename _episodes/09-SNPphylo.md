@@ -86,7 +86,8 @@ This list gives us information on every SNP that was found by SNIPPY when compar
 > ## Challenge: How many SNPs were identified in each sample??
 >
 > Find out how many SNPs were identified in the *M. tuberculosis* isolates when compared to H37Rv. Enter your solution in the
-> [table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing) under the head 'Number of SNPs'
+> [table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing) under the head 'Number of SNPs'.
+>
 > Hint: The .txt file in the SNIPPY output contains summary information
 > 
 > > ## Solution
@@ -108,13 +109,65 @@ This list gives us information on every SNP that was found by SNIPPY when compar
 > > 
 > > This *M. tuberculosis* isolate contains 1292 SNPs compared to H37Rv.
 > >
-> > Repeat this for the other isolate
+> > Repeat this for the other isolates.
 > > ~~~
 > > {: .output}
 > {: .solution}
 {: .challenge}
 
+## Core SNPs
 
-viewing the snp tree with Dendroscope
+In order to compare the identified SNPs with each other we need to know if a certain position exists in all isolates.
+A core site can have the same nucleotide in every sample (monomorphic) or some samples can be different (polymorphic). 
+SNIPPY will concatenate the core sites, i.e. ignoring sites that are identical in all isolates and in the reference.
 
+The '--no-ref' argument tells SNIPPY to exclude the reference from the alignment.  
+The '--aformat' argument determines the alignment output format. We need a [newick format](https://en.wikipedia.org/wiki/Newick_format) for our further analysis, but SNIPPY only offers a range of other formats, including nexus. Format conversion is a [very common problem in bioinformatics](https://twitter.com/search?q=bioinformatics%20format%20conversion&src=typd) but luckily nexus to newick is one of the easier challenges.
+
+~~~
+cd ../results/snps/
+snippy-core --no-ref --aformat=nexus ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
+~~~
+{: .bash}
+
+
+## Format conversion 
+
+The output is in [Nexus format](https://en.wikipedia.org/wiki/Nexus_file). Let's view the output.
+
+~~~
+head core.nexus
+~~~
+{: .bash}
+
+~~~
+
+~~~
+{: .output}
+
+If we compare this to the [Newick format](https://en.wikipedia.org/wiki/Newick_format) it becomes clear that the Nexus file contains a tree annotation in Newick format. Because this phylogenetic tree contains only a limited amount of samples we can copy the Newick format out of the Nexus file and give it a new name: core_snps.newick
+
+
+## Visualization of phylogenetic trees
+
+We will be using [Dendroscope](http://dendroscope.org/) to view the phylogenetic tree established from the core SNPs. Dendroscope is a tree viewer which allows to edit the trees and zoom in and out.
+
+
+> ## Challenge: Which isolates are related based on core SNPs??
+> 
+> Open Dendroscope on your own computer, go to File>Open and choose core_snps.newick
+> Try to make three groups out of the 7 isolates.
+> 
+> > ## Solution
+> >
+> > 
+> > ~~~
+> > 3 groups:
+> > ..
+> > ..
+> > ..
+> > ~~~
+> > {: .output}
+> {: .solution}
+{: .challenge}
 
