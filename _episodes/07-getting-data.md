@@ -183,6 +183,61 @@ GCF_000195955.2_ASM19595v2_genomic.fna
 {: .challenge}
 
 
+There are a few ways to keep cloud processes running in the background. Many times when we refer to a background process we are talking about what is described at this tutorial - running a command and returning to shell prompt. Here we describe a program that will allow us to run our entire shell and keep that process running even if we disconnect.
+
+## Starting and attaching to screen sessions
+
+### Starting a new session
+
+A ‘session’ can be thought of as a window for screen, you might open an terminal to do one thing on the a computer and then open a new terminal to work on another task at the command line. You can start a session and give it a descriptive name:
+
+~~~
+screen -S session_name
+~~~
+{: .source}
+
+This creates a session with the name ‘session_name’
+
+As you work, this session will stay active until you close this session. Even if you disconnect from your machine, the jobs you start in this session will run till completion.
+
+
+**Detach session (process keeps running in background)**
+
+You can detach from a session by pressing `control + a` followed by `d` (for detach) on your keyboard. 
+
+You can now safely log out from your machine. The assembly will run over night.
+
+If you reconnect the next day to your machine, you will also have to reconnect to your session to see how it went.
+
+**Seeing active sessions**
+
+If you disconnect from your session, or from your ssh into a machine, you will need to reconnect to an existing `screen` session. You can see a list of existing sessions:
+
+~~~
+$ screen -ls
+~~~
+{: .bash}
+
+**Reconnecting to a session**
+
+To reconnect to an existing session:
+
+~~~
+$ screen -r session_name
+~~~
+{: .bash}
+
+The `-r` option = 'resume  a detached screen session'
+
+**Kill a session**
+To end a session, type `exit` after reconnecting to the session:
+
+~~~
+$ screen -r session_name
+$ exit
+~~~
+{: .bash}
+
 
 ## Download the sequenced genomes from the European Nucleotide Archive (ENA)
 
@@ -204,7 +259,7 @@ wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR026/ERR026482/*fastq.gz
 ~~~
 {: .source}
 
-This will take a moment. After the download finished, let's have a look at the files
+This will take a moment and might run over night. After the download finished, let's have a look at the files
 
 ~~~
 ls
