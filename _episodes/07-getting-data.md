@@ -3,9 +3,10 @@ title: "Downloading data"
 teaching: 10
 exercises: 50
 questions:
+- "How can I organize my file system for a new bioinformatics project?"
 - "How and where can data be downloaded?"
 objectives:
-- "Prepare for downstream analysis"
+- "Create a file system for a bioinformatics project."
 - "Use 'for' loops to automate operations on multiple files"
 keypoints:
 - "Wget and Curl are two different ways to get data from the internet"
@@ -25,6 +26,89 @@ rm -r dc_sample_data/
 rm .dc_sampledata_lite/
 ~~~
 {: .source}
+
+## Getting your project started
+
+Project organization is one of the most important parts of a sequencing project, and yet is often overlooked amidst the
+excitement of getting a first look at new data. Of course, while it's best to get yourself organized before you even begin your analyses,it's never too late to start, either.  
+
+Genomics projects can quickly accumulate hundreds of files across 
+tens of folders. Every computational analysis you perform over the course of your project is going to create
+many files, which can especially become a problem when you'll inevitably want to run some of those
+analyses again. For instance, you might have made significant headway into your project, but then have to remember the PCR conditions
+you used to create your sequencing library months prior. 
+
+Other questions might arise along the way: 
+- What were your best alignment results?
+- Which folder were they in: Analysis1, AnalysisRedone, or AnalysisRedone2?
+- Which quality cutoff did you use?
+- What version of a given program did you implement your analysis in?
+
+In this exercise we will setup a file system for the project we will be working on during this workshop.  
+
+We will start by creating a directory that we can use for the rest of the workshop. First navigate to your home directory. Then confirm that you are in the correct directory using the `pwd` command.
+
+~~~
+$ cd
+$ pwd
+~~~
+{: .bash}
+
+You should see the output: 
+
+~~~
+/home/dcuser  
+~~~
+{: .output}
+
+> ## Tip  
+> If you aren't in your home directory, the easiest way to get there is to enter the command `cd`, which
+> always returns you to home.  
+{: .callout}
+
+> ## Exercise  
+> Use the `mkdir` command to make the following directories:   
+> dc_workshop     
+> dc_workshop/docs  
+> dc_workshop/data    
+> dc_workshop/results   
+> 
+> > ## Solution
+> > 
+> > ~~~
+> > $ mkdir dc_workshop
+> > $ mkdir dc_workshop/docs
+> > $ mkdir dc_workshop/data
+> > $ mkdir dc_workshop/results
+> > ~~~
+> > {: .bash}
+> {: .solution}
+{: .challenge}
+
+Use `ls -R` to verify that you have created these directories. The `-R` option for `ls` stands for recursive. This option causes
+`ls` to return the contents of each subdirectory within the directory
+iteratively. 
+
+~~~
+$ ls -R dc_workshop
+~~~
+{: .bash}
+
+You should see the following output:
+
+~~~
+dc_workshop/:
+data  docs  results
+
+dc_workshop/data:
+
+dc_workshop/docs:
+
+dc_workshop/results: 
+~~~
+{: .output}
+
+
 
 ## Selection of a reference genome
 
