@@ -15,10 +15,10 @@ keypoints:
 
 ## Comparison of clustering results
 
-We now grouped our isolates by two different methods based on the information that extracted from the sequencing reads.
+We now grouped our isolates by two different methods based on the information that we extracted from the sequencing reads.
 In the first case, we compared our isolates to a reference genome and clustered them on basis of the single nucleotide variations that they exhibit when compared to this reference. In the second case we annotated genes in the assembled genomes and looked for genes that were variable present or absent.
 
-[workflow](../fig/Workflow.png)
+![workflow](../fig/Workflow.png)
 
 
 Now we will visualize and compare these two trees with each other. For that we will be using [Dendroscope](http://dendroscope.org/) which is a tree viewer that allows to make tanglegrams (showing and comparing two trees). Make sure you have both newick files (accessory_binary_genes.fa.newick and core_snps.newick) on your own computer. 
@@ -33,13 +33,13 @@ Go to View > More panels (this has to be done while you have the first tree sele
 
 Go to Algorithms > Tanglegram. This will show you which samples have the same name.
 
-> ## Exercise
+> ## Discussion
 >
 > 1. Which grouping does the SNP tree suggest?
 > 2. Which grouping does the pangenome tree suggest?
 > 3. Where is the grouping consistent and where not?
 > 4. Which grouping do you trust more and why?
-{: .challenge}
+{: .discussion}
 
 
 ## Visualization of genetic information and metadata
@@ -50,13 +50,11 @@ Download the meta data [file](../files/meta.csv) to your computer. Open Chrome. 
 
 Explore the location, time and further meta data.
 
-> ## Exercise
+> ## Discussion
 >
-> 1. Which grouping does the location information suggest?
-> 2. Which grouping does the other metadata suggest?
-> 2. Is this supported by the SNP clusters?
-> 3. Where is the grouping consistent and where not?
-> 4. Draw a transmission tree where possible
-{: .challenge}
+> 1. Which transmission events are likely based on the meta data alone?
+> 2. Which transmission events are likely based on the SNP or pangenome data?
+> 3. Draw a transmission tree where possible.
+{: .discussion}
 
 
