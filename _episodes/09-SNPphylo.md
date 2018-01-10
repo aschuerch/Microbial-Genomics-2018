@@ -62,7 +62,7 @@ You can now safely work on a different task or log out of your machine. The asse
 After the run is finished we can check the results.
 
 ~~~
-$ head -n10 ../results/snps/ERR029207/ERR029207.tab 
+$ head -n10 ~/dc_workshop/results/snps/ERR029207/ERR029207.tab 
 ~~~
 {: .bash}
 
@@ -95,7 +95,7 @@ This list gives us information on every SNP that was found by SNIPPY when compar
 > >
 > > 
 > > ~~~
-> > $ head .-n10 results/snps/ERR029207/ERR029207.txt
+> > $ head .-n10 ~/dc_workshop/results/snps/ERR029207/ERR029207.txt
 > >  
 > > DateTime	2018-01-09T13:34:32
 > > ReadFiles	/home/dcuser/dc_workshop/data/ERR029207_1.fastq.gz /home/dcuser/dc_workshop/data/ERR029207_2.fastq.gz
@@ -126,7 +126,7 @@ The '--noref' argument tells SNIPPY to exclude the reference from the alignment.
 The '--aformat' argument determines the alignment output format. We need a phylip format as input our next tool
 
 ~~~
-$ cd ../results/snps/
+$ cd ~/dc_workshop/results/snps/
 $ snippy-core --noref --aformat=phylip ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
 ~~~
 {: .bash}
