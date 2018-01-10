@@ -137,8 +137,8 @@ mkdir annotation
 {: .bash}
 
 Now we are all set to annotate our contigs with PROKKA. Again, this will run for a while.
-The parameter --outdir tells PROKKA which output directory to write to. This needs to be a new file. 
-The parameter --prefix assigns the sample name as a prefix to all files. If we ommit this, all files will have the same names
+The parameter --outdir tells PROKKA which output directory to write to. This needs to be a new directory. 
+The parameter --prefix assigns the sample name as a prefix to all files. If we ommit this, all output files would have the same name.
 
 ~~~
 for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
@@ -160,11 +160,12 @@ cat annotation/anno_*/ERR*.txt
 >
 > Find out how many coding regions there are in the *M. tuberculosis* isolates. Enter your solution in the
 > [table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing) under the head 'Number of CDS'
+>
 > Hint:
 > ~~~
 > grep "CDS" 
 > ~~~
-> prints a count of matching lines for each input file.
+> prints matching lines for each input file.
 > 
 > > ## Solution
 > >
@@ -186,6 +187,6 @@ cat annotation/anno_*/ERR*.txt
 > {: .solution}
 {: .challenge}
 
-Repeat the same exercise with the key word 'bases' to see how big the genomes are and fill into the [table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing) under the head 'Genome size'
+Repeat the same exercise with the key word 'bases' to see how large the sum of all contigs is (and by approximation the genome) and fill into the [table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing) under the head 'Genome size'
 
 {% include links.md %}
