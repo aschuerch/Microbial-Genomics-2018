@@ -27,7 +27,7 @@ The identified SNPs will be used to compare the isolates to each other and to es
 Again we will use a ‘screen session’ to do our calculation in the background. You can start a session and give it a descriptive name:
 
 ~~~
-screen -S snp
+$ screen -S snp
 ~~~
 {: .bash}
 
@@ -42,10 +42,11 @@ As you work, this session will stay active until you close this session. Even if
 It is very fast but a single run of SNIPPY still takes about 10 to 12 minutes. We will therefore tell SNIPPY to run all the samples after each other. However this time we can not use a wildcard to do so. We will instead run all the samples in a loop.
 
 ~~~
-for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
-  do
-  snippy  --outdir ../results/snps/$sample --ref GCF_000195955.2_ASM19595v2_genomic.fna --R1 "$sample"_1.fastq.gz --R2 "$sample"_2.fastq.gz
-  done
+$ cd ~/dc_workshop/data/trimmed_fastq/
+$ for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
+>  do
+>  snippy  --outdir ~/dc_workshop/results/snps/$sample --ref GCF_000195955.2_ASM19595v2_genomic.fna --R1 "$sample"_1.fastq_trim.fastq --R2 "$sample"_2.fastq_trim.fastq
+>  done
 ~~~
 {: .bash}
 
@@ -61,7 +62,7 @@ You can now safely work on a different task or log out of your machine. The asse
 After the run is finished we can check the results.
 
 ~~~
-head -n10 ../results/snps/ERR029207/ERR029207.tab 
+$ head -n10 ../results/snps/ERR029207/ERR029207.tab 
 ~~~
 {: .bash}
 
@@ -94,7 +95,7 @@ This list gives us information on every SNP that was found by SNIPPY when compar
 > >
 > > 
 > > ~~~
-> > [1] head ../results/snps/ERR029207/ERR029207.txt
+> > $ head .-n10 results/snps/ERR029207/ERR029207.txt
 > >  
 > > DateTime	2018-01-09T13:34:32
 > > ReadFiles	/home/dcuser/dc_workshop/data/ERR029207_1.fastq.gz /home/dcuser/dc_workshop/data/ERR029207_2.fastq.gz
@@ -125,8 +126,8 @@ The '--noref' argument tells SNIPPY to exclude the reference from the alignment.
 The '--aformat' argument determines the alignment output format. We need a phylip format as input our next tool
 
 ~~~
-cd ../results/snps/
-snippy-core --noref --aformat=phylip ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
+$ cd ../results/snps/
+$ snippy-core --noref --aformat=phylip ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
 ~~~
 {: .bash}
 
@@ -178,7 +179,7 @@ and cited. There is a range of parameters that need to be chosen, such as  nucle
 will run PhyML with standard parameters.
 
 ~~~
-phyml -i core.aln
+$ phyml -i core.aln
 ~~~
 {: .bash}
 
@@ -200,9 +201,9 @@ With this small data set, PhyML finishes very quickly. Let's put the resulting f
 and let's rename our resulting tree.
 
 ~~~
-mkdir tree
-mv core.aln_phyml_stats.txt tree/
-mv core.aln_phyml_tree.txt tree/core_snps.newick
+$ mkdir tree
+$ mv core.aln_phyml_stats.txt tree/
+$ mv core.aln_phyml_tree.txt tree/core_snps.newick
 ~~~
 {: .bash}
 
@@ -210,8 +211,8 @@ mv core.aln_phyml_tree.txt tree/core_snps.newick
 Let's inspect our tree.
 
 ~~~
-cd tree
-head -n10 core_snps.newick
+$ cd tree
+$ head -n10 core_snps.newick
 ~~~
 {: .bash}
 
