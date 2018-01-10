@@ -21,18 +21,19 @@ The low mutation rate of *M. tuberculosis* means that even at the highest resolu
 > Compare the pangenome clustering with the clustering based on SNPs or gene presence/absence and with the data from 
 > epidemiological contact tracing:
 > 
+> Cluster A
 > - Patient A1 - sample ERR029207
 > - Patient A2 - sample ERR029206
 > - Patient A3 - sample ERR026478
 > 
-> 
+> Cluster B
 > - Patient B1 - sample ERR026474 
 > - Patient B2 - sample ERR026473
 >
-> 
+> Cluster C
 > - Patient C1 - sample ERR026481
 > - Patient C2 - sample ERR026482
 > 
-> Which transmission events are affirmed by the genomic data? Which ones partially or not?
+> Which transmission events are affirmed by the genomic data? Which ones partially or not? Why?
 >
 {: .discussion}
