@@ -80,8 +80,15 @@ You can now safely log out from your machine. The assembly will keep on running.
 > >
 > > 
 > > ~~~
-> > [1] grep -c '>' *.fna
-> > ..
+> > [1] grep -c '>'  ERR02*/contigs.fasta
+> > 
+> > ERR026473/contigs.fasta:382
+> > ERR026474/contigs.fasta:346
+> > ERR026478/contigs.fasta:315
+> > ERR026481/contigs.fasta:363
+> > ERR026482/contigs.fasta:371
+> > ERR029206/contigs.fasta:303
+> > ERR029207/contigs.fasta:352
 > > ~~~
 > > {: .output}
 > {: .solution}
