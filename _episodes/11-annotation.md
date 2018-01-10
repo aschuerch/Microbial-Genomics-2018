@@ -48,7 +48,7 @@ The names of the contigs produced by SPades are quite long. PROKKA needs name wh
 cd ~/dc_workshop/results/assembly/
 for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
   do
-  cut -f 1,8 -d "_" "$sample"/contigs.fasta | sed s/NODE/C/g > "$sample".fasta
+  cut -f 1,2 -d "_" "$sample"/contigs.fasta | sed s/NODE/C/g > "$sample".fasta
   done
 ~~~
 
