@@ -123,7 +123,7 @@ Download the *M.tuberculosis* reference genome from the NCBI ftp site.
 First, we switch to the data folder to store all our data
 
 ~~~
-cd dc_workshop/data 
+$ cd dc_workshop/data 
 ~~~
 {: .source}
 
@@ -131,7 +131,7 @@ cd dc_workshop/data
 With curl we use the -O flag, which simultaneously tells curl to download the page instead of showing it to us and specifies that it should save the file using the same name it had on the server:
 
 ~~~
-curl -O ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/195/955/GCF_000195955.2_ASM19595v2/GCF_000195955.2_ASM19595v2_genomic.fna.gz
+$ curl -O ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/195/955/GCF_000195955.2_ASM19595v2/GCF_000195955.2_ASM19595v2_genomic.fna.gz
 ~~~
 {: .source}
 
@@ -141,14 +141,14 @@ This file is compressed (gunzipped) as indicated by the extension of ".gz". It m
 Extract the file by typing
 
 ~~~
-gunzip GCF_000195955.2_ASM19595v2_genomic.fna.gz
+$ gunzip GCF_000195955.2_ASM19595v2_genomic.fna.gz
 ~~~
 {: .source}
 
 Make sure that is was compressed
 
 ~~~
-ls
+$ ls
 ~~~
 {: .source}
 
@@ -166,7 +166,7 @@ GCF_000195955.2_ASM19595v2_genomic.fna
 > ~~~
 > gives information on size.
 > ~~~
-> grep pattern [filename]
+> $ grep pattern [filename]
 > ~~~
 > selects lines in files that match patterns
 >
@@ -175,7 +175,7 @@ GCF_000195955.2_ASM19595v2_genomic.fna
 > >
 > > 
 > > ~~~
-> > [1] grep -v '>' GCF_000195955.2_ASM19595v2_genomic.fna| wc -m
+> > $ grep -v '>' GCF_000195955.2_ASM19595v2_genomic.fna| wc -m
 > > 4466677
 > > ~~~
 > > {: .output}
@@ -192,7 +192,7 @@ There are a few ways to keep cloud processes running in the background. Many tim
 A ‘session’ can be thought of as a window for screen, you might open an terminal to do one thing on the a computer and then open a new terminal to work on another task at the command line. You can start a session and give it a descriptive name:
 
 ~~~
-screen -S session_name
+$ screen -S session_name
 ~~~
 {: .source}
 
@@ -206,18 +206,18 @@ As you work, this session will stay active until you close this session. Even if
 `wget` is short for “world wide web get”, and it’s basic function is to download web pages or data at a web address.
 There are many repositories for public data. Some model organisms or fields have specific databases, and there are ones for particular types of data. Two of the most comprehensive are the National Center for Biotechnology Information (NCBI) and European Nucleotide Archive (EMBL-EBI). In this lesson we’re working with the ENA, but the general process is the same for any database.
 
-Let's download our Mtb data with
+Let's download our *M. tuberculosis* data with
 
 ~~~
-wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR029/ERR029207/*fastq.gz
-wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR029/ERR029206/*fastq.gz
-wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR026/ERR026478/*fastq.gz
+$ wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR029/ERR029207/*fastq.gz
+$ wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR029/ERR029206/*fastq.gz
+$ wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR026/ERR026478/*fastq.gz
 
-wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR026/ERR026474/*fastq.gz
-wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR026/ERR026473/*fastq.gz
+$ wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR026/ERR026474/*fastq.gz
+$ wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR026/ERR026473/*fastq.gz
 
-wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR026/ERR026481/*fastq.gz
-wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR026/ERR026482/*fastq.gz
+$ wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR026/ERR026481/*fastq.gz
+$ wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR026/ERR026482/*fastq.gz
 ~~~
 {: .source}
 
@@ -263,7 +263,7 @@ If you reconnect the next day to your machine, you will also have to reconnect t
 After the download finished, let's have a look at the files
 
 ~~~
-ls
+$ ls
 ~~~
 {: .source}
 
@@ -370,28 +370,6 @@ increase the odds that the program won't do what its readers think it does.
 > 
 > When you check your history later, it will help your remember what you did!
 >
-{: .callout}
-
-When we run our `for` loop, you will see output that starts like this:
-
-~~~
-.. 
-~~~
-{: .output}
-
-
-
-> ## Alternative download
-> If the download takes too long we can instead download a smaller version of the dataset from an earlier version of 
-> this tutorial 
-> 
-> ~~~
-> cd /home/dcuser/dc_workshop/data
-> git clone https://github.com/aschuerch/MolEpiCourse.git
-> mv MolEpiCourse/*fastq .
-> rm -rf MolEpiCourse
-> ~~~
-> {: .bash}
 {: .callout}
 
 
