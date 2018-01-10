@@ -247,3 +247,12 @@ We will be using [Dendroscope](http://dendroscope.org/) to view the phylogenetic
 > {: .solution}
 {: .challenge}
 
+> ## Discussion: What is the SNP distance between the isolates??
+> 
+> Open Dendroscope on your own computer, go to File>Open and choose core_snps.newick.
+> Choose the rectangular phylogram.
+> Try to estimate the number of SNPs between the samples in the three groups.
+> 
+> Hint:
+> Have a look at the file 'core.aln'
+{: .discussion}
