@@ -122,30 +122,106 @@ A core site can have the same nucleotide in every sample (monomorphic) or some s
 SNIPPY will concatenate the core sites, i.e. ignoring sites that are identical in all isolates and in the reference.
 
 The '--noref' argument tells SNIPPY to exclude the reference from the alignment.  
-The '--aformat' argument determines the alignment output format. We need a [newick format](https://en.wikipedia.org/wiki/Newick_format) for our further analysis, but SNIPPY only offers a range of other formats, including nexus. Format conversion is a [very common problem in bioinformatics](https://twitter.com/search?q=bioinformatics%20format%20conversion&src=typd) but luckily nexus to newick is one of the easier challenges.
+The '--aformat' argument determines the alignment output format. We need a phylip format as input our next tool
 
 ~~~
 cd ../results/snps/
-snippy-core --noref --aformat=nexus ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
+snippy-core --noref --aformat=phylip ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
 ~~~
 {: .bash}
 
-
-## Format conversion 
-
-The output is in [Nexus format](https://en.wikipedia.org/wiki/Nexus_file). Let's view the output.
+The last few lines look like this:
 
 ~~~
-head core.nexus
-~~~
-{: .bash}
-
-~~~
-
+...
+[08:20:35] Will write alignment statistics to core.txt
+[08:20:35] Loading pre-masked/aligned sequences...
+[08:20:35] 1/7	ERR026473 coverage 4243097/4411532 = 96.18%
+[08:20:35] 2/7	ERR026474 coverage 4247216/4411532 = 96.28%
+[08:20:35] 3/7	ERR026478 coverage 4262038/4411532 = 96.61%
+[08:20:35] 4/7	ERR026481 coverage 4245636/4411532 = 96.24%
+[08:20:35] 5/7	ERR026482 coverage 4240999/4411532 = 96.13%
+[08:20:35] 6/7	ERR029206 coverage 4245210/4411532 = 96.23%
+[08:20:35] 7/7	ERR029207 coverage 4256440/4411532 = 96.48%
+[08:20:35] Patching variant sites into whole genome alignment...
+[08:20:35] Constructing alignment object for core.full.aln
+[08:20:36] Writing 'phylip' alignment to core.full.aln
+[08:20:41] Writing core SNP table
+[08:20:41] Found 395 core SNPs from 1733 variant sites.
+[08:20:41] Saved SNP table: core.tab
+[08:20:41] Constructing alignment object for core.aln
+[08:20:41] Writing 'phylip' alignment to core.aln
+[08:20:41] Done.
 ~~~
 {: .output}
 
-If we compare this to the [Newick format](https://en.wikipedia.org/wiki/Newick_format) it becomes clear that the Nexus file contains a tree annotation in Newick format. Because this phylogenetic tree contains only a limited amount of samples we can copy the Newick format out of the Nexus file and give it a new name: core_snps.newick
+Our output in phylip format was written to 'core.aln'. But let's have a look at the results.
+
+> ## Discussion: What's in the output of SNIPPY??
+> 
+> Have a look at the content of these three files with 'cat' or 'head'
+> 'core.aln'
+> 'core.full.aln'
+> 'core.nway.tab'
+> What is the difference between these files? Why is core.aln smaller? 
+> What is in core.aln?
+{: .discussion}
+
+
+## Phylogenetic tree  
+
+Phylogenetic trees have been discussed during the lecture. We will here establish a phylogenetic tree 
+from the file 'core.aln' with PhyML. PhyML is a phylogeny software based on the maximum-likelihood 
+principle. Since the original [publication](https://www.ncbi.nlm.nih.gov/pubmed/14530136), PhyML has been widely used 
+and cited. There is a range of parameters that need to be chosen, such as  nucleotide or amino-acid substitution model 
+(see the [web-version of PhyML](http://www.atgc-montpellier.fr/phyml/usersguide.php?type=command) but for simplicity we 
+will run PhyML with standard parameters.
+
+~~~
+phyml -i core.aln
+~~~
+{: .bash}
+
+~~~
+...
+. Log likelihood of the current tree: -1807.238286.
+
+. Compute fast branch supports on the most likely tree...
+
+. Printing the most likely tree in file 'core.aln_phyml_tree.txt'...
+
+. Time used 0h0m1s
+
+oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+~~~
+{: .output}
+
+With this small data set, PhyML finishes very quickly. Let's put the resulting files into a separate folder 
+and let's rename our resulting tree.
+
+~~~
+mkdir tree
+mv core.aln_phyml_stats.txt tree/
+mv core.aln_phyml_tree.txt tree/core_snps.newick
+~~~
+{: .bash}
+
+
+Let's inspect our tree.
+
+~~~
+cd tree
+head -n10 core_snps.newick
+~~~
+{: .bash}
+
+
+~~~
+(ERR026481:0.00000001,ERR026482:0.00767108,((ERR026473:0.31329695,ERR026474:0.26681667)0.921000:0.15635534,(ERR026478:0.00000012,(ERR029207:0.00000001,ERR029206:0.00504197)0.000000:0.00000001)1.000000:0.58688282)1.000000:0.41758464);
+~~~
+{: .output}
+
+This does not look much like a tree yet. The tree is written in a bracket annotation, the [Newick format](https://en.wikipedia.org/wiki/Newick_format). In order to make sense of it we can better view this in a tree viewer. For this, we need to copy the core_snps.newick file to our own computer.
 
 
 ## Visualization of phylogenetic trees
