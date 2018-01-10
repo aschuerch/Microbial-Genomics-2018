@@ -64,7 +64,7 @@ mv ~/dc_workshop/results/annotation/*/*gff dc_workshop/output/annotation/gff_fil
 then we can go to this directory and start roary
 
 ~~~
-roary *.gff -f dc_workshop/output/pangenome/
+roary *.gff -f ~/dc_workshop/results/pangenome/
 ~~~
 {: .source}
 
