@@ -95,16 +95,7 @@ You can now safely log out from your machine. The assembly will keep on running.
 {: .challenge}
 
 
-At the moment, all samples are called contigs.fasta. This is not ideal. We will therefore rename the assembled contigs and move them to this folder
-
-
-~~~
-for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
-  do
-    mv "$sample"/contigs.fasta "$sample".fasta
-  done
-~~~
-{: .bash}
+At the moment, all samples are called contigs.fasta. This is not ideal. In the next episode we will rename the assembled contigs before processing them further.
 
 
 {% include links.md %}
