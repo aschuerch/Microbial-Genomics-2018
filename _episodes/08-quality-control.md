@@ -624,7 +624,7 @@ our extra, double-trimmed file for the `ERR026473_1` sample.
 $ cd ~/dc_workshop/data/
 $ mkdir trimmed_fastq
 $ rm ERR026473_1.trim.fastq_trim.fastq
-$ rm ERR026473_1_trimmed.fastq 
+$ rm ERR026473_1_trim.fastq 
 $ mv *_trim* trimmed_fastq
 $ cd trimmed_fastq
 $ ls
