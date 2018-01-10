@@ -24,7 +24,7 @@ Genome annotation includes prediction of protein-coding genes, as well as other 
 Open ERR029207.fna
 
 ~~~
-head -n50 /home/dcuser/dc_workshop/results/assembly/ERR029207.fasta
+head -n50 /home/dcuser/dc_workshop/results/assembly/ERR029207/contigs.fasta
 ~~~
 {: .source}
 
