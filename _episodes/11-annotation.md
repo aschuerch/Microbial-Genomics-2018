@@ -16,6 +16,8 @@ keypoints:
 - "Larger DNA sequences or genomes require automated prediction and annotation"
 ---
 
+## Annotation
+
 Now that we have assembled the data into contigs the next natural step to do is annotation of the data. The contigs we assembled contain different genomic features. The process of identifying and labelling those features is called genome annotation.
 
 Genome annotation includes prediction of protein-coding genes, as well as other functional genome units such as structural RNAs, tRNAs, small RNAs, pseudogenes, control regions, direct and inverted repeats, insertion sequences, transposons and other mobile elements. It starts by identifying open reading frames (ORFs). Predicted sequences are further analysed to search for similarity to known elements, for example with BLAST.
@@ -38,10 +40,13 @@ Let's copy the first contig including the header by moving over it with the mous
 > 
 > Search for the longest ORF. If you have found it, click on 'Mark'. Submit the longest ORF to BLAST.
 > 
-> How will this ORF be annotated? Is it a gene or something else? What does the gene do? Fill your annotation into the > [table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing) under the header ERR029207_ORF
+> How will this ORF be annotated? Is it a gene or something else? What does the gene do? Fill your annotation into the
+> [table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing) under the header ERR029207_ORF.
 > 
 {: .challenge}
 
+
+## Automated Annotation
 
 Now we will annotate all genomes with an automated approach. Prokka is a pipeline script which coordinates a series of genome feature predictor tools and sequence similarity tools to annotate the genome sequence or contigs. 
 A range of programs are available for these tasks but here we will use PROKKA, which is a pipeline comprising several open source bioinformatic tools and databases.
