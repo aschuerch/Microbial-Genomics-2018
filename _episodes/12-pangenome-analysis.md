@@ -1,7 +1,7 @@
 ---
 title: "Pangenome analysis"
-teaching: 20
-exercises: 60
+teaching: 10
+exercises: 50
 questions:
 - "How to determine a pangenome from a collection of isolate genome sequences?"
 objectives:
