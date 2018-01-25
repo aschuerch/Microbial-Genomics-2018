@@ -525,11 +525,7 @@ $ cd ~/dc_workshop/data/
 ~~~
 {: .bash}
 
-We are going to run Trimmomatic on one of our single-end samples. We
-will use a sliding window of size 4 that will remove bases if their
-phred score is below 20 (like in our example above). We will also
-discard any reads that do not have at least 20 bases remaining after
-this trimming step.
+We are going to run seqtk on one sample giving it an error rate threshold of 0.01 which indicates the base call accuracy. We request that, after trimming, the chances that a base is called incorrectly are only 1 in 10000.
 
 ~~~
 $ seqtk trimfq -q 0.01 ERR026473_1.fastq > ERR026473_1_trim.fastq
@@ -593,7 +589,7 @@ a good practice AND necessary if your variables have spaces in them. For more, c
 There are no spaces before or after the `=`.
 
 Go ahead and run the for loop. It should take a few minutes for
-Trimmomatic to run for each of our six input files. Once it's done
+seqtk to run for each of our six input files. Once it's done
 running, take a look at your directory contents.
 
 ~~~
