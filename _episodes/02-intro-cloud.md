@@ -42,8 +42,7 @@ This lesson covers how to log into, and out of, an *already running* Amazon inst
 ## Background to AWS
 
 Setting up a new AWS instance requires a credit card, an AWS account, and up to
-a day of verification time, but you've already spent most of this workshop working in the cloud!
-To save time, your instructor launched a remote computer (instance) for you prior
+a day of verification time. To save time, your instructor launched a remote computer (instance) for you prior
 to the workshop, and connected it to our lesson data. You've already logged into it at
 least once, but now that you're more comfortable with the command line, lets go back and talk about how it all works.
 
@@ -142,7 +141,7 @@ Logging off your instance is a lot like logging out of your local computer: it s
 that are currently running, but doesn't shut the computer off. AWS instances acrue charges whenever
 they are running, *even if you are logged off*.
 
-If you are *completely* done with your AWS instance, you will need to **terminate** it after you log off. Instructions for terminating an instance are here: [launching cloud instances on your own](../LaunchingInstances).
+If you are *completely* done with your AWS instance, you will need to **terminate** it after you log off. Instructions for terminating an instance are here: [launching cloud instances on your own](http://www.datacarpentry.org/cloud-genomics/LaunchingInstances/).
 
 To log off, use the `exit` command in the same terminal you connected with. This will close the connection, and your terminal will go back to showing your local computer:
 
