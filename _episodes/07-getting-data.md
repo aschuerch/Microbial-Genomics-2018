@@ -145,7 +145,7 @@ $ gunzip GCF_000195955.2_ASM19595v2_genomic.fna.gz
 ~~~
 {: .source}
 
-Make sure that is was compressed
+Make sure that is was extracted
 
 ~~~
 $ ls
@@ -225,10 +225,7 @@ This will take a moment and might run over night. We will therefore detach the s
 
 **Detach session (process keeps running in background)**
 
-You can detach from a session by pressing `control + a` followed by `d` (for detach) on your keyboard. 
-
-You can now safely log out from your machine. The assembly will run over night.
-
+You can detach from a session by pressing `control + a` followed by `d` (for detach) on your keyboard.
 If you reconnect the next day to your machine, you will also have to reconnect to your session to see how it went.
 
 
@@ -304,7 +301,7 @@ Each time the loop iterates, it will assign a file name to the variable `filenam
 and run the `gunzip` command.
 The first time through the loop,
 `$filename` is `ERR026473_1.fastq.gz`. 
-The interpreter runs the command `unzip` on `ERR026473_1.fastq.gz`.
+The interpreter runs the command `gunzip` on `ERR026473_1.fastq.gz`.
 For the second iteration, `$filename` becomes 
 `ERR026473_2.fastq.gz`. This time, the shell runs `gunzip` on `ERR026473_2.fastq.gz`.
 It then repeats this process for the four other `.gz` files in our directory.
@@ -364,7 +361,7 @@ increase the odds that the program won't do what its readers think it does.
 > The `for` loop is interpreted as a multipart command.  If you press the up arrow on your keyboard to recall the command, it will be shown like so:
 >
 > ~~~   
-> $ for filename in *.gz; do echo File $gz; unzip $gz; done
+> $ for filename in *.gz; unzip $gz; done
 > ~~~
 > {: .bash}
 > 
