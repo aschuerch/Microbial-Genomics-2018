@@ -20,6 +20,7 @@ and partially based on the [Data Carpentry Genomics lesson]({{ site.dc_site }}).
 > ## Data
 >
 > This computer practical uses data from [this publication](https://bmcinfectdis.biomedcentral.com/articles/10.1186/1471-2334-13-110)
+> We are using [this](https://docs.google.com/document/d/104CFY2ZpEC4onLIgoTVnfnD0C0agW5C_LH7Wpzgx6no/edit?usp=sharing) collaborative document.
 {: .prereq}
 
 
