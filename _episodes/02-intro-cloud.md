@@ -50,12 +50,13 @@ least once, but now that you're more comfortable with the command line, lets go 
 We have a pre-configured copy of the data needed for this workshop that is always available
 to attach to a new instance on Amazon, as long as you have an account, and the log-in credentials to open it.
 
-To access the pre-configured workshop data, you'll need to use our log-in credentials (user name and password). A user name will be assigned to you at the workshop. In the following, always replace dcuser with your user name.
+To access the pre-configured workshop data, you'll need to use our log-in credentials (user name and password). A user name will be assigned to you at the workshop. In the following, always replace dcuser with your user name 
+and the password with the password assigned to you.
 
 **Log-in Credentials (case-sensitive!)**
 
 - Username: dcuser
-- Password: data4Mgen
+- Password: password
 
 But first, you need a place to log *into*! To find the instance that's attached to that data,
 you'll need something called an IP address. Your instructor should have given this to you
