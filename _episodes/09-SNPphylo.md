@@ -45,7 +45,7 @@ It is very fast but a single run of SNIPPY still takes about 10 to 12 minutes. W
 $ cd ~/dc_workshop/data/trimmed_fastq/
 $ for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
 >  do
->  snippy  --outdir ~/dc_workshop/results/snps/$sample --ref GCF_000195955.2_ASM19595v2_genomic.fna --R1 "$sample"_1.fastq_trim.fastq --R2 "$sample"_2.fastq_trim.fastq
+>  snippy  --outdir ~/dc_workshop/results/snps/$sample --ref ~/dc_workshop/data/GCF_000195955.2_ASM19595v2_genomic.fna --R1 "$sample"_1.fastq_trim.fastq --R2 "$sample"_2.fastq_trim.fastq
 >  done
 ~~~
 {: .bash}
@@ -62,7 +62,7 @@ You can now safely work on a different task or log out of your machine. The asse
 After the run is finished we can check the results.
 
 ~~~
-$ head -n10 ~/dc_workshop/results/snps/ERR029207/ERR029207.tab 
+$ head -n10 ~/dc_workshop/results/snps/ERR029207/snps.tab 
 ~~~
 {: .bash}
 
@@ -120,7 +120,7 @@ This list gives us information on every SNP that was found by SNIPPY when compar
 
 In order to compare the identified SNPs with each other we need to know if a certain position exists in all isolates.
 A core site can have the same nucleotide in every sample (monomorphic) or some samples can be different (polymorphic). 
-SNIPPY will concatenate the core sites, i.e. ignoring sites that are identical in all isolates and in the reference.
+SNIPPY will concatenate the core SNPs, i.e. ignoring sites that are identical in all isolates and in the reference.
 
 The '--noref' argument tells SNIPPY to exclude the reference from the alignment.  
 The '--aformat' argument determines the alignment output format. We need a phylip format as input our next tool
