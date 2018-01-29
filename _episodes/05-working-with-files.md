@@ -14,7 +14,6 @@ objectives:
 keypoints:
 - "You can view file contents using `less`, `cat`, `head` or `tail`."
 - "The commands `cp`, `mv`, and `mkdir` are useful for manipulating existing files and creating new directories."
-- "You can view file permissions using `ls -a` and change permissions using `chmod`."
 - "The `history` command and the up arrow on your keyboard can be used to repeat recently used commands."
 ---
 
@@ -325,19 +324,18 @@ you will be asked whether you want to override your permission settings.
 > learned yet how to do this
 > with a wild-card.)  
 > 3. Use a wildcard to move all of your backup files to a new backup directory.   
-> 4. Change the permissions on all of your backup files to be write-protected.  
 >
 > > ## Solution
 > >
 > > 1. `rm -r backup`  
 > > 2. `cp SRR098026.fastq SRR098026-backup.fastq` and `cp SRR097977.fastq SRR097977-backup.fastq`  
 > > 3. `mkdir backup` and `mv *-backup.fastq backup`
-> > 4. `chmod -w backup/*-backup.fastq`   
-> > It's always a good idea to check your work with `ls -l backup`. You should see something like: 
+>
+> > It's always a good idea to check your work with `ls backup`. You should see something like: 
 > > 
 > > ~~~
-> > -r--r--r-- 1 dcuser dcuser 47552 Nov 15 23:06 SRR097977-backup.fastq
-> > -r--r--r-- 1 dcuser dcuser 43332 Nov 15 23:06 SRR098026-backup.fastq
+> > SRR097977-backup.fastq
+> > SRR098026-backup.fastq
 > > ~~~
 > > {: .output}
 > {: .solution}
