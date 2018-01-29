@@ -45,7 +45,7 @@ Suppose we want to see how many reads in our file have really bad segments conta
 > type of searching to get a feel for the quality of your sequencing results, however, in you 
 > research you will most likely use a bioinformatics tool that has a built-in program for
 > filtering out low-quality reads. You'll learn how to use one such tool in 
-> [a later lesson](http://www.datacarpentry.org/wrangling-genomics/00-readQC/).
+> [a later lesson](../08-quality-control.md).
 > 
 {: .callout}
 
@@ -57,8 +57,8 @@ $ grep NNNNNNNNNN SRR098026.fastq
 This command returns a lot of output to the terminal. Each line in the SRR098026 
 file which contains at least 10 consecutive Ns is printed to the terminal. We may be 
 interested not only in the actual sequence which contains this string, but 
-in the name (or identifier) of that sequence. We discussed in a previous lesson 
-that the identifier line immediately precedes the nucleotide sequence for each read
+in the name (or identifier) of that sequence. The identifier line immediately precedes 
+the nucleotide sequence for each read
 in a FASTQ file. We may also want to inspect the quality scores associated with
 each of these reads. To get all of this information, we will return the line 
 immediately before each match and the two lines immediately after each match.
@@ -250,16 +250,15 @@ your keyboard you use very much, so let's all take a minute to find that key.
 What `|` does is take the output that is
 scrolling by on the terminal and uses that output as input to another command. 
 When our output was scrolling by, we might have wished we could slow it down and
-look at it, like we can with `less`. Well it turns out that we can! We can redirect our output
-from our `grep` call through the `less` command.
+look at it, like we can with `head`. Well it turns out that we can! We can redirect our output
+from our `grep` call through the `head` command.
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less
+$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | head
 ~~~
 {: .bash}
 
-We can now see the output from our `grep` call within the `less` interface. We can use the up and down arrows 
-to scroll through the output and use `q` to exit `less`.
+We can now see the output from our `grep` call within the first ten lines that are displayed with `head`.
 
 Redirecting output is often not intuitive, and can take some time to get used to. Once you're 
 comfortable with redirection, however, you'll be able to combine any number of commands to
