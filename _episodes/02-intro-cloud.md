@@ -50,7 +50,7 @@ least once, but now that you're more comfortable with the command line, lets go 
 We have a pre-configured copy of the data needed for this workshop that is always available
 to attach to a new instance on Amazon, as long as you have an account, and the log-in credentials to open it.
 
-To access the pre-configured workshop data, you'll need to use our log-in credentials (user name and password):
+To access the pre-configured workshop data, you'll need to use our log-in credentials (user name and password). A user name will be assigned to you at the workshop. In the following, always replace dcuser with your user name.
 
 **Log-in Credentials (case-sensitive!)**
 
