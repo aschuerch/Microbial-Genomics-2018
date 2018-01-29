@@ -125,7 +125,7 @@ NACCGGTCCAGCGCGCCCAGATCGAGCCCGTCGAGTCGGTCAACCGAAGTCACCGAACTTGTTTACCACTCGCGCAATGC
 ~~~
 {: .output}
 
-we can now see that the quality of each of the `N`s is 4. 
+we can now see that the quality of an `N` is 4. 
 
 
 > ## Exercise
@@ -247,11 +247,10 @@ $ cd ~/dc_workshop/data/
 > {: .solution}
 {: .challenge}
 
-To run the FastQC program, we need to tell our computer where the program is located 
-(in `~/FastQC`).  FastQC can accept multiple file names as input, so we can use the *.fastq wildcard to run FastQC on all of the FASTQ files in this directory.
+FastQC can accept multiple file names as input, so we can use the *.fastq wildcard to run FastQC on all of the FASTQ files in this directory.
 
 ~~~
-$ ~/FastQC/fastqc *.fastq
+$ fastqc *.fastq
 ~~~
 {: .bash}
 
