@@ -193,10 +193,10 @@ $ cat annotation/anno_*/ERR*.txt
 > > annotation/anno_ERR029207/ERR029207.txt:CDS: 4071
 > > 
 > > These *M. tuberculosis* genomes contain between 4067 and 4075 coding regions.
-> > Is your solution the same or do you have other numbers? What could be a possible explanation 
-> > if the solution differs? 
 > > ~~~
 > > {: .output}
+> Is your solution the same or do you get other numbers of coding regions? What could be possible explanations 
+> if the solution differs? 
 > {: .solution}
 {: .discussion}
 
