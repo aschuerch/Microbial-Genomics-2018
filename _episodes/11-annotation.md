@@ -167,7 +167,7 @@ $ cat annotation/anno_*/ERR*.txt
 {: .bash}
 
 
-> ## Exercise: How many coding regions did PROKKA find in the contigs??
+> ## Discussion: How many coding regions did PROKKA find in the contigs??
 >
 > Find out how many coding regions there are in the *M. tuberculosis* isolates. Enter your solution in the
 > [table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing) under the head 'Number of CDS'
@@ -184,19 +184,23 @@ $ cat annotation/anno_*/ERR*.txt
 > > ~~~
 > > $ grep CDS annotation/anno_*/ERR*.txt
 > >  
-> > annotation/anno_ERR026473/prokka.txt:CDS: 4336
-> > annotation/anno_ERR026474/prokka.txt:CDS: 4179
-> > annotation/anno_ERR026478/prokka.txt:CDS: 4175
-> > annotation/anno_ERR026481/prokka.txt:CDS: 4154
-> > annotation/anno_ERR026482/prokka.txt:CDS: 4125
-> > annotation/anno_ERR029206/prokka.txt:CDS: 4182
-> > annotation/anno_ERR029207/prokka.txt:CDS: 4138
+> > annotation/anno_ERR026473/ERR026473.txt:CDS: 4073
+> > annotation/anno_ERR026474/ERR026474.txt:CDS: 4075
+> > annotation/anno_ERR026478/ERR026478.txt:CDS: 4068
+> > annotation/anno_ERR026481/ERR026481.txt:CDS: 4069
+> > annotation/anno_ERR026482/ERR026482.txt:CDS: 4067
+> > annotation/anno_ERR029206/ERR029206.txt:CDS: 4062
+> > annotation/anno_ERR029207/ERR029207.txt:CDS: 4071
 > > 
-> > These *M. tuberculosis* genomes contain between 4125 and 4336 coding regions.
+> > These *M. tuberculosis* genomes contain between 4067 and 4075 coding regions.
+> > Is your solution the same or do you have other numbers? What could be a possible explanation 
+> > if the solution differs? 
 > > ~~~
 > > {: .output}
 > {: .solution}
-{: .challenge}
+{: .discussion}
+
+
 
 Repeat the same exercise with the key word 'bases' to see how large the sum of all contigs is (and by approximation the genome) and fill into the [table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing) under the head 'Genome size'
 
