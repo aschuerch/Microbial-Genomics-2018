@@ -31,14 +31,15 @@ For this, we need to find if the genes are present in the annotated files.
 >
 > Hints:
 > ~~~
-> grep
+> grep -A 10 [gene] *gbk 
+> gives you the first ten line after the gene name was found
 > ~~~
 > > ## Solution
 > >
 > > 
 > > ~~~
 > > $ cd annnotation
-> > $ grep 'recA' *
+> > $ grep -A 10 'recB' */*gbk | grep translation 
 > > 
 > > ~~~
 > > {: .output}
