@@ -160,10 +160,14 @@ Our output in phylip format was written to 'core.aln'. But let's have a look at 
 
 > ## Discussion: What's in the output of SNIPPY??
 > 
-> Have a look at the content of these three files with 'cat' or 'head'
+> Have a look at the content of these three files with 'cat' or 'head'.
+> 
 > 'core.aln'
+> 
 > 'core.full.aln'
+> 
 > 'core.nway.tab'
+> 
 > What is the difference between these files? Why is core.aln smaller? 
 > What is in core.aln?
 {: .discussion}
