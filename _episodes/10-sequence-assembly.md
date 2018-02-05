@@ -13,7 +13,7 @@ keypoints:
 - "k-mers are short fragments of DNA of length k"
 ---
 
-Sequence assembly means the alignment and merging of reads in order to reconstruct the original sequence. We will talk about sequence assembly in a separate [lecture](../data/lectureAssembly.pdf). The assembly of a genome from short sequencing reads will talk a while - up to several hours per genome. We will therefore run this process overnight in the background. 
+Sequence assembly means the alignment and merging of reads in order to reconstruct the original sequence. We will talk about sequence assembly in a separate [lecture](https://www.dropbox.com/s/89x5wrdzigegr6q/Assembly%20introduction%202018.pptx?dl=0). The assembly of a genome from short sequencing reads will take a while - up to several hours per genome. We will therefore run this process overnight in the background. 
 
 To this end we will again start a screen session. It will allow us to run our entire shell and keep that process running even if we disconnect.
 
@@ -30,12 +30,12 @@ $ screen -S assembly
 
 This creates a session with the name ‘assembly’
 
-As you work, this session will stay active until you close this session. Even if you log out or work on something else, the jobs you start in this session will run until completion.
+As you work, this session will stay active until you close it. Even if you log out or work on something else, the jobs you start in this session will run until completion.
 
 
 ## Sequence assembly
 
-The assembler we will run is SPAdes. SPAdes generates a final assembly from multiple kmers. A list of kmers is automatically selected by SPAdes using the maximum read length of the input data, and each individual kmer contributes to the final assembly. If desired, a list of kmers can be specified with the -k flag which will override automatic kmer selection.
+The assembler we will run is [SPAdes](http://cab.spbu.ru/software/spades/). SPAdes generates a final assembly from multiple kmers. A list of kmers is automatically selected by SPAdes using the maximum read length of the input data, and each individual kmer contributes to the final assembly. If desired, a list of kmers can be specified with the -k flag which will override automatic kmer selection.
 
 
 ## Assembly (over night)
