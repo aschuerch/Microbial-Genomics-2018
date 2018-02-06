@@ -366,7 +366,7 @@ If we were working on our local computers, we'd be able to display each of these
 HTML files as a webpage: 
  
 ~~~
-$ open ERR026473_1_fastqc.html
+$ open ERR026473_1_fastqc/fastqc_report.html
 ~~~
 {: .bash}
 
@@ -441,7 +441,7 @@ Now we can go to our new directory and open the HTML files.
 
 ~~~
 $ cd ~/Desktop/fastqc_html/
-$ open *.html
+$ open */*.html
 ~~~
 {: .bash}
 
