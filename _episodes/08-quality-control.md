@@ -658,7 +658,7 @@ ERR026478_1.fastq_trim.fastq  ERR026482_2.fastq_trim.fastq
 >
 >> ## Hint
 >> 1) 
->> `seqtk fqchk ERR026473_1.fastq | head -n 3`
+>> `seqtk fqchk ERR026473_1.fastq_trim.fastq | head -n 3`
 >>
 >> min_len: 108; max_len: 108; avg_len: 108.00; 33 distinct quality values
 >> POS	#bases	%A	%C	%G	%T	%N	avgQ	errQ	%low	%high
