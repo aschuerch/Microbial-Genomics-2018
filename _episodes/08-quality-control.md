@@ -348,7 +348,7 @@ output files into a new directory within our `results/` directory.
 ~~~
 $ mkdir ~/dc_workshop/results/fastqc_untrimmed_reads
 $ mv *.zip ~/dc_workshop/results/fastqc_untrimmed_reads/
-$ mv *.html ~/dc_workshop/results/fastqc_untrimmed_reads/
+$ mv *_fastqc ~/dc_workshop/results/fastqc_untrimmed_reads/
 ~~~
 {: .bash}
 
@@ -409,7 +409,7 @@ $ mkdir ~/Desktop/fastqc_html
 Now we can transfer our HTML files to our local computer using `scp`. This command will ask for your password. 
 
 ~~~
-$ scp dcuser@ec2-34-238-162-94.compute-1.amazonaws.com:~/dc_workshop/results/fastqc_untrimmed_reads/*.html ~/Desktop/fastqc_html
+$ scp -r dcuser@ec2-34-238-162-94.compute-1.amazonaws.com:~/dc_workshop/results/fastqc_untrimmed_reads/*_fastqc ~/Desktop/fastqc_html
 ~~~
 {: .bash}
 
