@@ -409,7 +409,7 @@ $ mkdir ~/Desktop/fastqc_html
 Now we can transfer our HTML files to our local computer using `scp`. This command will ask for your password. 
 
 ~~~
-$ scp -r dcuser@ec2-34-238-162-94.compute-1.amazonaws.com:~/dc_workshop/results/fastqc_untrimmed_reads/*_fastqc ~/Desktop/fastqc_html
+$ scp -r studentxx@ec2-34-241-64-44.eu-west-1.compute.amazonaws.com:~/dc_workshop/results/fastqc_untrimmed_reads/*_fastqc ~/Desktop/fastqc_html
 ~~~
 {: .bash}
 
