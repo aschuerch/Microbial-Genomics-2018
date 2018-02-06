@@ -292,7 +292,7 @@ dcuser@ip-172-31-58-5:~/dc_workshop/data$
 ~~~
 {: .output}
 
-The FastQC program has created several new files within our
+The FastQC program has created several new folders and zip files within our
 `/data/` directory. 
 
 ~~~
@@ -317,7 +317,7 @@ ERR026478_1.fastq        ERR029206_2_fastqc.html
 ERR026478_1_fastqc.html  ERR029206_2_fastqc.zip
 ERR026478_1_fastqc.zip   ERR029207_1.fastq
 ERR026478_2.fastq        ERR029207_1_fastqc.html
-ERR026478_2_fastqc.html  ERR029207_1_fastqc.zip
+ERR029207_1_fastqc.zip
 ERR026478_2_fastqc.zip   ERR029207_2.fastq
 ERR026481_1.fastq        ERR029207_2_fastqc.html
 ERR026481_1_fastqc.html  ERR029207_2_fastqc.zip
@@ -326,8 +326,16 @@ ERR026481_2.fastq
 ~~~
 {: .output}
 
+The html files are in each folder.
+
+~~~
+ls */*html
+~~~
+{: .output}
+
+
 For each input FASTQ file, FastQC has created a `.zip` file and a
-`.html` file. The `.zip` file extension indicates that this is 
+`.html` file within each folder. The `.zip` file extension indicates that this is 
 actually a compressed set of multiple output files. We'll be working
 with these output files soon. The `.html` file is a stable webpage
 displaying the summary report for each of our samples.
