@@ -301,28 +301,29 @@ $ ls
 {: .bash}
 
 ~~~
-ERR026473_1.fastq        ERR026481_2_fastqc.html
-ERR026473_1_fastqc.html  ERR026481_2_fastqc.zip
-ERR026473_1_fastqc.zip   ERR026482_1.fastq
-ERR026473_2.fastq        ERR026482_1_fastqc.html
-ERR026473_2_fastqc.html  ERR026482_1_fastqc.zip
-ERR026473_2_fastqc.zip   ERR026482_2.fastq
-ERR026474_1.fastq        ERR026482_2_fastqc.html
-ERR026474_1_fastqc.html  ERR026482_2_fastqc.zip
-ERR026474_1_fastqc.zip   ERR029206_1.fastq
-ERR026474_2.fastq        ERR029206_1_fastqc.html
-ERR026474_2_fastqc.html  ERR029206_1_fastqc.zip
-ERR026474_2_fastqc.zip   ERR029206_2.fastq
-ERR026478_1.fastq        ERR029206_2_fastqc.html
-ERR026478_1_fastqc.html  ERR029206_2_fastqc.zip
-ERR026478_1_fastqc.zip   ERR029207_1.fastq
-ERR026478_2.fastq        ERR029207_1_fastqc.html
-ERR029207_1_fastqc.zip
-ERR026478_2_fastqc.zip   ERR029207_2.fastq
-ERR026481_1.fastq        ERR029207_2_fastqc.html
-ERR026481_1_fastqc.html  ERR029207_2_fastqc.zip
-ERR026481_1_fastqc.zip   GCF_000195955.2_ASM19595v2_genomic.fna
-ERR026481_2.fastq
+ERR026473_1.fastq       ERR026481_2_fastqc
+ERR026473_1_fastqc      ERR026481_2_fastqc.zip
+ERR026473_1_fastqc.zip  ERR026482_1.fastq
+ERR026473_2.fastq       ERR026482_1_fastqc
+ERR026473_2_fastqc      ERR026482_1_fastqc.zip
+ERR026473_2_fastqc.zip  ERR026482_2.fastq
+ERR026474_1.fastq       ERR026482_2_fastqc
+ERR026474_1_fastqc      ERR026482_2_fastqc.zip
+ERR026474_1_fastqc.zip  ERR029206_1.fastq
+ERR026474_2.fastq       ERR029206_1_fastqc
+ERR026474_2_fastqc      ERR029206_1_fastqc.zip
+ERR026474_2_fastqc.zip  ERR029206_2.fastq
+ERR026478_1.fastq       ERR029206_2_fastqc
+ERR026478_1_fastqc      ERR029206_2_fastqc.zip
+ERR026478_1_fastqc.zip  ERR029207_1.fastq
+ERR026478_2.fastq       ERR029207_1_fastqc
+ERR026478_2_fastqc      ERR029207_1_fastqc.zip
+ERR026478_2_fastqc.zip  ERR029207_2.fastq
+ERR026481_1.fastq       ERR029207_2_fastqc
+ERR026481_1_fastqc      ERR029207_2_fastqc.zip
+ERR026481_1_fastqc.zip  GCF_000195955.2_ASM19595v2_genomic.fna
+ERR026481_2.fastq       trimmed_fastq
+
 ~~~
 {: .output}
 
