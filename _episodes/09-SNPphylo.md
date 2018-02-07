@@ -95,7 +95,7 @@ This list gives us information on every SNP that was found by SNIPPY when compar
 > >
 > > 
 > > ~~~
-> > $ head .-n10 ~/dc_workshop/results/snps/ERR029207/ERR029207.txt
+> > $ head .-n10 ~/dc_workshop/results/snps/ERR029207/snps.txt
 > >  
 > > DateTime	2018-01-09T13:34:32
 > > ReadFiles	/home/dcuser/dc_workshop/data/ERR029207_1.fastq.gz /home/dcuser/dc_workshop/data/ERR029207_2.fastq.gz
