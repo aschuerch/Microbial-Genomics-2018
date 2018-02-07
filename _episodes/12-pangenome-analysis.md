@@ -62,15 +62,35 @@ $ mv ~/dc_workshop/results/annotation/*/*gff ~/dc_workshop/results/annotation/gf
 ~~~
 {: .source}
 
-then we can go to this directory and start roary
+You can start a session and give it a descriptive name:
+
+~~~
+$ screen -S pangenome
+~~~
+{: .bash}
+
+This creates a session with the name ‘pangenome’
+
+As you work, this session will stay active until you close it. Even if you log out or work on something else, the jobs you start in this session will run until completion.
+
+
+then we can go to the gff directory and start roary
 
 ~~~
 $ cd ~/dc_workshop/results/annotation/gff_files
 $ roary *.gff -f ~/dc_workshop/results/pangenome/
 ~~~
-{: .source}
+{: .bash}
 
+You can detach from a session by pressing `control + a` followed by `d` (for detach) on your keyboard. 
 
+You can now safely work on something else. The process will keep on running. 
+If you want to check on it, you can restore the session with 
+
+~~~
+screen -r pangenome
+~~~
+{: .bash}
 
 > ## Discussion: Open or closed pangenome?
 > After roary finished, have a look at the summary file. How many core and pangenome genes are there? Visit the
