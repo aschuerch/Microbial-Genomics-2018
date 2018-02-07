@@ -54,7 +54,7 @@ To run SPAdes we will use the spades.py command with the --careful option to min
 ~~~
 $ for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
 >  do
->  spades.py  --careful -1 "$sample"_1.fastq_trim.fastq -2 "$sample"_2.fastq_trim.fastq -o ../results/assembly/"$sample"
+>  spades.py  --careful -1 "$sample"_1.fastq_trim.fastq -2 "$sample"_2.fastq_trim.fastq -o ~/dc_workshop/results/assembly/"$sample"
 >  done
 ~~~
 {: .bash}
