@@ -205,6 +205,7 @@ With this small data set, PhyML finishes very quickly. Let's put the resulting f
 and let's rename our resulting tree.
 
 ~~~
+
 $ mkdir tree
 $ mv core.aln_phyml_stats.txt tree/
 $ mv core.aln_phyml_tree.txt tree/core_snps.newick
@@ -215,6 +216,7 @@ $ mv core.aln_phyml_tree.txt tree/core_snps.newick
 Let's inspect our tree.
 
 ~~~
+$ cd ~/dc_workshop/results/snps/
 $ cd tree
 $ head -n10 core_snps.newick
 ~~~
@@ -256,7 +258,7 @@ We will be using [Dendroscope](http://dendroscope.org/) to view the phylogenetic
 > 
 > Open Dendroscope on your own computer, go to File>Open and choose core_snps.newick.
 > Choose the rectangular phylogram.
-> Try to estimate the number of SNPs between the samples in the three groups.
+> Try to estimate the number of SNPs between the samples in the three groups by looking at the tree and by interrogating the SNIPPY output.
 > 
 > Hint:
 > Have a look at the file 'core.aln'
