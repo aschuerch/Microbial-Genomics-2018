@@ -12,15 +12,17 @@ and partially based on the [Data Carpentry Genomics lesson]({{ site.dc_site }}).
 
 > ## Schedule computer practical
 >
-> 0.  Monday, 5 Feb, 13.00 - 17.00: Intro to data and the command line, downloading data
-> 1.  Tuesday, 6 Feb, 13.00 - 17.00: Trimming, SNP-based phylogeny, assembly
-> 2.  Wednesday, 7 Feb, 9.30 - 12.15: Annotation, pangenome analysis, visualizations, conclusions
+> 0.  Tuesday, 3 April: Intro to data and the command line, shell scripting, Quality control, workflows
+> 1.  Wednesday, 4 April: Workflows continued, Genome visualization, Metadata manipulation with R
+> 2.  Thursday, 5 April: Trimming, QC, Assembly, Assembly lecture
+> 3.  Friday, 6 April: Annotation, pangenome analysis, Association scoring, Wrap-up
 {: .checklist}
 
 > ## Data
 >
-> This computer practical uses data from [this publication](https://bmcinfectdis.biomedcentral.com/articles/10.1186/1471-2334-13-110)
-> We are using [this](https://docs.google.com/document/d/104CFY2ZpEC4onLIgoTVnfnD0C0agW5C_LH7Wpzgx6no/edit?usp=sharing) collaborative document.
+> This workshop uses data from a long term evolution experiment published in 2012: [Genomic analysis of a key innovation in an experimental Escherichia coli population by Blount ZD, Barrick JE, Davidson CJ, and Lenski RE. (doi: 10.1038/nature11514)](https://www.nature.com/articles/nature11514).
+>
+> We are using [this]() collaborative document.
 {: .prereq}
 
 
