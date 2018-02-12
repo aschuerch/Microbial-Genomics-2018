@@ -10,7 +10,7 @@ This lesson uses the
 and partially based on the [Data Carpentry Genomics lesson]({{ site.dc_site }}).
 
 
-> ## Schedule computer practical
+> ## Schedule week 1
 >
 > 0.  Tuesday, 3 April: Intro to data and the command line, shell scripting, Quality control, workflows
 > 1.  Wednesday, 4 April: Workflows continued, Genome visualization, Metadata manipulation with R
