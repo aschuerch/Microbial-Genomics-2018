@@ -20,6 +20,15 @@ You will need a terminal program to access the HPC cluster. This is already avai
 
 ## Linux, Windows and Mac
 
+### R
+In the workshop, we will use RStudio. RStudio is a nice interface to the programming language R. To use RStudio, you need to install both R and RStudio.
+ - Download R from [here]()
+ - Run the .exe file that was just downloaded
+ - Go to the [RStudio Download page](https://www.rstudio.com/products/rstudio/download/)
+ - Under Installers select RStudio 
+ - Double click the file to install it
+ - Once it's installed, open RStudio to make sure it works and you don't get any error messages. 
+
 ### FTP Client (Filezilla)
 An FTP client will help you transfer files easily between your computer and the cloud.
 
@@ -38,6 +47,15 @@ An FTP client will help you transfer files easily between your computer and the 
 - Chose the download link appropriate to your system
 - To use it, double-click on the downloaded file
 - Follow any installation instructions, if any
+
+### IGV
+We will use The Broad Institute's IGV (Integrated Genome Viewer) for looking at SAM and BAM files, SNPs, and variant calls.
+ - To download IGV, please visit this page and log in
+ - Click on the large button for the Download Binary Distribution
+ - Find the zip archive on your computer and expand it
+ - To run IGV, double-click on the IGV.bat file. 
+
+
 
 
 {% include links.md %}
