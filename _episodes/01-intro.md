@@ -10,8 +10,7 @@ objectives:
 - "Describe the goals of this practical training."
 - "Describe the characteristics of the isolates."
 keypoints:
-- "We will work towards confirming or disputing transmission in TB cases"
-- "After this practical training you will have some familiarity with working on the command line"
+- "After the first two days you will have some familiarity with working on the command line, data management, cleaning and visualization, automation and scripting"
 ---
 
 Lessons introduce and reinforce basic skills in the Unix shell and R, and are **designed for learners with no programming experience.** The general topics and skills covered include:
