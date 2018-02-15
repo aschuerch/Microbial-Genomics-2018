@@ -1,4 +1,5 @@
 ---
+start: true
 title: "Automating a Variant Calling Workflow"
 teaching: 30
 exercises: 15
