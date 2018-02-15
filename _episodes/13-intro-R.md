@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Introduction to R"
 start: true
 teaching: 10
 exercises: 50
