@@ -530,7 +530,7 @@ to unzip it, and then drag the program into your Applications folder.
 
 Your IGV browser should look like the screenshot below:
 
-![IGV](../img/igv-screenshot.png)
+![IGV](../fig/igv-screenshot.png)
 
 There should be two tracks: one coresponding to our BAM file and the other for our VCF file. 
 
