@@ -99,20 +99,20 @@ data, and have a `data_output/` directory for intermediate datasets and a
 
 If you need help with a specific function, let's say `barplot()`, you can type:
 
-```{r, eval=FALSE}
+```
 ?barplot
 ```
 
 If you just need to remind yourself of the names of the arguments, you can use:
 
-```{r, eval=FALSE}
+```
 args(lm)
 ```
 
 If the function is part of a package that is installed on your computer but
 don't remember which one, you can type:
 
-```{r, eval=FALSE}
+```
 ??geom_point
 ```
 
@@ -121,7 +121,7 @@ don't remember which one, you can type:
 If you are looking for a function to do a particular task, you can use
 `help.search()` (but only looks through the installed packages):
 
-```{r, eval=FALSE}
+```
 help.search("kruskal")
 ```
 
@@ -169,7 +169,7 @@ To share an object with someone else, if it's relatively small, you can use the
 function `dput()`. It will output R code that can be used to recreate the exact same
 object as the one in memory:
 
-```{r, results='show'}
+```
 dput(head(iris)) # iris is an example data.frame that comes with R
 ```
 
@@ -179,7 +179,7 @@ not relevant to your issue). Alternatively, in particular if your questions is
 not related to a `data.frame`, you can save any R object to a file. Note: for this
 example, the folder "/tmp" needs to already exist.
 
-```{r, eval=FALSE}
+```
 saveRDS(iris, file="/tmp/iris.rds")
 ```
 
@@ -187,7 +187,7 @@ The content of this file is however not human readable and cannot be posted
 directly on stackoverflow. It can however be sent to someone by email who can read
 it with this command:
 
-```{r, eval=FALSE}
+```
 some_data <- readRDS(file="~/Downloads/iris.rds")
 ```
 
@@ -196,7 +196,7 @@ as it provides critical information about your platform, the versions of R and
 the packages that you are using, and other information that can be very helpful
 to understand your problem.
 
-```{r, results='show'}
+```
 sessionInfo()
 ```
 
