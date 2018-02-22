@@ -16,10 +16,6 @@ keypoints:
 
 # Looking at Metadata
 
-```{r, echo=FALSE, purl=TRUE}
-# Looking at metadata
-```
-
 We are studying a population of Escherichia coli (designated Ara-3), which were propagated for more than 40,000 generations in a glucose-limited minimal medium. This medium was supplemented with citrate which E. coli cannot metabolize in the aerobic conditions of the experiment. Sequencing of the populations at regular time points reveals that spontaneous citrate-using mutants (Cit+) appeared at around 31,000 generations. This metadata describes information on the Ara-3 clones and the columns represent:
 
 | Column           | Description                                |
@@ -42,7 +38,7 @@ The metadata file required for this lesson can be [downloaded directly here](htt
 
 Use R to download the file by giving the `download.file()` function the link address for the file, and where you want to put this file. If you see and error in response to `download.file()`, you may need to change the directory `"~/Downloads/portal_data_joined.csv"`
 
-```{r, eval=TRUE,  purl=FALSE}
+```
 download.file("https://raw.githubusercontent.com/datacarpentry/R-genomics/gh-pages/data/Ecoli_metadata.csv",
               "data/Ecoli_metadata.csv")
 ```
@@ -63,13 +59,13 @@ variable's value: `metadata`
 Alternatively, wrapping an assignment in parentheses will perform the assignment
 and display it at the same time.
 
-```{r, eval = TRUE, purl = FALSE}
+```
 (metadata <- read.csv('data/Ecoli_metadata.csv'))
 ```
 
 Wow... that was a lot of output. At least it means the data loaded properly. Let's check the top (the first 6 lines) of this `data.frame` using the function `head()`:
 
-```{r, results='show', purl=FALSE}
+```
 head(metadata)
 ```
 
@@ -100,7 +96,7 @@ can be set to `FALSE`:
 Let's now check the __str__ucture of this `data.frame` in more details with the
 function `str()`:
 
-```{r, purl=FALSE}
+```
 str(metadata)
 ```
 
@@ -148,7 +144,7 @@ therefore require some attention.
 
 ## Factors
 
-```{r, echo=FALSE, purl=TRUE}
+```
 ### Factors
 ```
 
@@ -161,7 +157,7 @@ actually integers under the hood, and you need to be careful when treating them
 like strings.
 
 In the data frame we just imported, let's do 
-```{r, purl=TRUE}
+```
 str(metadata)
 ```
 
@@ -179,7 +175,7 @@ For instance, we see that `cit` is a Factor w/ 3 levels, `minus`, `plus` and `un
 You can check this by using the function `levels()`, and check the
 number of levels using `nlevels()`:
 
-```{r, purl=FALSE, eval=FALSE}
+```
 levels(citrate)
 nlevels(citrate)
 ```
@@ -189,7 +185,7 @@ to specify the order because it is meaningful (e.g., "low", "medium", "high") or
 it is required by particular type of analysis. Additionally, specifying the
 order of the levels allows to compare levels:
 
-```{r, purl=FALSE, error=TRUE, eval=FALSE}
+```
 expression <- factor(c("low", "high", "medium", "high", "low", "medium", "high"))
 levels(expression)
 expression <- factor(expression, levels=c("low", "medium", "high"))
@@ -215,7 +211,7 @@ If you need to convert a factor to a character vector, simply use
 Converting a factor to a numeric vector is however a little trickier, and you
 have to go via a character vector. Compare:
 
-```{r, purl=TRUE, eval=FALSE}
+```
 f <- factor(c(1, 5, 10, 2))
 as.numeric(f)               ## wrong! and there is no warning...
 as.numeric(as.character(f)) ## works...
@@ -227,7 +223,7 @@ as.numeric(levels(f))[f]    ## The recommended way.
 The function `table()` tabulates observations and can be used to create
 bar plots quickly. For instance:
 
-```{r wrong-order, results='show', purl=TRUE}
+```
 ## Question: How can you recreate this plot but by having "control"
 ## being listed last instead of first?
 exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1", "control",
