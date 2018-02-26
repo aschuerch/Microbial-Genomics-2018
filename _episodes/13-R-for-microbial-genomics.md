@@ -1,7 +1,7 @@
 ---
 title: "R for microbial genomics"
 teaching: 180
-exercises: 120
+exercises: 180
 questions:
 - "How can I use R to manipulate and visualize microbial genomic data?"
 objectives:
