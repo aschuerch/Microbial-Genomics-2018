@@ -1,6 +1,6 @@
 ---
 title: "R for microbial genomics"
-teaching: 360
+teaching: 180
 exercises: 120
 questions:
 - "[R-microbial-genomics](https://aschuerch.github.io/R-microbial-genomics/)"
