@@ -2,7 +2,7 @@
 start: true
 title: "Automating a Variant Calling Workflow"
 teaching: 30
-exercises: 15
+exercises: 45
 questions:
 - "How can I make my workflow more efficient and less error-prone?"
 objectives:
