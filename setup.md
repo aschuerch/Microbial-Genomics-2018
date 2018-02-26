@@ -41,13 +41,13 @@ An FTP client will help you transfer files easily between your computer and the 
 ### Chrome
 - Go to the [Chrome download page](https://www.google.com/chrome/browser/desktop/index.html)
 - Click and the button and install Chrome
-
+<!-- 
 ### Dendroscope
 - Download Dendroscope 3 [here](http://ab.inf.uni-tuebingen.de/data/software/dendroscope3/download/welcome.html).
 - Chose the download link appropriate to your system
 - To use it, double-click on the downloaded file
 - Follow any installation instructions, if any
-
+-->
 ### IGV
 We will use The Broad Institute's IGV (Integrated Genome Viewer) for looking at SAM and BAM files, SNPs, and variant calls.
  - To download IGV, please visit this page and log in
