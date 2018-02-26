@@ -7,7 +7,6 @@ questions:
 objectives:
 - "Assign values to variables in R"
 - "Load external data from a .csv file into a data frame in R."
-- "Describe the purpose of the dplyr and tidyr packages.
 - "Use summarize, group_by, tally and other functions of the dplyr and tidyr packages to manipulate data in a data frame."
 - "Build complex and customized plots from data in a data frame."
 keypoints:
