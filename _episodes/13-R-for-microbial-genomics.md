@@ -1,5 +1,5 @@
 ---
-title: "https://aschuerch.github.io/R-microbial-genomics/"
+title: "R for microbial genomics"
 teaching: 360
 exercises: 120
 questions:
@@ -9,6 +9,10 @@ objectives:
 keypoints:
 - "Describe the purpose of the RStudio Script, Console, Environment, and Plots panes."
 - "Organize files and directories for a set of analyses as an R Project, and understand the purpose of the working directory."
+---
+https://aschuerch.github.io/R-microbial-genomics/
+
+
 - "Use the built-in RStudio help interface to search for more information on R functions."
 - "Demonstrate how to provide sufficient information for troubleshooting with the R user community."
 - "Define the following terms as they relate to R: object, assign, call, function, arguments, options."
