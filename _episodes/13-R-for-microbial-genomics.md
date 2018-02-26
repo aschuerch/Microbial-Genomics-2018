@@ -43,3 +43,4 @@ keypoints:
 - "Describe what faceting is and apply faceting in ggplot."
 - "Modify the aesthetics of an existing ggplot plot (including axis labels and color)."
 - "Build complex and customized plots from data in a data frame."
+---
