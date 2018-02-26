@@ -5,6 +5,15 @@ exercises: 120
 questions:
 - "[R-microbial-genomics](https://aschuerch.github.io/R-microbial-genomics/)"
 objectives:
+- ""
+keypoints:
+- "[R-microbial-genomics](https://aschuerch.github.io/R-microbial-genomics/)"
+---
+
+
+**The lesson can be found here: [R-microbial-genomics](https://aschuerch.github.io/R-microbial-genomics/)**
+
+
 - "Use the built-in RStudio help interface to search for more information on R functions."
 - "Demonstrate how to provide sufficient information for troubleshooting with the R user community."
 - "Define the following terms as they relate to R: object, assign, call, function, arguments, options."
@@ -38,14 +47,5 @@ objectives:
 - "Describe what faceting is and apply faceting in ggplot."
 - "Modify the aesthetics of an existing ggplot plot (including axis labels and color)."
 - "Build complex and customized plots from data in a data frame."
-keypoints:
-- "[R-microbial-genomics](https://aschuerch.github.io/R-microbial-genomics/)"
----
-
-
-**The lesson can be found here: [R-microbial-genomics](https://aschuerch.github.io/R-microbial-genomics/)**
-
-
-
 
 
