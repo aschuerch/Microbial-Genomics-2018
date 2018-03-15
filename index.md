@@ -4,10 +4,9 @@ root: .
 permalink: index.html  # Is the only page that don't follow the partner /:path/index.html
 ---
 
-This lesson uses the
+The lessons of the first two days use the
 [Software Carpentry]({{ site.swc_site }}) and
-[Data Carpentry]({{ site.dc_site }}) lesson template and is inspired
-and partially based on the [Data Carpentry Genomics lesson]({{ site.dc_site }}).
+[Data Carpentry]({{ site.dc_site }}) lesson template and are based on the [Data Carpentry Genomics lesson]({{ site.dc_site }}).
 
 
 > ## Schedule week 1
