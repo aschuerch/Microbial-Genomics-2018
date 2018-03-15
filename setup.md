@@ -21,11 +21,13 @@ You will need a terminal program to access the HPC cluster. This is already avai
 ### R
  - Install R by downloading and running [this .exe file](http://cran.r-project.org/bin/windows/base/release.htm) from [CRAN](http://cran.r-project.org/index.html)
  - Also, please install [RStudio](http://www.rstudio.com/ide/download/desktop)
+ - After starting RStudio, at the console type: install.packages(c("tidyverse", "RSQLite"))
 
 ## MacOSX
 ### R
  - Install R by downloading and running [this .pkg file](http://cran.r-project.org/bin/macosx/R-latest.pkg) from [CRAN](http://cran.r-project.org/index.html)
  - Also, please install [RStudio](http://www.rstudio.com/ide/download/desktop)
+ - After starting RStudio, at the console type: install.packages(c("tidyverse", "RSQLite"))
 
 ## Linux
 ### R
@@ -38,6 +40,7 @@ You will need a terminal program to access the HPC cluster. This is already avai
  sudo yum install R
  ```
  - Also, please install [RStudio](http://www.rstudio.com/ide/download/desktop)
+ - After starting RStudio, at the console type: install.packages(c("tidyverse", "RSQLite"))
  
  
 ## Linux, Windows and Mac 
