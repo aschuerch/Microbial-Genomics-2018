@@ -19,25 +19,13 @@ You will need a terminal program to access the HPC cluster. This is already avai
 - Follow the installation instructions, if any 
 
 ### R
-In the workshop, we will use RStudio. RStudio is a nice interface to the programming language R. To use RStudio, you need to install both R and RStudio.
- - Download R from [here]()
- - Run the .exe file that was just downloaded
- - Go to the [RStudio Download page](https://www.rstudio.com/products/rstudio/download/)
- - Under Installers select RStudio 
- - Double click the file to install it
- - Once it's installed, open RStudio to make sure it works and you don't get any error messages. 
- 
- 
- 
-       <h4 id="r-windows">Windows</h4>
-      <p>
-	- Install R by downloading and running [this .exe file](http://cran.r-project.org/bin/windows/base/release.htm) from [CRAN](http://cran.r-project.org/index.html)
-	- Also, please install [RStudio](http://www.rstudio.com/ide/download/desktop)
+ - Install R by downloading and running [this .exe file](http://cran.r-project.org/bin/windows/base/release.htm) from [CRAN](http://cran.r-project.org/index.html)
+ - Also, please install [RStudio](http://www.rstudio.com/ide/download/desktop)
 
 ## MacOSX
 ### R
  - Install R by downloading and running [this .pkg file](http://cran.r-project.org/bin/macosx/R-latest.pkg) from [CRAN](http://cran.r-project.org/index.html)
-	- Also, please install [RStudio](http://www.rstudio.com/ide/download/desktop)
+ - Also, please install [RStudio](http://www.rstudio.com/ide/download/desktop)
 
 ## Linux
 ### R
