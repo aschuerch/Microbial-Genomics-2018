@@ -12,7 +12,7 @@ get help.
 
 ## Windows
 ### Putty
-You will need a terminal program to access the HPC cluster. This is already available on Mac and Linux.
+You will need a terminal program to access the remote machine. This is already available on Mac and Linux.
 - Go to the [Putty download page](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 - Click on putty.exe link to download the install file
 - To use it, double-click on the download file
@@ -57,21 +57,13 @@ An FTP client will help you transfer files easily between your computer and the 
 ### Chrome
 - Go to the [Chrome download page](https://www.google.com/chrome/browser/desktop/index.html)
 - Click and the button and install Chrome
-<!-- 
-### Dendroscope
-- Download Dendroscope 3 [here](http://ab.inf.uni-tuebingen.de/data/software/dendroscope3/download/welcome.html).
-- Chose the download link appropriate to your system
-- To use it, double-click on the downloaded file
-- Follow any installation instructions, if any
--->
+
 ### IGV
 We will use The Broad Institute's IGV (Integrated Genome Viewer) for looking at SAM and BAM files, SNPs, and variant calls.
  - To download IGV, please visit this page and log in
  - Click on the large button for the Download Binary Distribution
  - Find the zip archive on your computer and expand it
  - To run IGV, double-click on the IGV.bat file. 
-
-
 
 
 {% include links.md %}
