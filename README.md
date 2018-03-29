@@ -6,4 +6,4 @@ This lessons are partially based on the [Data Carpentry Genomics lesson](http://
 If you would like to contribute, here are a few useful links: 
  - For instruction how the lessons are organized, please visit [this site](https://swcarpentry.github.io/lesson-example/03-organization/index.html)
  - On [formatting](https://swcarpentry.github.io/lesson-example/04-formatting/index.html)
- - Do not hesitate to contact me @aschuerch
+ - Do not hesitate to contact [me](@aschuerch)
