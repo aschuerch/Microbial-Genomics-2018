@@ -1,0 +1,1 @@
+use grep to extract names of ribosomal proteins from gene_presence_absence.csv, use these a input in query_pan_genome to extract all proteins (1 file per protein), align these using mafft, concatenate these using catfasta2phyml and build a tree using fasttree and visualize result. Compare with gene presence absence tree from previous lecture.
