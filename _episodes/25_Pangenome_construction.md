@@ -38,7 +38,7 @@ For this, we need to find if the genes are present in the annotated files.
 > >
 > > 
 > > ~~~
-> > $ cd annnotation
+> > $ cd ~/annnotation
 > > $ grep -A 10 'recX' */*gbk | grep translation 
 > > 
 > > ~~~
