@@ -27,16 +27,16 @@ Because assembly of each genome might take a while, we will a assemble two isola
 
 Preparation
 ~~~
-$ $ cd ~/mgen/reads
+$ $ cd ~/reads
 ~~~
 {: .bash}
 
-To run SPAdes we will use the spades.py command with the --only-assembler option as the reads have already been corrected, -o for the output folder, -1 for the path to the forward reads, -2 for the path to the reverse reads. We will be using the standard k-mer sizes of 21, 33 and 55 basepair. We can start the loop with the assemblies
+To run SPAdes we will use the spades.py command with the --only-assembler option as the reads have already been corrected, -o for the output folder, -1 for the path to the forward reads, -2 for the path to the reverse reads. We will be using the standard k-mer sizes of 21, 33 and 55 basepair. We can start the loop with the assemblies. The following is an example. Replace ERR026473 and ERR026474 with the names of your isolates
 
 ~~~
 $ ls
 
-$ for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207 ; do
+$ for sample in ERR026473 ERR026474  ; do
     spades.py -1 "$sample"_1.fastq.gz -2 "$sample"_2.fastq.gz -o $sample
   done
 ~~~
