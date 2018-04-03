@@ -13,10 +13,10 @@ keypoints:
 
 To investigate if your sequenced genome is of sufficient quality to be used, various statistics on the genome assembly can be gathered. Some are simple (e.g. number of contigs, genome sizes, N50), some require the use of a reference genome or reference genes.
 
-##Basic statistics
+## Basic statistics
 In the previous lesson you have investigated the number of contigs. Other statistics include genome size and the N50. 
 
-###Genome size
+### Genome size
 
 Getting the genome size is basically just counting the bases in a fasta file and excluding the fasta header (containing ">"). Unfortunately the end of line character ("\n") needs to be removed as well as else this character will be counted as well. We use the GNU tool "tr" for that.  
 
@@ -27,7 +27,7 @@ $ cat ERR340887.fasta |grep -v ">" |tr -d "\n" | wc
 
 Questions: What does the -v option do in the grep command? And what does the wc command do?
 
-###Generating the N50
+### Generating the N50
 
 From wikipedia:
 N50 can be described as a weighted median statistic such that 50% of the entire assembly is contained in contigs or scaffolds equal to or larger than this value. Given a set of contigs, each with its own length, the N50 length is defined as the shortest sequence length at 50% of the genome. The N50 is similar to a mean or median of lengths, but has greater weight given to the longer contigs. 
@@ -47,7 +47,7 @@ Access the folder using your webbrowser (point it to http://amazonipadres/home/s
 Question: Think of a few situations where genome size, number of contigs or N50 would be less useful
 
 
-###Assessing the quality using single copy chromosomal marker genes.
+### Assessing the quality using single copy chromosomal marker genes.
 
 An excellent way to assess if your genome is not missing any sequence or is not contaminated is checking if all single copy chromosomal marker genes are there and what their copy number is. We will be using the tool called CheckM ( https://ecogenomics.github.io/CheckM/ ). CheckM is not very fast as it needs to detect 1000s of single copy chromosomal marker genes.
 
