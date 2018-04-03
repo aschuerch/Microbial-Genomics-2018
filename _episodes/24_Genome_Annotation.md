@@ -249,7 +249,6 @@ The .txt files contain some statistics on how many annotated genes are found etc
 > > ERR340884/ERR340884.txt:CDS: 1961
 > > ERR340886/ERR340886.txt:CDS: 1958
 > > ERR340887/ERR340887.txt:CDS: 1919
-
 > > 
 > > These *S. pneumoniae* genomes contain approx 2000 coding regions.
 > > ~~~
