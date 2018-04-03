@@ -27,7 +27,9 @@ Because assembly of each genome might take a while, we will a assemble two isola
 
 Preparation
 ~~~
-$ $ cd ~/reads
+$ cd ~
+$ mkdir assembly
+$ cd ~/reads
 ~~~
 {: .bash}
 
@@ -37,8 +39,13 @@ To run SPAdes we will use the spades.py command with the --only-assembler option
 $ ls
 
 $ for sample in ERR026473 ERR026474  ; do
-    spades.py -1 "$sample"_1.fastq.gz -2 "$sample"_2.fastq.gz -o $sample
+    spades.py -1 "$sample"_1.fastq.gz -2 "$sample"_2.fastq.gz -o ~/assembly/$sample
   done
+
+$ cd ~/assembly
+$ ls 
+$ cd ERR026473
+$ ls
 ~~~
 {: .bash}
 
