@@ -168,8 +168,9 @@ $ cat */*.txt
 ~~~
 {: .bash}
 
+The .txt files contain some statistics on how many annotated genes are found etc. 
 
-> ## Discussion: How many coding regions did PROKKA find in the contigs??
+> ## Challenge: How many coding regions did PROKKA find in the contigs??
 >
 > Find out how many coding regions there are in the *S. pneumoniae* isolates. Enter your solution in the
 > [table](https://docs.google.com/spreadsheets/d/1b8BPKcSUuW2YzgHdMaJN3MEbdgroRJa1dWnf5gkHr9M/edit#gid=0) under the head 'Number of CDS'
@@ -253,12 +254,11 @@ $ cat */*.txt
 > > These *S. pneumoniae* genomes contain approx 2000 coding regions.
 > > ~~~
 > > {: .output}
-> Is your solution the same or do you get other numbers of coding regions? What could be possible explanations 
-> if the solution differs? 
 > {: .solution}
-{: .discussion}
+{: .challenge}
 
-
+Is your solution the same or do you get other numbers of coding regions? What could be possible explanations 
+if the solution differs? 
 
 Repeat the same exercise with the key word 'tRNA' to see how many tRNAs there are and fill into the [table](https://docs.google.com/spreadsheets/d/1b8BPKcSUuW2YzgHdMaJN3MEbdgroRJa1dWnf5gkHr9M/edit#gid=0) under the head 'tRNA'
 
