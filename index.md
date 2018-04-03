@@ -32,7 +32,7 @@ The lessons of the first two days use the
 >
 > In days 1-2 we will use data from a long term evolution experiment published in 2012: [Genomic analysis of a key innovation in an experimental Escherichia coli population by Blount ZD, Barrick JE, Davidson CJ, and Lenski RE. (doi: 10.1038/nature11514)](https://www.nature.com/articles/nature11514).
 >
-> We are using [this]() collaborative document.
+> We are using [this](http://pad.software-carpentry.org/2018-04-03-Utrecht) collaborative document.
 {: .prereq}
 
 
