@@ -1,5 +1,4 @@
 ---
-start: true
 title: "Sequence Quality"
 exercises: 30
 questions:
