@@ -32,7 +32,7 @@ $ nano README.txt
 
 You should see something like this: 
 
-![nano201711.png](../img/nano201711.png)
+![nano201711.png](../fig/nano201711.png)
 
 The text at the bottom of the screen shows the keyboard shortcuts for performing various tasks in `nano`. We will talk more about how to interpret this information soon.
 
@@ -108,7 +108,7 @@ Now you've written a file. You can take a look at it with `less` or `cat`, or op
 
 A really powerful thing about the command line is that you can write scripts. Scripts let you save commands to run them and also lets you put multiple commands together. In the plot below, this is where you win, because you are automating your work.
 
-![Automation](../img/gvng.jpg)
+![Automation](../fig/gvng.jpg)
 
 One thing we will commonly want to do with sequencing results is pull out bad reads and write them to a file to see if we can figure out what's going on with them. We're going to look for reads with long sequences of N's like we did before, but now we're going to write a script, so we can run it each time we get new sequences, rather than type the code in by hand each time.
 
