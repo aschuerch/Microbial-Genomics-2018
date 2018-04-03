@@ -286,14 +286,14 @@ $ wc -l bad_reads.txt
 
 So far we've searched for reads containing a long string of at least 10 unknown nucleotides. 
 We might also be interested in finding any reads with at least two shorter strings of 5 unknown 
-nucleotides, separated by any number of known nucleotides. Reads with more than one region of 
+nucleotides, separated by any number of nucleotides. Reads with more than one region of 
 ambiguity like this might be poor enough to not pass our quality filter. We can search for these
 reads using a wildcard within our search string for `grep`. 
 
 > ## Exercise
 > 
 > How many reads in the `SRR098026.fastq` file contain at least two regions of 5 unknown
-> nucleotides in a row, separated by any number of known nucleotides?
+> nucleotides in a row, separated by any number of nucleotides?
 >
 >> ## Solution
 >> 
