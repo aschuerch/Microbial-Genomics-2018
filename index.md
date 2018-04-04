@@ -38,5 +38,7 @@ The lessons of the first two days use the
 > The etherpad of Day 2 is archived [here](files/2018-04-03-Utrecht-Day2.pdf).
 {: .prereq}
 
+In week 2 we will use publically available genome and RNA data from the organism Zymoseptoria tritici and related fungi. Outline and instructions (to be made available at the start of week 2) can be found here:
+https://drive.google.com/drive/folders/1_iTtzbKqk7j5uzMeN1R_lFgPGuF6KURl?usp=sharing
 
 {% include links.md %}
