@@ -1,7 +1,7 @@
 ---
 start: true
 title: "Sequence assembly"
-exercises: 30
+exercises: 60
 questions:
 - "How can the information in the sequencing reads be reduced?"
 - "What are the different methods for assembly?"
