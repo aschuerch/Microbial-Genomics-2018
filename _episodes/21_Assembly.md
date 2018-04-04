@@ -1,5 +1,4 @@
 ---
-start: true
 title: "Sequence assembly"
 exercises: 60
 questions:
