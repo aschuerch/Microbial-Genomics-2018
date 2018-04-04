@@ -1,6 +1,6 @@
 ---
 start: true
-title: "Introduction"
+title: "Introduction Day3"
 exercises: 30
 teaching: 20
 questions:
@@ -12,12 +12,12 @@ objectives:
 - "Choose login details"
 - "Familiarize yourself with the environment"
 keypoints:
-- "Sequencing *S. pneumoniae* patient isolates can result in interesting assocations of bacterial genes with disease severity"
+- "Sequencing *S. pneumoniae* patient isolates to determine assocations of bacterial genes with disease severity"
 ---
 
 ### Introduction
 
-We will be making use of the Etherpad of the first two days: [http://pad.software-carpentry.org/2018-04-03-Utrecht](http://pad.software-carpentry.org/2018-04-03-Utrecht).
+We will be making use of the Etherpad used in the first two days: [http://pad.software-carpentry.org/2018-04-03-Utrecht](http://pad.software-carpentry.org/2018-04-03-Utrecht).
 The Etherpad contains the link to the shared documents, the IP address of the server, etc.
 
 ## Dataset
