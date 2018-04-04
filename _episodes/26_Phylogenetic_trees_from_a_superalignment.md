@@ -4,9 +4,11 @@ teaching: 10
 exercises: 50
 questions:
 - "What is better, a gene presence absence tree or a tree from core genes/proteins"
+- "Is there a specific clone associated with patient mortality"
 objectives:
 - "How to determine a build a tree from a set of conserved proteins"
 - "Compare the tree with the gene absence presence tree"
+- "Colour the tree with annotation data"
 keypoints:
 - "A tree can be generated from a combined set of proteins for better resolution"
 ---
@@ -65,7 +67,7 @@ $ ls
 
 ## Building the tree
 
-We have now aligned all protein sequences. Furthermore, we have replaced the names of the protein names with only their isolate names (using the cut -f 1 -d _ option). This is needed as we want to concatenate every sequence with the same name using catfasta2phyml.pl ( https://github.com/nylander/catfasta2phyml ), followed by building a tree with fasttree ( http://www.microbesonline.org/fasttree/ ).
+We have now aligned all protein sequences. Furthermore, we have replaced the names of the protein names with only their isolate names (using the cut -f 1 -d _ option). This is needed as we want to concatenate every sequence with the same name using catfasta2phyml.pl (https://github.com/nylander/catfasta2phyml), followed by building a tree with fasttree (http://www.microbesonline.org/fasttree/).
 
 ~~~
 $ catfasta2phyml.pl aligned* -f  > superalignment.fasta
@@ -74,4 +76,10 @@ $ fasttree superalignment.fasta > superalignment.tree
 {: .bash} 
 
 Inspect the superalignment. How many residues are in the alignment?. Also download the tree and view it using Figtree. Does it look comparable to the gene presence absence tree?  Look at the reference isolate. 
+
+## Visualizing phenotypes
+
+It is possible to color the labels of the trees using the "Import Annotations" option. Download the file with annotations here: [annotations.txt](../files/annotations.txt) and import this file. Click on the triangle next to tip labels and select "Colour by". Select "Mortality" in the dropdown box. 
+
+Is there a specific clone associated with mortality? Inspect both the gene presence absence tree and the tree from the superalignment of ribosomal proteins. 
 
