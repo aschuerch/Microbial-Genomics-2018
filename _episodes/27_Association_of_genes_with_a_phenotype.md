@@ -1,6 +1,5 @@
 ---
 title: "Bacterial GWAS"
-start: true
 teaching: 10
 exercises: 30
 questions:
